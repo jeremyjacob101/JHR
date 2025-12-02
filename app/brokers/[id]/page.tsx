@@ -12,22 +12,19 @@ export default async function BrokerDetailPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
-  // 👇 unwrap the params Promise
   const { id } = await params;
 
-  // fetch the broker with that id
   const { data: broker, error: brokerError } = await supabase
     .from("brokers")
     .select("*")
     .eq("id", id)
-    .maybeSingle(); // avoid throwing if 0 rows
+    .maybeSingle();
 
   if (brokerError) {
     console.error("Error loading broker", brokerError);
   }
 
   if (!broker) {
-    // no broker with this id → 404 page
     notFound();
   }
 
@@ -47,7 +44,6 @@ export default async function BrokerDetailPage({
   return (
     <>
       <NavBar />
-
       <main className="max-w-5xl mx-auto px-5 py-10">
         <Link href="/brokers" className="text-sm text-gray-600 hover:underline">
           ← Back to Brokers
