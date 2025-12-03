@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import { supabaseAdmin } from "@/lib/supabase.server";
@@ -58,10 +59,16 @@ export default async function PropertyDetailPage({
   return (
     <>
       <NavBar />
-      <section
-        className="relative h-[260px] bg-cover bg-center mb-0"
-        style={{ backgroundImage: `url(${backdropUrl})` }}
-      >
+      <section className="relative h-[260px] mb-0 overflow-hidden">
+        <Image
+          src={backdropUrl}
+          alt={`${property.propertyName} backdrop`}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+
         <div className="absolute inset-0 bg-linear-to-b from-black/40 to-black/75" />
 
         <div className="relative z-10 max-w-5xl mx-auto h-full flex flex-col justify-end px-5 pb-6 text-white">
@@ -81,13 +88,21 @@ export default async function PropertyDetailPage({
           </p>
         </div>
       </section>
+
       <main className="max-w-5xl mx-auto px-5 pt-5 pb-16 font-sans">
         <section className="grid grid-cols-1 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] gap-7 mt-2">
           <div>
-            <div
-              className="w-full h-80 rounded-2xl bg-cover bg-center mb-5"
-              style={{ backgroundImage: `url(${property.heroImageUrl})` }}
-            />
+            {/* hero image */}
+            <div className="relative w-full h-80 rounded-2xl overflow-hidden mb-5">
+              <Image
+                src={property.heroImageUrl}
+                alt={property.propertyName}
+                fill
+                sizes="(min-width: 768px) 66vw, 100vw"
+                className="object-cover object-center"
+              />
+            </div>
+
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-slate-100 rounded-2xl px-4 py-3 mb-6">
               <div>
                 <span className="text-[11px] uppercase tracking-[0.12em] text-gray-500">
@@ -164,10 +179,16 @@ export default async function PropertyDetailPage({
                   </h3>
 
                   <div className="flex items-center gap-3 mb-3">
-                    <div
-                      className="w-11 h-11 rounded-full bg-cover bg-center"
-                      style={{ backgroundImage: `url(${broker.photoUrl})` }}
-                    />
+                    <div className="relative w-11 h-11 rounded-full overflow-hidden shrink-0">
+                      <Image
+                        src={broker.photoUrl}
+                        alt={`${property.brokerName} photo`}
+                        fill
+                        sizes="44px"
+                        className="object-cover object-center"
+                      />
+                    </div>
+
                     <div>
                       <p className="m-0 font-semibold">{property.brokerName}</p>
                       <p className="m-0 text-[13px] text-gray-500">

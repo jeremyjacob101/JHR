@@ -6,6 +6,7 @@ import PropertyCard from "@/components/PropertyCard";
 import { supabaseAdmin } from "@/lib/supabase.server";
 import { Broker } from "@/types/broker";
 import { Property } from "@/types/property";
+import Image from 'next/image';
 
 export default async function BrokerDetailPage({
   params,
@@ -50,11 +51,17 @@ export default async function BrokerDetailPage({
         </Link>
 
         <div className="flex flex-col md:flex-row gap-6 mt-6 mb-8 items-center md:items-start">
-          <div
-            className="w-32 h-32 rounded-full bg-cover bg-center"
-            style={{ backgroundImage: `url(${typedBroker.photoUrl})` }}
-          />
-          <div>
+          <div className="relative w-28 h-28 rounded-full overflow-hidden shrink-0 mx-auto md:mx-0 mb-4 md:mb-0">
+            <Image
+              src={broker.photoUrl}
+              alt="Broker photo"
+              fill
+              sizes="112px"
+              className="object-cover object-center"
+            />
+          </div>
+
+          <div className="text-center md:text-left">
             <h1 className="text-3xl font-semibold mb-1">{typedBroker.name}</h1>
             <p className="text-sm text-gray-500 mb-2">{typedBroker.area}</p>
             <p className="text-sm text-gray-700">{typedBroker.phone}</p>

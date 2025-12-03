@@ -3,6 +3,7 @@ import PropertyCard from "@/components/PropertyCard";
 import { Property } from "@/types/property";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import Image from 'next/image';
 
 export default async function HomePage() {
   const { data: properties, error } = await supabaseAdmin
@@ -22,13 +23,16 @@ export default async function HomePage() {
   return (
     <>
       <NavBar />
-      <section
-        className="relative h-[540px] rounded-b-4xl overflow-hidden mb-10 mx-5 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url('https://yykrealestate.com/assets/Neighborhoods/3/Baka-mob.jpg')",
-        }}
-      >
+      <section className="relative h-[540px] rounded-b-4xl overflow-hidden mb-10 mx-5">
+        <Image
+          src="https://yykrealestate.com/assets/Neighborhoods/3/Baka-mob.jpg"
+          alt="Baka neighborhood in Jerusalem"
+          fill
+          unoptimized
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+
         <div className="absolute inset-0 bg-linear-to-b from-black/40 to-black/60" />
 
         <div className="relative z-10 h-full flex flex-col items-center justify-center px-5 text-center text-white">

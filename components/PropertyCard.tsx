@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Property } from "@/types/property";
 
 export default function PropertyCard({ property }: { property: Property }) {
@@ -8,10 +9,15 @@ export default function PropertyCard({ property }: { property: Property }) {
       className="block no-underline text-inherit group"
     >
       <article className="bg-slate-50 rounded-2xl shadow-lg overflow-hidden flex flex-col transition transform group-hover:-translate-y-1 group-hover:shadow-xl">
-        <div
-          className="h-52 bg-cover bg-center"
-          style={{ backgroundImage: `url(${property.thumbImageUrl})` }}
-        />
+        <div className="relative h-52 w-full">
+          <Image
+            src={property.thumbImageUrl}
+            alt={property.propertyName}
+            fill
+            sizes="(min-width: 768px) 33vw, 100vw"
+            className="object-cover object-center"
+          />
+        </div>
 
         <div className="px-5 pt-4 pb-5">
           <p className="text-xs uppercase tracking-[0.12em] text-gray-500 mb-1">

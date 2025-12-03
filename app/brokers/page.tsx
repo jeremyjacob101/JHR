@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import NavBar from "@/components/NavBar";
 import { supabaseAdmin } from "@/lib/supabase.server";
@@ -51,10 +52,15 @@ export default async function BrokersPage() {
               className="no-underline text-inherit"
             >
               <div className="bg-slate-50 px-5 py-6 rounded-2xl shadow-md text-center hover:shadow-lg transition">
-                <div
-                  className="w-28 h-28 rounded-full mx-auto mb-4 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${b.photoUrl})` }}
-                />
+                <div className="relative w-28 h-28 rounded-full mx-auto mb-4 overflow-hidden">
+                  <Image
+                    src={b.photoUrl}
+                    alt={`${b.name} headshot`}
+                    fill
+                    sizes="112px"
+                    className="object-cover object-center"
+                  />
+                </div>
 
                 <h2 className="text-xl font-semibold mb-1">{b.name}</h2>
                 <p className="text-sm text-gray-500 mb-3">{b.area}</p>
