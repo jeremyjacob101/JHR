@@ -170,7 +170,7 @@ export default async function PropertyDetailPage({
           <aside className="md:pl-1">
             {broker && (
               <Link
-                href={`/brokers/${broker.id}`}
+                href={`/about/${broker.id}`}
                 className="no-underline text-inherit"
               >
                 <div className="bg-slate-50 rounded-2xl p-5 shadow-md hover:shadow-lg transition cursor-pointer">

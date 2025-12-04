@@ -19,8 +19,8 @@ export default function Footer() {
           <Link href="/" className="hover:underline">
             Properties
           </Link>
-          <Link href="/brokers" className="hover:underline">
-            Brokers
+          <Link href="/about" className="hover:underline">
+            About
           </Link>
           <Link href="/contact" className="hover:underline">
             Contact

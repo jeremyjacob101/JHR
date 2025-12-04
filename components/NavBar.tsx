@@ -17,10 +17,16 @@ export default function NavBar() {
           Properties
         </Link>
         <Link
-          href="/brokers"
+          href="/projects"
           className="text-slate-900 hover:text-slate-700 transition-colors"
         >
-          Brokers
+          Projects
+        </Link>
+        <Link
+          href="/about"
+          className="text-slate-900 hover:text-slate-700 transition-colors"
+        >
+          About
         </Link>
         <Link
           href="/contact"
