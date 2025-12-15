@@ -398,6 +398,31 @@
     background: rgba(59, 130, 246, 0.55);
 }
 
+.preFooterImage {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    /* this is what makes height crop */
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.preFooterImg {
+    object-fit: cover;
+    /* crop, don't stretch */
+    object-position: center;
+    transform: scale(1.02);
+    filter: brightness(0.72) saturate(0.95) contrast(1.06);
+}
+
+.preFooterOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+            rgba(2, 6, 23, 0.10),
+            rgba(2, 6, 23, 0.55));
+    pointer-events: none;
+}
+
 /* direction-aware track (flip with CSS var) */
 @keyframes slideTrack {
     0% {

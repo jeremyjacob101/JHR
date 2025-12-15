@@ -334,6 +334,21 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <section
+        className={styles.preFooterImage}
+        style={{ height: "480px" }}
+      >
+        <Image
+          src="/jhr-logos/svg/LOGO_%20JHR%20_%20FINAL-09.svg"
+          alt="Jerusalem Heritage Realty"
+          fill
+          unoptimized
+          sizes="100vw"
+          className={styles.preFooterImg}
+        />
+        <div className={styles.preFooterOverlay} />
+      </section>
+
       <Footer />
 
       {/* Scroll pop-in (no client component needed) */}
