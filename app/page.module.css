@@ -16,6 +16,7 @@
     transform: scale(1.04);
     animation: kenBurns 18s ease-in-out infinite;
     will-change: transform;
+    filter: brightness(0.62) saturate(0.92) contrast(1.05);
 }
 
 .heroOverlay {
@@ -70,7 +71,7 @@
 }
 
 .heroLogo {
-    height: 22px;
+    height: 100px;
     width: auto;
     opacity: 0.92;
     filter: drop-shadow(0 12px 26px rgba(0, 0, 0, 0.45));

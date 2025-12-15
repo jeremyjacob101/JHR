@@ -250,7 +250,7 @@ export default async function HomePage() {
               src="/jhr-logos/svg/LOGO_%20JHR%20_%20FINAL-04.svg"
               alt="Jerusalem Heritage Realty"
               width={140}
-              height={40}
+              height={140}
               priority
               className={styles.heroLogo}
             />
@@ -360,31 +360,35 @@ export default async function HomePage() {
       <Script id="jhr-sticky-nav-script" strategy="afterInteractive">{`
   (() => {
     const nav = document.getElementById("jhr-sticky-nav");
-    const hero = document.getElementById("jhr-hero");
-    if (!nav || !hero) return;
+    const trigger = document.getElementById("jhr-story-start");
+    if (!nav || !trigger) return;
 
-    const show = () => nav.setAttribute("data-visible", "true");
-    const hide = () => nav.setAttribute("data-visible", "false");
+    const set = (v) => nav.setAttribute("data-visible", v ? "true" : "false");
 
-    // start hidden
-    hide();
-
-    const updateNow = () => {
-      const rect = hero.getBoundingClientRect();
-      // show only when we've fully passed the hero
-      if (rect.bottom <= 0) show();
-      else hide();
+    const update = () => {
+      // show once we're at/past the first pixel of the section after hero
+      set(trigger.getBoundingClientRect().top <= 1);
     };
 
-    updateNow();
+    // start hidden + sync initial state
+    set(false);
+    update();
 
-    if (!("IntersectionObserver" in window)) {
-      window.addEventListener("scroll", updateNow, { passive: true });
-      return;
+    // show immediately when user clicks the down arrow (so it appears during smooth scroll)
+    const cue = document.querySelector(".${styles.scrollCue}");
+    cue?.addEventListener("click", () => {
+      set(true);
+      requestAnimationFrame(() => requestAnimationFrame(update));
+    });
+
+    // keep it correct on real scrolling too
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(update, { threshold: 0 });
+      io.observe(trigger);
     }
-
-    const io = new IntersectionObserver(() => updateNow(), { threshold: 0 });
-    io.observe(hero);
   })();
 `}</Script>
     </>
