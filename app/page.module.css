@@ -338,7 +338,7 @@
     display: flex;
     flex-wrap: nowrap;
     height: 100%;
-    width: calc(100% * var(--slides));
+    width: calc(100% * var(--slides) / 2);
     animation: slideTrack var(--speed, 18s) linear infinite;
     will-change: transform;
 }
@@ -346,7 +346,7 @@
 .mediaSlide {
     position: relative;
     height: 100%;
-    flex: 0 0 calc(100% / var(--slides));
+    flex: 0 0 calc(100% / var(--slides) / 2);
     width: calc(100% / var(--slides));
 }
 
@@ -433,7 +433,7 @@
     }
 
     100% {
-        transform: translateX(calc(-50% * var(--dir, 1)));
+        transform: translateX(calc(-100% * var(--dir, 1)));
     }
 }
 
