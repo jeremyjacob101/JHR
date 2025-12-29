@@ -183,8 +183,10 @@ function StorySection({ block, idx }: { block: StoryBlock; idx: number }) {
                       alt={img.alt}
                       fill
                       sizes="(max-width: 900px) 100vw, 50vw"
+                      className={styles.mediaImg}
                       loading="eager"
                       priority
+                      unoptimized={false}
                     />
                   </div>
                 ))}
