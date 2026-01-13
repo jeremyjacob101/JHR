@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { MainCard } from "@/types/maincard";
-import { montserrat } from "@/lib/fonts";
 
 const cards: MainCard[] = [
   {
@@ -116,7 +115,7 @@ function InfoCard({
 
             <div className="flex-1">
               <h2
-                className={`${montserrat.className} text-2xl md:text-3xl font-extrabold text-[#FAF9F6] leading-tight transition-colors duration-200 group-hover:text-[#ad8548]`}
+                className={"text-2xl md:text-3xl font-extrabold text-[#FAF9F6] leading-tight transition-colors duration-200 group-hover:text-[#ad8548]"}
               >
                 {card.title}
               </h2>
