@@ -227,7 +227,7 @@
 
 /* TEXT column styling */
 .storyText h2 {
-    color: white;
+    color: #FAF9F6;
     font-weight: 600;
     line-height: 1.15;
     font-size: clamp(2rem, 3.6vw, 3.2rem);
