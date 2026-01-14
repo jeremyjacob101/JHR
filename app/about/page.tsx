@@ -21,33 +21,33 @@ export default async function AboutPage() {
   if (error) {
     console.error("Error loading brokers", error);
     return (
-      <>
+      <div className="min-h-screen flex flex-col">
         <NavBar />
-        <main className="max-w-5xl mx-auto px-5 py-10">
+        <main className="flex-1 min-h-0 max-w-5xl mx-auto px-5 py-10">
           <h1 className="text-3xl font-semibold mb-4">Meet the Team</h1>
           <p className="text-red-600">Error loading brokers.</p>
         </main>
-      </>
+      </div>
     );
   }
 
   if (!brokers || brokers.length === 0) {
     return (
-      <>
+      <div className="min-h-screen flex flex-col">
         <NavBar />
-        <main className="max-w-5xl mx-auto px-5 py-10">
+        <main className="flex-1 min-h-0 max-w-5xl mx-auto px-5 py-10">
           <h1 className="text-3xl font-semibold mb-4">Meet the Team</h1>
           <p className="text-gray-500">No brokers found.</p>
         </main>
-      </>
+      </div>
     );
   }
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <NavBar />
 
-      <main className="max-w-5xl mx-auto px-5 py-10">
+      <main className="flex-1 min-h-0 max-w-5xl mx-auto px-5 py-10">
         <section className="mb-10">
           <h1 className="text-3xl font-semibold mb-4">
             Jerusalem Heritage Realty is built for people coming from abroad
@@ -94,6 +94,6 @@ export default async function AboutPage() {
         </div>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
