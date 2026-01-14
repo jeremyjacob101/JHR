@@ -12,6 +12,12 @@ export default async function AboutPage() {
     .order("name")
     .overrideTypes<Broker[], { merge: false }>();
 
+  const brokerImageUrl = (path?: string | null) => {
+    const safePath = path?.trim() ? path.trim() : "defaultAvatar.jpg";
+    return supabaseAdmin.storage.from("brokers").getPublicUrl(safePath).data
+      .publicUrl;
+  };
+
   if (error) {
     console.error("Error loading brokers", error);
     return (
@@ -54,7 +60,7 @@ export default async function AboutPage() {
               <div className="bg-slate-50 px-5 py-6 rounded-2xl shadow-md text-center hover:shadow-lg transition">
                 <div className="relative w-28 h-28 rounded-full mx-auto mb-4 overflow-hidden">
                   <Image
-                    src={b.photoUrl}
+                    src={brokerImageUrl(b.photoUrl)}
                     alt={`${b.name} headshot`}
                     fill
                     sizes="112px"

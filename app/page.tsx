@@ -214,7 +214,7 @@ function StorySection({ block, idx }: { block: StoryBlock; idx: number }) {
 export default async function HomePage() {
   const { data: properties, error } = await supabaseAdmin
     .from("properties")
-    .select("*")
+    .select("*, broker:brokers(*)")
     .overrideTypes<Property[], { merge: false }>();
 
   if (error) {
@@ -227,7 +227,7 @@ export default async function HomePage() {
   }
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <div id="jhr-sticky-nav" className={styles.stickyNav}>
         <NavBar />
       </div>
@@ -270,7 +270,7 @@ export default async function HomePage() {
 
           {/* Bottom copy + arrow */}
           <div className={styles.heroBottom}>
-            <div className={styles.heroBottomCopy}>
+            <div className={`${styles.heroBottomCopy} ${inter.className}`}>
               <p>Your Home.</p>
               <p>Your Heritage.</p>
               <p>Your Future in Jerusalem.</p>
@@ -407,6 +407,6 @@ export default async function HomePage() {
     }
   })();
 `}</Script>
-    </>
+    </div>
   );
 }

@@ -46,7 +46,7 @@ export default function PropertyCard({ property }: { property: Property }) {
             </div>
 
             <p className="text-xs text-gray-500">
-              Listed by {property.brokerName}
+              Listed by {property.broker?.name ?? "Jerusalem Heritage Realty"}
             </p>
           </div>
         </div>

@@ -1,3 +1,5 @@
+import { Broker } from "./broker";
+
 export type Property = {
   id: string;
   propertyName: string;
@@ -9,9 +11,8 @@ export type Property = {
   baths: number;
   indoorSqm: number;
   outdoorSqm: number;
-  brokerName: string;
-  brokerPhone: string;
-  brokerEmail: string;
+  broker_id: string;
+  broker?: Broker;
   heroImageUrl: string;
   backdropImageUrl: string;
   thumbImageUrl: string;

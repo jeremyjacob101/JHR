@@ -14,8 +14,8 @@ export default function Footer() {
         </div>
 
         <div className="text-sm text-gray-400">
-          <p>Phone: +972-50-000-0000</p>
-          <p>Email: info@jerusalemheritagerealty.com</p>
+          <p>Phone: +972-534545304</p>
+          <p>Email: office@jhrisrael.com</p>
         </div>
       </div>
     </footer>

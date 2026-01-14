@@ -6,7 +6,7 @@ import PropertyCard from "@/components/PropertyCard";
 import { supabaseAdmin } from "@/lib/supabase.server";
 import { Broker } from "@/types/broker";
 import { Property } from "@/types/property";
-import Image from 'next/image';
+import Image from "next/image";
 
 export default async function BrokerDetailPage({
   params,
@@ -33,14 +33,22 @@ export default async function BrokerDetailPage({
 
   const { data: properties, error: propertiesError } = await supabaseAdmin
     .from("properties")
-    .select("*")
-    .eq("brokerName", typedBroker.name);
+    .select("*, broker:brokers(*)")
+    .eq("broker_id", typedBroker.id);
 
   if (propertiesError) {
     console.error("Error loading properties", propertiesError);
   }
 
   const safeProperties = (properties as Property[]) ?? [];
+
+  const brokerImageUrl = (path?: string | null) => {
+  const safePath = path?.trim() ? path.trim() : "defaultAvatar.jpg";
+  return supabaseAdmin.storage.from("brokers").getPublicUrl(safePath).data.publicUrl;
+};
+
+const brokerPhoto = brokerImageUrl(broker?.photoUrl);
+
 
   return (
     <>
@@ -53,7 +61,7 @@ export default async function BrokerDetailPage({
         <div className="flex flex-col md:flex-row gap-6 mt-6 mb-8 items-center md:items-start">
           <div className="relative w-28 h-28 rounded-full overflow-hidden shrink-0 mx-auto md:mx-0 mb-4 md:mb-0">
             <Image
-              src={broker.photoUrl}
+              src={brokerPhoto}
               alt="Broker photo"
               fill
               sizes="112px"

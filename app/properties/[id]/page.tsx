@@ -15,7 +15,7 @@ export default async function PropertyDetailPage({
 
   const { data: propertyRow, error: propertyError } = await supabaseAdmin
     .from("properties")
-    .select("*")
+    .select("*, broker:brokers(*)")
     .eq("id", id)
     .maybeSingle();
 
@@ -38,23 +38,19 @@ export default async function PropertyDetailPage({
   }
 
   const property = propertyRow as Property;
+  const broker = property.broker ?? null;
+
+  const brokerImageUrl = (path?: string | null) => {
+    const safePath = path?.trim() ? path.trim() : "defaultAvatar.jpg";
+    return supabaseAdmin.storage.from("brokers").getPublicUrl(safePath).data
+      .publicUrl;
+  };
+  const brokerPhoto = brokerImageUrl(broker?.photoUrl);
 
   const backdropUrl = property.backdropImageUrl || property.heroImageUrl;
   const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(
-    `${property.street}, ${property.city}, Israel`
+    `${property.street}, ${property.city}, Israel`,
   )}&output=embed`;
-
-  const { data: brokerRow, error: brokerError } = await supabaseAdmin
-    .from("brokers")
-    .select("*")
-    .eq("name", property.brokerName)
-    .maybeSingle();
-
-  if (brokerError) {
-    console.error("Error loading broker for property", brokerError);
-  }
-
-  const broker = brokerRow ? (brokerRow as Broker) : null;
 
   return (
     <>
@@ -181,8 +177,8 @@ export default async function PropertyDetailPage({
                   <div className="flex items-center gap-3 mb-3">
                     <div className="relative w-11 h-11 rounded-full overflow-hidden shrink-0">
                       <Image
-                        src={broker.photoUrl}
-                        alt={`${property.brokerName} photo`}
+                        src={brokerPhoto}
+                        alt={`${broker.name} photo`}
                         fill
                         sizes="44px"
                         className="object-cover object-center"
@@ -190,7 +186,7 @@ export default async function PropertyDetailPage({
                     </div>
 
                     <div>
-                      <p className="m-0 font-semibold">{property.brokerName}</p>
+                      <p className="m-0 font-semibold">{broker.name}</p>
                       <p className="m-0 text-[13px] text-gray-500">
                         Licensed Jerusalem Broker
                       </p>
@@ -198,8 +194,8 @@ export default async function PropertyDetailPage({
                   </div>
 
                   <div className="text-sm mb-3">
-                    <p>{property.brokerPhone}</p>
-                    <p>{property.brokerEmail}</p>
+                    <p>{broker.phone}</p>
+                    <p>{broker.email}</p>
                   </div>
 
                   <p className="text-[13px] text-gray-600">
