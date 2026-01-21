@@ -9,6 +9,7 @@ import Script from "next/script";
 import styles from "./page.module.css";
 import type { CSSProperties } from "react";
 import { montserrat, inter } from "@/app/layout";
+import HomeEffects from "@/components/HomeEffects";
 
 type CSSVars = CSSProperties & Record<`--${string}`, string>;
 
@@ -280,6 +281,7 @@ export default async function HomePage() {
               href="#jhr-story-start"
               className={styles.scrollCue}
               aria-label="Scroll down"
+              data-scroll-cue
             >
               <svg
                 viewBox="0 0 24 24"
@@ -351,6 +353,7 @@ export default async function HomePage() {
       </section>
 
       <Footer />
+      <HomeEffects />
 
       {/* Scroll pop-in (no client component needed) */}
       <Script id="jhr-reveal" strategy="afterInteractive">{`
