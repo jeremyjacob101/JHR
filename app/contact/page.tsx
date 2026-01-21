@@ -24,8 +24,10 @@ export default function ContactPage() {
           specific? Leave your details and a broker will reach out.
         </p>
 
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div className="bg-slate-50 rounded-2xl p-5 shadow-md">
+        {/* <section className="grid grid-cols-1 md:grid-cols-2 gap-5"> */}
+        <section className="flex justify-center">
+          {/* <div className="bg-slate-50 rounded-2xl p-5 shadow-md"> */}
+          <div className="bg-slate-50 rounded-2xl p-5 shadow-md w-[110%] max-w-3xl">
             <h2 className="text-[19px] font-semibold mb-4">Send an enquiry</h2>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -133,7 +135,7 @@ export default function ContactPage() {
             </form>
           </div>
 
-          <div className="flex flex-col gap-5 h-full">
+          {/* <div className="flex flex-col gap-5 h-full">
             <div className="bg-slate-50 rounded-2xl shadow-md overflow-hidden flex-1">
               <div className="relative w-full h-full min-h-[220px]">
                 <Image
@@ -183,7 +185,7 @@ export default function ContactPage() {
                 />
               </div>
             </div>
-          </div>
+          </div> */}
         </section>
       </main>
       <Footer />

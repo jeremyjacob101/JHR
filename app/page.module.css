@@ -686,6 +686,60 @@
     .heroLogo {
         height: 20px;
     }
+
+    /* keep title/body/footer centered */
+    .storyText {
+        text-align: center;
+        justify-self: center;
+        max-width: 720px;
+        margin: 0 auto;
+    }
+
+    .goldRule {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .kickerRow {
+        justify-content: center;
+    }
+
+    /* BUT: keep bullet list left-aligned */
+    .storyText ul {
+        text-align: left;
+        width: min(560px, 100%);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .storyText li {
+        justify-content: flex-start;
+    }
+
+    .storyText h2 {
+        max-width: 92%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* ADD THIS: alternating horizontal padding on mobile */
+    .storySection:nth-of-type(odd) .storyMedia {
+        padding-right: 42px;
+        padding-left: 0;
+    }
+
+    .storySection:nth-of-type(even) .storyMedia {
+        padding-left: 42px;
+        padding-right: 0;
+    }
+
+    .featuredTitle {
+        text-align: center;
+    }
+
+    .featuredInner {
+        padding: 40px 20px;
+    }
 }
 
 /* ---------- REDUCED MOTION ---------- */
