@@ -3,6 +3,7 @@
 import Image from "next/image";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
 
 export default function ContactPage() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -38,9 +39,7 @@ export default function ContactPage() {
           specific? Leave your details and a broker will reach out.
         </p>
 
-        {/* <section className="grid grid-cols-1 md:grid-cols-2 gap-5"> */}
         <section className="flex justify-center">
-          {/* <div className="bg-slate-50 rounded-2xl p-5 shadow-md"> */}
           <div className="bg-slate-50 rounded-2xl p-5 shadow-md w-[110%] max-w-3xl">
             <h2 className="text-[19px] font-semibold mb-4">Send an enquiry</h2>
 
@@ -148,61 +147,42 @@ export default function ContactPage() {
               </p>
             </form>
           </div>
+        </section>
 
-          {/* <div className="flex flex-col gap-5 h-full">
-            <div className="bg-slate-50 rounded-2xl shadow-md overflow-hidden flex-1">
-              <div className="relative w-full h-full min-h-[220px]">
-                <Image
-                  src="https://cdn.stocksnap.io/img-thumbs/280h/table-chairs_7OPWOSQFXS.jpg"
-                  alt="Jerusalem Heritage Realty office"
-                  fill
-                  className="object-cover object-center"
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                />
+        {/* WhatsApp CTA */}
+        <section className="mt-10 flex justify-center">
+          <a
+            href="https://wa.me/972526166178"
+            target="_blank"
+            rel="noreferrer"
+            className="w-full max-w-3xl bg-slate-50 rounded-2xl shadow-md border border-slate-100 p-5 flex items-center justify-between gap-4 hover:shadow-lg transition"
+          >
+            <div className="flex items-center gap-3">
+              <Image
+                src="/icons/whatsapp-symbol-logo-svgrepo-com.svg"
+                alt="WhatsApp"
+                width={34}
+                height={34}
+                className="shrink-0"
+              />
+              <div>
+                <h3 className="text-[17px] font-semibold leading-tight">
+                  Contact Us On WhatsApp!
+                </h3>
+                <p className="text-[13px] text-gray-600">
+                  Tap to chat with a broker instantly.
+                </p>
               </div>
             </div>
 
-            <div className="bg-slate-50 rounded-2xl p-5 shadow-md text-sm flex-1 flex flex-col overflow-hidden">
-              <h2 className="text-[19px] font-semibold mb-2">
-                Jerusalem Heritage Realty Office
-              </h2>
-
-              <div className="space-y-1 text-slate-700">
-                <p>18 King George Street, Jerusalem, Israel</p>
-                <p>
-                  Phone:{" "}
-                  <a
-                    className="underline underline-offset-2 hover:no-underline"
-                    href="tel:+972534545304"
-                  >
-                    +972-534545304
-                  </a>
-                </p>
-                <p>
-                  Email:{" "}
-                  <a
-                    className="underline underline-offset-2 hover:no-underline"
-                    href="mailto:office@JerusalemHeritageRealty.com"
-                  >
-                    office@jhrisrael.com
-                  </a>
-                </p>
-              </div>
-
-              <div className="mt-4 flex-1 overflow-hidden rounded-xl border border-slate-200 bg-white">
-                <iframe
-                  title="Jerusalem Heritage Realty - 18 King George Street, Jerusalem"
-                  className="w-full h-full"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  src="https://www.google.com/maps?q=18%20King%20George%20Street%2C%20Jerusalem%2C%20Israel&output=embed"
-                />
-              </div>
-            </div>
-          </div> */}
+            <span className="text-sm font-medium text-slate-900 underline underline-offset-4 hover:no-underline">
+              Open WhatsApp
+            </span>
+          </a>
         </section>
       </main>
       <Footer />
+      <WhatsAppFloatingButton />
     </div>
   );
 }
