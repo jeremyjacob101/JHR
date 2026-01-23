@@ -41,7 +41,7 @@ export default function ContactPage() {
 
         <section className="flex justify-center">
           <div className="bg-slate-50 rounded-2xl p-5 shadow-md w-[110%] max-w-3xl">
-            <h2 className="text-[19px] font-semibold mb-4">Send an enquiry</h2>
+            <h2 className="text-[19px] font-semibold mb-4">Send An Inquiry</h2>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>

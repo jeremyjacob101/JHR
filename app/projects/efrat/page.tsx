@@ -61,7 +61,7 @@ export default async function EfratProjectPage() {
           </div>
         </section>
         {/* Header */}
-        <section className="mb-10">
+        <section className="mb-10 mt-6">
           <h1 className="text-3xl font-semibold mb-3">Efrat Project</h1>
 
           <p className="text-base text-slate-700 leading-relaxed max-w-3xl">
@@ -73,14 +73,14 @@ export default async function EfratProjectPage() {
               href={SCHEDULE_CALL_HREF}
               className="inline-flex items-center justify-center rounded-xl bg-slate-900 text-[#FAF9F6] text-sm font-medium px-5 py-3 hover:bg-slate-800 active:bg-slate-950 transition"
             >
-              Schedule a call
+              Schedule A Call
             </Link>
 
             <Link
               href={ENQUIRY_HREF}
               className="inline-flex items-center justify-center rounded-xl bg-white border border-slate-200 text-slate-900 text-sm font-medium px-5 py-3 hover:bg-slate-50 transition"
             >
-              Send an enquiry
+              Send An Inquiry
             </Link>
           </div>
         </section>

@@ -91,7 +91,7 @@ export default async function TeamPage() {
                 </p>
 
                 <p className="text-sm text-gray-700">
-                  {b.phone_us &&<strong>US</strong>} {b.phone_us ?? "\u00A0"}
+                  {b.phone_us && <strong>US</strong>} {b.phone_us ?? "\u00A0"}
                 </p>
 
                 <p className="text-sm text-gray-700 mt-3">{b.role}</p>

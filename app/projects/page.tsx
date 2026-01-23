@@ -35,14 +35,14 @@ export default async function ProjectsPage() {
               href={SCHEDULE_CALL_HREF}
               className="inline-flex items-center justify-center rounded-xl bg-slate-900 text-[#FAF9F6] text-sm font-medium px-5 py-3 hover:bg-slate-800 active:bg-slate-950 transition"
             >
-              Schedule a call
+              Schedule A Call
             </Link>
 
             <Link
               href="/contact"
               className="inline-flex items-center justify-center rounded-xl bg-white border border-slate-200 text-slate-900 text-sm font-medium px-5 py-3 hover:bg-slate-50 transition"
             >
-              Send an enquiry
+              Send An Inquiry
             </Link>
           </div>
         </section>
