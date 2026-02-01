@@ -687,6 +687,11 @@
         height: 20px;
     }
 
+    .storyWrap .storySection:first-child {
+        padding-top: calc(120px + env(safe-area-inset-top));
+    }
+
+
     /* keep title/body/footer centered */
     .storyText {
         text-align: center;

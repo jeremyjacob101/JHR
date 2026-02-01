@@ -7,12 +7,14 @@ export default function HomeEffects() {
   const pathname = usePathname();
 
   useEffect(() => {
+    const cleanups: Array<() => void> = [];
+
     // ---------- REVEAL ----------
     const revealEls = Array.from(
-      document.querySelectorAll<HTMLElement>("[data-reveal]")
+      document.querySelectorAll<HTMLElement>("[data-reveal]"),
     );
 
-    // If we came back from another page, ensure they're not stuck hidden
+    // reset in case we navigated away and came back
     revealEls.forEach((el) => el.classList.remove("jhr-visible"));
 
     if (!("IntersectionObserver" in window) || revealEls.length === 0) {
@@ -27,53 +29,55 @@ export default function HomeEffects() {
             }
           }
         },
-        { threshold: 0.18, rootMargin: "0px 0px -10% 0px" }
+        { threshold: 0.18, rootMargin: "0px 0px -10% 0px" },
       );
 
       revealEls.forEach((el) => io.observe(el));
-
-      // cleanup
-      return () => io.disconnect();
+      cleanups.push(() => io.disconnect());
     }
 
     // ---------- STICKY NAV ----------
     const nav = document.getElementById("jhr-sticky-nav");
     const trigger = document.getElementById("jhr-story-start");
-    if (!nav || !trigger) return;
 
-    const set = (v: boolean) =>
-      nav.setAttribute("data-visible", v ? "true" : "false");
+    if (nav && trigger) {
+      const set = (v: boolean) =>
+        nav.setAttribute("data-visible", v ? "true" : "false");
 
-    const update = () => {
-      set(trigger.getBoundingClientRect().top <= 1);
-    };
+      const update = () => {
+        set(trigger.getBoundingClientRect().top <= 1);
+      };
 
-    // sync initial state on mount
-    set(false);
-    update();
+      // sync initial state (also handles scroll restoration)
+      set(false);
+      requestAnimationFrame(update);
 
-    // show immediately when clicking the cue (smooth scroll)
-    const cue = document.querySelector<HTMLElement>("[data-scroll-cue]");
-    const onCueClick = () => {
-      set(true);
-      requestAnimationFrame(() => requestAnimationFrame(update));
-    };
-    cue?.addEventListener("click", onCueClick);
+      const cue = document.querySelector<HTMLElement>("[data-scroll-cue]");
+      const onCueClick = () => {
+        set(true);
+        requestAnimationFrame(() => requestAnimationFrame(update));
+      };
+      cue?.addEventListener("click", onCueClick);
 
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
+      window.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("resize", update);
 
-    let io2: IntersectionObserver | null = null;
-    if ("IntersectionObserver" in window) {
-      io2 = new IntersectionObserver(update, { threshold: 0 });
-      io2.observe(trigger);
+      let io2: IntersectionObserver | null = null;
+      if ("IntersectionObserver" in window) {
+        io2 = new IntersectionObserver(update, { threshold: 0 });
+        io2.observe(trigger);
+      }
+
+      cleanups.push(() => {
+        cue?.removeEventListener("click", onCueClick);
+        window.removeEventListener("scroll", update);
+        window.removeEventListener("resize", update);
+        io2?.disconnect();
+      });
     }
 
     return () => {
-      cue?.removeEventListener("click", onCueClick);
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
-      io2?.disconnect();
+      for (const fn of cleanups) fn();
     };
   }, [pathname]);
 

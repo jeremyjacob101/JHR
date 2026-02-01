@@ -5,7 +5,6 @@ import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import Image from "next/image";
-import Script from "next/script";
 import styles from "./page.module.css";
 import type { CSSProperties } from "react";
 import { montserrat, inter } from "@/app/layout";
@@ -354,62 +353,6 @@ export default async function HomePage() {
 
       <Footer />
       <HomeEffects />
-
-      {/* Scroll pop-in (no client component needed) */}
-      <Script id="jhr-reveal" strategy="afterInteractive">{`
-        (() => {
-          const els = Array.from(document.querySelectorAll('[data-reveal]'));
-          if (!('IntersectionObserver' in window) || els.length === 0) {
-            els.forEach(el => el.classList.add('jhr-visible'));
-            return;
-          }
-
-          const io = new IntersectionObserver((entries) => {
-            for (const e of entries) {
-              if (e.isIntersecting) {
-                e.target.classList.add('jhr-visible');
-                io.unobserve(e.target);
-              }
-            }
-          }, { threshold: 0.18, rootMargin: '0px 0px -10% 0px' });
-
-          els.forEach(el => io.observe(el));
-        })();
-      `}</Script>
-      <Script id="jhr-sticky-nav-script" strategy="afterInteractive">{`
-  (() => {
-    const nav = document.getElementById("jhr-sticky-nav");
-    const trigger = document.getElementById("jhr-story-start");
-    if (!nav || !trigger) return;
-
-    const set = (v) => nav.setAttribute("data-visible", v ? "true" : "false");
-
-    const update = () => {
-      // show once we're at/past the first pixel of the section after hero
-      set(trigger.getBoundingClientRect().top <= 1);
-    };
-
-    // start hidden + sync initial state
-    set(false);
-    update();
-
-    // show immediately when user clicks the down arrow (so it appears during smooth scroll)
-    const cue = document.querySelector(".${styles.scrollCue}");
-    cue?.addEventListener("click", () => {
-      set(true);
-      requestAnimationFrame(() => requestAnimationFrame(update));
-    });
-
-    // keep it correct on real scrolling too
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-
-    if ("IntersectionObserver" in window) {
-      const io = new IntersectionObserver(update, { threshold: 0 });
-      io.observe(trigger);
-    }
-  })();
-`}</Script>
     </div>
   );
 }
