@@ -64,17 +64,17 @@ export default function NavBar() {
       <div className="flex items-center justify-between">
         <Link
           href="/"
-          className="flex items-center gap-3 mr-8 no-underline text-[#ac8548]"
+          className="flex items-center gap-3 no-underline text-[#ac8548]"
         >
           <Image
-            src="/jhr-logos/svg/LOGO_%20JHR%20_%20FINAL-04.svg"
+            src="/jhr-logos/svg/LOGO_%20JHR%20_%20FINAL-04-5.svg"
             alt="Jerusalem Heritage Realty logo"
             width={90}
             height={90}
             className="h-9 w-auto md:h-13"
             priority
           />
-          <span className="text-[20px] md:text-[22px] font-bold tracking-[0.18em] uppercase font-display text-center md:text-left">
+          <span className="text-[20px] ml-0 md:ml-4 md:text-[22px] font-bold tracking-[0.18em] uppercase font-display text-center md:text-left">
             Jerusalem Heritage Realty
           </span>
         </Link>
