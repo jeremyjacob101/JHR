@@ -116,7 +116,8 @@
     display: grid;
     justify-items: center;
     gap: 16px;
-    padding-top: 10px;
+    margin-top: -12px;
+    margin-bottom: 64px;
 }
 
 .heroBottomCopy {

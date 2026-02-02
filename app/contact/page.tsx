@@ -149,6 +149,36 @@ export default function ContactPage() {
           </div>
         </section>
 
+        {/* Email CTA */}
+        <section className="mt-10 flex justify-center">
+          <a
+            href="mailto:office@jhrisrael.com?subject=Inquiry%20from%20JHR%20website"
+            className="w-full max-w-3xl bg-slate-50 rounded-2xl shadow-md border border-slate-100 p-5 flex items-center justify-between gap-4 hover:shadow-lg transition"
+          >
+            <div className="flex items-center gap-3">
+              <Image
+                src="/icons/email-symbol-logo.svg"
+                alt="Email"
+                width={34}
+                height={34}
+                className="shrink-0"
+              />
+              <div>
+                <h3 className="text-[17px] font-semibold leading-tight">
+                  Email Us Directly
+                </h3>
+                <p className="text-[13px] text-gray-600">
+                  Tap to open your email app and message office@jhrisrael.com
+                </p>
+              </div>
+            </div>
+
+            <span className="text-sm font-medium text-slate-900 underline underline-offset-4 hover:no-underline">
+              Open Email
+            </span>
+          </a>
+        </section>
+
         {/* WhatsApp CTA */}
         <section className="mt-10 flex justify-center">
           <a

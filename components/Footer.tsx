@@ -13,8 +13,34 @@ export default function Footer() {
 
           {/* Contact should be second on mobile, right on desktop */}
           <div className="order-2 text-sm text-gray-400 md:order-none md:col-start-2 md:row-start-1 md:row-span-2 md:text-right">
-            <p>Phone: +972-53-454-5304</p>
-            <p>Email: office@jhrisrael.com</p>
+            <p>
+              IL:{" "}
+              <a
+                href="tel:+19148268785"
+                className="underline hover:text-[#FBFBFB]"
+              >
+                +1-914-826-8785
+              </a>
+            </p>
+            <p>
+              US:{" "}
+              <a
+                href="tel:+972534545304"
+                className="underline hover:text-[#FBFBFB]"
+              >
+                +972-53-454-5304
+              </a>
+            </p>
+
+            <p>
+              Email:{" "}
+              <a
+                href="mailto:office@jhrisrael.com"
+                className="underline hover:text-[#FBFBFB]"
+              >
+                office@jhrisrael.com
+              </a>
+            </p>
           </div>
 
           {/* Copyright last on mobile; under title on desktop */}
