@@ -675,6 +675,10 @@
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 900px) {
+    .heroBottom {
+        margin-bottom: 94px;
+    }
+
     .storyLayout {
         grid-template-columns: 1fr;
         gap: 26px;
