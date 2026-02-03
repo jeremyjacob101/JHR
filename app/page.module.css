@@ -161,29 +161,29 @@
 
 /* ---------- STORY WRAP ---------- */
 .storyWrap {
-    background: #151943;
+    background: #071131;
 }
 
 /* Each section is full-height, “landing screen” */
 .storySection {
     position: relative;
-    min-height: 100vh;
+    min-height: 70vh;
     overflow: hidden;
     display: grid;
     align-items: center;
-    padding: 72px 0;
+    padding: 12px 0;
 }
 
 .storyBg {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(2, 6, 23, 1), rgba(3, 7, 18, 1));
+    background: #071131;
 }
 
 .storyGrid {
     position: absolute;
     inset: 0;
-    opacity: 0.18;
+    opacity: 0;
     background-image:
         linear-gradient(rgba(255, 255, 255, 0.10) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.10) 1px, transparent 1px);
@@ -196,9 +196,7 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background: radial-gradient(1100px circle at 50% 15%,
-            transparent 35%,
-            rgba(0, 0, 0, 0.60) 86%);
+    background: transparent;
 }
 
 .storyInner {
