@@ -73,14 +73,8 @@ export default async function AboutPage() {
           <div className="w-full">
             <div className="max-w-5xl mx-auto px-5 pb-10">
               <h1 className="text-[34px] sm:text-[44px] font-semibold text-[#FAF9F6] leading-tight">
-                Team
+                Meet the Team
               </h1>
-              <p className="mt-3 max-w-2xl text-[15px] sm:text-[16px] text-white/85 leading-relaxed">
-                Most of our clients are coming from abroad. You want someone in
-                Jerusalem who understands your standards and concerns and can
-                communicate smoothly with local owners, lawyers, and brokers.
-                That is what we do.
-              </p>
             </div>
           </div>
         </div>
@@ -105,8 +99,6 @@ export default async function AboutPage() {
 
         {/* Two team blocks using same card style */}
         <section className="mb-8">
-          <h2 className="text-3xl font-semibold mb-8">Meet the Team</h2>
-
           <div className="grid gap-7 grid-cols-1 sm:grid-cols-2">
             {/* Natanel card */}
             {natanel ? (

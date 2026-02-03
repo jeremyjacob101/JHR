@@ -14,7 +14,7 @@ export default function Footer() {
           {/* Contact should be second on mobile, right on desktop */}
           <div className="order-2 text-sm text-gray-400 md:order-none md:col-start-2 md:row-start-1 md:row-span-2 md:text-right">
             <p>
-              IL:{" "}
+              US:{" "}
               <a
                 href="tel:+19148268785"
                 className="underline hover:text-[#FBFBFB]"
@@ -23,12 +23,12 @@ export default function Footer() {
               </a>
             </p>
             <p>
-              US:{" "}
+              IL:{" "}
               <a
-                href="tel:+972534545304"
+                href="tel:+972-583205970"
                 className="underline hover:text-[#FBFBFB]"
               >
-                +972-53-454-5304
+                +972-58-320-5970
               </a>
             </p>
 
