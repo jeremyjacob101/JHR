@@ -31,7 +31,7 @@ export default async function AboutPage() {
   const { data: featured } = await supabaseAdmin
     .from("brokers")
     .select("*")
-    .or("name.ilike.%Natanel%,name.ilike.%Yaakov%")
+    .or("name.ilike.%Natanel%,name.ilike.%Yaakov%,name.ilike.%Sarah%")
     .order("id")
     .overrideTypes<Broker[], { merge: false }>();
 
@@ -45,6 +45,11 @@ export default async function AboutPage() {
     featured?.find((b) => b.name?.toLowerCase().includes("natanel")) ?? null;
   const yaakov =
     featured?.find((b) => b.name?.toLowerCase().includes("yaakov")) ?? null;
+  const sarah =
+    featured?.find((b) => b.name?.toLowerCase().includes("sarah")) ?? null;
+
+  const sarahTel = sarah?.phone ? `tel:${sarah.phone}` : null;
+  const sarahMail = sarah?.email ? `mailto:${sarah.email}` : null;
 
   const natanelTel = natanel?.phone ? `tel:${natanel.phone}` : null;
   const yaakovWa = yaakov?.phone
@@ -99,7 +104,7 @@ export default async function AboutPage() {
 
         {/* Two team blocks using same card style */}
         <section className="mb-8">
-          <div className="grid gap-7 grid-cols-1 sm:grid-cols-2">
+          <div className="grid gap-7 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {/* Natanel card */}
             {natanel ? (
               <div className="bg-slate-50 px-5 py-6 rounded-2xl shadow-md text-center hover:shadow-lg transition h-full">
@@ -230,6 +235,78 @@ export default async function AboutPage() {
               <div className="bg-slate-50 px-5 py-6 rounded-2xl shadow-md text-center h-full">
                 <p className="text-sm text-gray-600">
                   Yaakov not found in brokers table.
+                </p>
+              </div>
+            )}
+
+            {/* Sarah card */}
+            {sarah ? (
+              <div className="bg-slate-50 px-5 py-6 rounded-2xl shadow-md text-center hover:shadow-lg transition h-full">
+                <Link
+                  href={`/team/${sarah.id}`}
+                  className="no-underline text-inherit block"
+                >
+                  <div className="relative w-28 h-28 rounded-full mx-auto mb-4 overflow-hidden">
+                    <Image
+                      src={brokerImageUrl(sarah.photoUrl)}
+                      alt={`${sarah.name} headshot`}
+                      fill
+                      sizes="112px"
+                      className="object-cover object-center"
+                    />
+                  </div>
+
+                  <h3 className="text-xl font-semibold mb-1">{sarah.name}</h3>
+                  <p className="text-sm text-gray-500 mb-3">{sarah.area}</p>
+
+                  <p className="text-sm text-gray-700">
+                    <strong>IL</strong> {sarah.phone ?? "\u00A0"}
+                  </p>
+                  <p className="text-sm text-gray-700">
+                    {sarah.phone_us ? (
+                      <>
+                        <strong>US</strong> {sarah.phone_us}
+                      </>
+                    ) : (
+                      "\u00A0"
+                    )}
+                  </p>
+
+                  <p className="text-sm text-gray-700 mt-3">{sarah.role}</p>
+
+                  <div className="mt-3 text-sm font-medium text-slate-700 underline underline-offset-4">
+                    View profile
+                  </div>
+                </Link>
+
+                <div className="mt-5 flex flex-col gap-3 items-center">
+                  {sarahTel ? (
+                    <a
+                      href={sarahTel}
+                      className="rounded-xl bg-slate-900 text-[#FAF9F6] text-sm font-medium px-4 py-2 hover:bg-slate-800 active:bg-slate-950 transition"
+                    >
+                      Call Sarah
+                    </a>
+                  ) : (
+                    <span className="rounded-xl bg-slate-300 text-slate-600 text-sm font-medium px-4 py-2 cursor-not-allowed">
+                      Call Sarah
+                    </span>
+                  )}
+
+                  <a
+                    href={`mailto:${OFFICE_EMAIL}?subject=${encodeURIComponent(
+                      "Jerusalem Heritage Realty Enquiry",
+                    )}`}
+                    className="rounded-xl bg-white border border-slate-200 text-slate-900 text-sm font-medium px-4 py-2 hover:bg-slate-50 transition"
+                  >
+                    Email office inbox
+                  </a>
+                </div>
+              </div>
+            ) : (
+              <div className="bg-slate-50 px-5 py-6 rounded-2xl shadow-md text-center h-full">
+                <p className="text-sm text-gray-600">
+                  Sarah not found in brokers table.
                 </p>
               </div>
             )}
