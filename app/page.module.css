@@ -622,6 +622,97 @@
     z-index: 1;
 }
 
+.tab {
+  position: fixed;
+  right: 20px;      /* MATCH WHATSAPP */
+  bottom: 140px;    /* sits above schedule */
+  z-index: 60;
+
+  transform: translate(0, 0);
+  transition: transform 220ms ease, filter 220ms ease;
+  text-decoration: none;
+}
+
+.tabRight {
+  position: fixed;
+  right: 20px;      /* MATCH WHATSAPP */
+  bottom: 80px;     /* sits above WhatsApp */
+  z-index: 60;
+
+  transform: translate(0, 0);
+  transition: transform 220ms ease, filter 220ms ease;
+  text-decoration: none;
+}
+
+
+.tab:hover,
+.tab:focus-visible {
+  transform: translate(-2%, -2%);
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.22));
+}
+
+.inner,
+.innerRight {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;              /* equals Tailwind gap-3 */
+
+  padding: 12px 16px;     /* equals px-4 py-3 */
+  border-radius: 999px;   /* same pill radius */
+
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.1);
+}
+
+
+.icon,
+.iconRight {
+  display: grid;
+  place-items: center;
+
+  width: 26px;   /* MATCH WHATSAPP ICON */
+  height: 26px;
+}
+
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgb(15, 23, 42);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab {
+    transition: none;
+  }
+}
+
+.tabRight:hover,
+.tabRight:focus-visible {
+  transform: translate(-2%, -2%);
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.22));
+}
+
+.labelRight {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgb(15, 23, 42);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tabRight {
+    transition: none;
+  }
+}
+
+
 /* ---------- KEYFRAMES ---------- */
 @keyframes kenBurns {
     0% {

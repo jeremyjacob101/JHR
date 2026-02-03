@@ -1,20 +1,24 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import EmailUsTab from "@/components/EmailUsTab";
+import ScheduleCallTab from "@/components/ScheduleCallTab";
 
 export default function HomeEffects() {
   const pathname = usePathname();
+  const [showCtas, setShowCtas] = useState(false);
 
   useEffect(() => {
     const cleanups: Array<() => void> = [];
+
+    setShowCtas(false);
 
     // ---------- REVEAL ----------
     const revealEls = Array.from(
       document.querySelectorAll<HTMLElement>("[data-reveal]"),
     );
 
-    // reset in case we navigated away and came back
     revealEls.forEach((el) => el.classList.remove("jhr-visible"));
 
     if (!("IntersectionObserver" in window) || revealEls.length === 0) {
@@ -36,25 +40,27 @@ export default function HomeEffects() {
       cleanups.push(() => io.disconnect());
     }
 
-    // ---------- STICKY NAV ----------
+    // ---------- STICKY NAV + CTAs ----------
     const nav = document.getElementById("jhr-sticky-nav");
     const trigger = document.getElementById("jhr-story-start");
 
     if (nav && trigger) {
-      const set = (v: boolean) =>
+      const setNavVisible = (v: boolean) =>
         nav.setAttribute("data-visible", v ? "true" : "false");
 
       const update = () => {
-        set(trigger.getBoundingClientRect().top <= 1);
+        const reachedStory = trigger.getBoundingClientRect().top <= 1;
+        setNavVisible(reachedStory);
+        if (reachedStory) setShowCtas(true);
       };
 
-      // sync initial state (also handles scroll restoration)
-      set(false);
+      setNavVisible(false);
       requestAnimationFrame(update);
 
       const cue = document.querySelector<HTMLElement>("[data-scroll-cue]");
       const onCueClick = () => {
-        set(true);
+        setShowCtas(true);
+        setNavVisible(true);
         requestAnimationFrame(() => requestAnimationFrame(update));
       };
       cue?.addEventListener("click", onCueClick);
@@ -81,5 +87,10 @@ export default function HomeEffects() {
     };
   }, [pathname]);
 
-  return null;
+  return showCtas ? (
+    <>
+      <EmailUsTab />
+      <ScheduleCallTab />
+    </>
+  ) : null;
 }
