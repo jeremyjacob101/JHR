@@ -71,7 +71,7 @@ export default async function AboutPage() {
         <div className="absolute inset-0 flex items-end">
           <div className="w-full">
             <div className="max-w-5xl mx-auto px-5 pb-10">
-              <h1 className="text-[34px] sm:text-[44px] font-semibold text-[#FAF9F6] leading-tight">
+              <h1 className="text-[2.125rem] sm:text-[2.75rem] font-semibold text-[#FAF9F6] leading-tight">
                 Meet the Team
               </h1>
             </div>

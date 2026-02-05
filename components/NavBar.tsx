@@ -76,13 +76,13 @@ export default function NavBar() {
             className="h-9 w-auto md:h-13"
             priority
           />
-          <span className="text-[20px] ml-0 md:ml-4 md:text-[22px] font-bold tracking-[0.18em] uppercase font-display text-center md:text-left">
+          <span className="text-[1.25rem] ml-0 md:ml-4 md:text-[1.375rem] font-bold tracking-[0.18em] uppercase font-display text-center md:text-left">
             Jerusalem Heritage Realty
           </span>
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden md:flex gap-6 text-[17px] font-medium">
+        <div className="hidden md:flex gap-6 text-[1.0625rem] font-medium">
           {navLinks.map((l) => (
             <Link
               key={l.href}
@@ -145,7 +145,7 @@ export default function NavBar() {
               <div key={l.href} className="flex flex-col items-center">
                 <Link
                   href={l.href}
-                  className="w-full px-3 py-3 rounded-xl text-[16px] font-medium text-[#ac8548] hover:bg-white/5 hover:text-[#c79a55] transition"
+                  className="w-full px-3 py-3 rounded-xl text-[1rem] font-medium text-[#ac8548] hover:bg-white/5 hover:text-[#c79a55] transition"
                 >
                   {l.label}
                 </Link>

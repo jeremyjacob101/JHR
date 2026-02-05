@@ -78,7 +78,7 @@ export default async function ProjectsPage() {
                   EFRAT PROJECT
                 </h2>
 
-                <p className="mt-3 text-sm sm:text-[15px] text-white/85 leading-relaxed max-w-md">
+                <p className="mt-3 text-sm sm:text-[0.9375rem] text-white/85 leading-relaxed max-w-md">
                   New development with guided access to units and clear next
                   steps. Tap to view details.
                 </p>
@@ -123,7 +123,7 @@ export default async function ProjectsPage() {
                 UPCOMING PROJECTS
               </h2>
 
-              <p className="mt-3 text-sm sm:text-[15px] text-slate-700 leading-relaxed max-w-md">
+              <p className="mt-3 text-sm sm:text-[0.9375rem] text-slate-700 leading-relaxed max-w-md">
                 Curated projects are being prepared. Send your brief and we’ll
                 guide you to the right options.
               </p>
