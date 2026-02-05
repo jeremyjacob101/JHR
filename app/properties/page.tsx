@@ -63,7 +63,7 @@ export default async function PropertiesPage({
   if (error) {
     return (
       <div className="min-h-screen flex flex-col">
-        <main className="flex-1 min-h-0 p-8">
+        <main id="main-content" className="flex-1 min-h-0 p-8">
           <h1 className="text-2xl font-semibold mb-4">Listings</h1>
           <p className="text-red-600 mb-4">Error loading listings.</p>
         </main>
@@ -74,7 +74,10 @@ export default async function PropertiesPage({
   return (
     <div className="min-h-screen flex flex-col">
       <NavBar />
-      <main className="flex-1 min-h-0 max-w-5xl mx-auto px-5 py-16 font-sans w-full">
+      <main
+        id="main-content"
+        className="flex-1 min-h-0 max-w-5xl mx-auto px-5 py-16 font-sans w-full"
+      >
         <PropertyFilters />
 
         {!properties || properties.length === 0 ? (

@@ -37,7 +37,10 @@ export default async function EfratProjectPage() {
     <div className="min-h-screen flex flex-col">
       <NavBar />
 
-      <main className="flex-1 min-h-0 max-w-5xl mx-auto px-5 py-16 font-sans w-full">
+      <main
+        id="main-content"
+        className="flex-1 min-h-0 max-w-5xl mx-auto px-5 py-16 font-sans w-full"
+      >
         {/* Canva embed */}
         <section className="rounded-3xl border border-slate-200 bg-white shadow-sm overflow-hidden">
           <div className="p-6 sm:p-7 border-b border-slate-100">

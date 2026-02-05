@@ -59,7 +59,10 @@ export default function NavBar() {
   }, []);
 
   return (
-    <nav className="sticky top-0 z-50 bg-[var(--navy)]/90 backdrop-blur-md border-b border-white/10 shadow-[0_18px_60px_-40px_rgba(0,0,0,0.85)] px-6 md:px-8 py-3">
+    <nav
+      aria-label="Primary"
+      className="sticky top-0 z-50 bg-[var(--navy)]/90 backdrop-blur-md border-b border-white/10 shadow-[0_18px_60px_-40px_rgba(0,0,0,0.85)] px-6 md:px-8 py-3"
+    >
       <div className="flex items-center justify-between">
         <Link
           href="/"

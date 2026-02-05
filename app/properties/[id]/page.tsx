@@ -27,7 +27,10 @@ export default async function PropertyDetailPage({
     return (
       <div className="min-h-screen flex flex-col">
         <NavBar />
-        <main className="flex-1 min-h-0 max-w-5xl mx-auto px-5 py-10">
+        <main
+          id="main-content"
+          className="flex-1 min-h-0 max-w-5xl mx-auto px-5 py-10"
+        >
           <p className="mb-3">Property not found.</p>
           <Link href="/" className="text-sm text-gray-600 hover:underline">
             ← Back to properties
@@ -85,7 +88,10 @@ export default async function PropertyDetailPage({
         </div>
       </section>
 
-      <main className="flex-1 min-h-0 max-w-5xl mx-auto px-5 pt-5 pb-16 font-sans">
+      <main
+        id="main-content"
+        className="flex-1 min-h-0 max-w-5xl mx-auto px-5 pt-5 pb-16 font-sans"
+      >
         <section className="grid grid-cols-1 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] gap-7 mt-2">
           <div>
             {/* hero image */}
