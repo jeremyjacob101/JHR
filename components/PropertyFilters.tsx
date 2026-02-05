@@ -117,10 +117,15 @@ export default function PropertyFilters() {
         {/* SAME GRID AS BEFORE */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
           <div className="lg:col-span-2">
-            <label className="block text-xs uppercase tracking-[0.12em] text-gray-500 mb-1">
+            <label
+              htmlFor="filter-search"
+              className="block text-xs uppercase tracking-[0.12em] text-gray-500 mb-1"
+            >
               Search by name
             </label>
             <input
+              id="filter-search"
+              type="text"
               value={state.q}
               onChange={set("q")}
               placeholder="e.g. King David Penthouse"
@@ -129,10 +134,15 @@ export default function PropertyFilters() {
           </div>
 
           <div>
-            <label className="block text-xs uppercase tracking-[0.12em] text-gray-500 mb-1">
+            <label
+              htmlFor="filter-min-price"
+              className="block text-xs uppercase tracking-[0.12em] text-gray-500 mb-1"
+            >
               Min price (₪)
             </label>
             <input
+              id="filter-min-price"
+              type="text"
               value={state.minPrice}
               onChange={set("minPrice")}
               inputMode="numeric"
@@ -142,10 +152,15 @@ export default function PropertyFilters() {
           </div>
 
           <div>
-            <label className="block text-xs uppercase tracking-[0.12em] text-gray-500 mb-1">
+            <label
+              htmlFor="filter-max-price"
+              className="block text-xs uppercase tracking-[0.12em] text-gray-500 mb-1"
+            >
               Max price (₪)
             </label>
             <input
+              id="filter-max-price"
+              type="text"
               value={state.maxPrice}
               onChange={set("maxPrice")}
               inputMode="numeric"
@@ -155,10 +170,15 @@ export default function PropertyFilters() {
           </div>
 
           <div>
-            <label className="block text-xs uppercase tracking-[0.12em] text-gray-500 mb-1">
+            <label
+              htmlFor="filter-min-beds"
+              className="block text-xs uppercase tracking-[0.12em] text-gray-500 mb-1"
+            >
               Min beds
             </label>
             <input
+              id="filter-min-beds"
+              type="text"
               value={state.minBeds}
               onChange={set("minBeds")}
               inputMode="numeric"
@@ -168,10 +188,15 @@ export default function PropertyFilters() {
           </div>
 
           <div>
-            <label className="block text-xs uppercase tracking-[0.12em] text-gray-500 mb-1">
+            <label
+              htmlFor="filter-max-beds"
+              className="block text-xs uppercase tracking-[0.12em] text-gray-500 mb-1"
+            >
               Max beds
             </label>
             <input
+              id="filter-max-beds"
+              type="text"
               value={state.maxBeds}
               onChange={set("maxBeds")}
               inputMode="numeric"
@@ -181,10 +206,15 @@ export default function PropertyFilters() {
           </div>
 
           <div>
-            <label className="block text-xs uppercase tracking-[0.12em] text-gray-500 mb-1">
+            <label
+              htmlFor="filter-min-baths"
+              className="block text-xs uppercase tracking-[0.12em] text-gray-500 mb-1"
+            >
               Min baths
             </label>
             <input
+              id="filter-min-baths"
+              type="text"
               value={state.minBaths}
               onChange={set("minBaths")}
               inputMode="numeric"
@@ -194,10 +224,15 @@ export default function PropertyFilters() {
           </div>
 
           <div>
-            <label className="block text-xs uppercase tracking-[0.12em] text-gray-500 mb-1">
+            <label
+              htmlFor="filter-max-baths"
+              className="block text-xs uppercase tracking-[0.12em] text-gray-500 mb-1"
+            >
               Max baths
             </label>
             <input
+              id="filter-max-baths"
+              type="text"
               value={state.maxBaths}
               onChange={set("maxBaths")}
               inputMode="numeric"
@@ -227,10 +262,14 @@ export default function PropertyFilters() {
           </div>
 
           <div className="sm:ml-auto w-full sm:w-[240px]">
-            <label className="block text-xs uppercase tracking-[0.12em] text-gray-500 mb-1">
+            <label
+              htmlFor="filter-sort"
+              className="block text-xs uppercase tracking-[0.12em] text-gray-500 mb-1"
+            >
               Sort
             </label>
             <select
+              id="filter-sort"
               value={state.sort}
               onChange={set("sort")}
               className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-slate-200"
