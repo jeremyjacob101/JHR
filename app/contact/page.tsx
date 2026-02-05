@@ -33,7 +33,10 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <NavBar />
-      <main className="flex-1 min-h-0 max-w-5xl mx-auto px-5 pt-10 pb-16 font-sans">
+      <main
+        id="main-content"
+        className="flex-1 min-h-0 max-w-5xl mx-auto px-5 pt-10 pb-16 font-sans"
+      >
         <h1 className="text-[30px] font-semibold mb-2">Contact Us</h1>
 
         <p className="text-[15px] text-gray-600 mb-7">
@@ -59,6 +62,7 @@ export default function ContactPage() {
                   type="text"
                   required
                   placeholder="Your name"
+                  autoComplete="name"
                   className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-slate-300"
                 />
               </div>
@@ -77,6 +81,7 @@ export default function ContactPage() {
                     type="email"
                     required
                     placeholder="you@email.com"
+                    autoComplete="email"
                     className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-slate-300"
                   />
                 </div>
@@ -94,6 +99,7 @@ export default function ContactPage() {
                     type="tel"
                     required
                     placeholder="+1-234-567-8910..."
+                    autoComplete="tel"
                     className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-slate-300"
                   />
                 </div>

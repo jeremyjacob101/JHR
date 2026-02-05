@@ -219,7 +219,7 @@ export default async function HomePage() {
 
   if (error) {
     return (
-      <main className="p-8">
+      <main id="main-content" className="p-8">
         <h1 className="text-2xl font-semibold mb-4">Listings</h1>
         <p className="text-red-600 mb-4">Error loading listings.</p>
       </main>
@@ -228,128 +228,130 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <div id="jhr-sticky-nav" className={styles.stickyNav}>
+      <header id="jhr-sticky-nav" className={styles.stickyNav}>
         <NavBar />
-      </div>
+      </header>
 
-      {/* HERO */}
-      <section id="jhr-hero" className={styles.hero}>
-        <Image
-          src="https://yykrealestate.com/assets/Neighborhoods/3/Baka-mob.jpg"
-          alt="Baka neighborhood in Jerusalem"
-          fill
-          sizes="100vw"
-          loading="eager"
-          priority
-          className={styles.heroImg}
-        />
+      <main id="main-content" className="flex-1">
+        {/* HERO */}
+        <section id="jhr-hero" className={styles.hero}>
+          <Image
+            src="https://yykrealestate.com/assets/Neighborhoods/3/Baka-mob.jpg"
+            alt="Baka neighborhood in Jerusalem"
+            fill
+            sizes="100vw"
+            loading="eager"
+            priority
+            className={styles.heroImg}
+          />
 
-        <div className={styles.heroOverlay} />
-        <div className={styles.heroGlow} />
-        <div className={styles.scan} />
+          <div className={styles.heroOverlay} />
+          <div className={styles.heroGlow} />
+          <div className={styles.scan} />
 
-        <div className={styles.heroInner}>
-          {/* Top brand mark (logo only, like the reference) */}
-          <div className={styles.heroTop}>
-            <Image
-              src="/jhr-logos/svg/LOGO_%20JHR%20_%20FINAL-04.svg"
-              alt="Jerusalem Heritage Realty"
-              width={140}
-              height={140}
-              priority
-              className={styles.heroLogo}
-            />
-          </div>
-
-          {/* Center title */}
-          <div className={styles.heroCenter}>
-            <p className={styles.heroKicker}>WELCOME TO</p>
-            <h1 className={styles.heroHeading}>JERUSALEM HERITAGE REALTY</h1>
-            <div className={styles.heroRule} />
-          </div>
-
-          {/* Bottom copy + arrow */}
-          <div className={styles.heroBottom}>
-            <div className={`${styles.heroBottomCopy} ${inter.className}`}>
-              <p>Your Home.</p>
-              <p>Your Heritage.</p>
-              <p>Your Future in Jerusalem.</p>
+          <div className={styles.heroInner}>
+            {/* Top brand mark (logo only, like the reference) */}
+            <div className={styles.heroTop}>
+              <Image
+                src="/jhr-logos/svg/LOGO_%20JHR%20_%20FINAL-04.svg"
+                alt="Jerusalem Heritage Realty"
+                width={140}
+                height={140}
+                priority
+                className={styles.heroLogo}
+              />
             </div>
 
-            <a
-              href="#jhr-story-start"
-              className={styles.scrollCue}
-              aria-label="Scroll down"
-              data-scroll-cue
-            >
-              <svg
-                viewBox="0 0 24 24"
-                width="22"
-                height="22"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M6 9l6 6 6-6" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </section>
+            {/* Center title */}
+            <div className={styles.heroCenter}>
+              <p className={styles.heroKicker}>WELCOME TO</p>
+              <h1 className={styles.heroHeading}>JERUSALEM HERITAGE REALTY</h1>
+              <div className={styles.heroRule} />
+            </div>
 
-      {/* FULL-HEIGHT STORY SECTIONS */}
-      <div id="jhr-story-start" className={styles.storyWrap}>
-        {storyBlocks.map((block, idx) => (
-          <StorySection key={block.title} block={block} idx={idx} />
-        ))}
-      </div>
-
-      {/* FEATURED */}
-      <section className={styles.featured}>
-        <div className={styles.featuredBg} />
-        <div className={styles.featuredInner}>
-          <h2 className={styles.featuredTitle}>
-            Featured Jerusalem Properties
-          </h2>
-
-          <div className={styles.featuredDivider}>
-            <div className={styles.featuredLine2} />
-            <div className={styles.featuredDot} />
-            <div className={styles.featuredLine1} />
-          </div>
-
-          <div className="grid gap-7 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {properties.slice(0, 3).map((property) => (
-              <div key={property.id} className={styles.propertyHover}>
-                <div className={styles.propertyHalo} />
-                <div className="relative rounded-4xl">
-                  <PropertyCard property={property} />
-                </div>
+            {/* Bottom copy + arrow */}
+            <div className={styles.heroBottom}>
+              <div className={`${styles.heroBottomCopy} ${inter.className}`}>
+                <p>Your Home.</p>
+                <p>Your Heritage.</p>
+                <p>Your Future in Jerusalem.</p>
               </div>
-            ))}
-          </div>
 
-          <div className="mt-10 flex justify-center">
-            <Link href="/properties" className={styles.featuredLink}>
-              View all Jerusalem properties
-            </Link>
+              <a
+                href="#jhr-story-start"
+                className={styles.scrollCue}
+                aria-label="Scroll down"
+                data-scroll-cue
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="22"
+                  height="22"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </a>
+            </div>
           </div>
+        </section>
+
+        {/* FULL-HEIGHT STORY SECTIONS */}
+        <div id="jhr-story-start" className={styles.storyWrap}>
+          {storyBlocks.map((block, idx) => (
+            <StorySection key={block.title} block={block} idx={idx} />
+          ))}
         </div>
-      </section>
 
-      <section className={styles.preFooterImage} style={{ height: "600px" }}>
-        <Image
-          src="/jhr-logos/svg/LOGO_%20JHR%20_%20FINAL-09.svg"
-          alt="Jerusalem Heritage Realty"
-          fill
-          sizes="100vw"
-          className={styles.preFooterImg}
-        />
-        <div className={styles.preFooterOverlay} />
-      </section>
+        {/* FEATURED */}
+        <section className={styles.featured}>
+          <div className={styles.featuredBg} />
+          <div className={styles.featuredInner}>
+            <h2 className={styles.featuredTitle}>
+              Featured Jerusalem Properties
+            </h2>
+
+            <div className={styles.featuredDivider}>
+              <div className={styles.featuredLine2} />
+              <div className={styles.featuredDot} />
+              <div className={styles.featuredLine1} />
+            </div>
+
+            <div className="grid gap-7 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+              {properties.slice(0, 3).map((property) => (
+                <div key={property.id} className={styles.propertyHover}>
+                  <div className={styles.propertyHalo} />
+                  <div className="relative rounded-4xl">
+                    <PropertyCard property={property} />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10 flex justify-center">
+              <Link href="/properties" className={styles.featuredLink}>
+                View all Jerusalem properties
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.preFooterImage} style={{ height: "600px" }}>
+          <Image
+            src="/jhr-logos/svg/LOGO_%20JHR%20_%20FINAL-09.svg"
+            alt="Jerusalem Heritage Realty"
+            fill
+            sizes="100vw"
+            className={styles.preFooterImg}
+          />
+          <div className={styles.preFooterOverlay} />
+        </section>
+      </main>
 
       <Footer />
       <HomeEffects />
