@@ -11,10 +11,10 @@ export default function EmailUsTab() {
       aria-label="Email us"
     >
       <span className={styles.inner}>
-        <span className={styles.icon} aria-hidden="true">
+        <span className={styles.icon}>
           <Image
             src="/icons/email-symbol-logo.svg"
-            alt=""
+            alt="Email icon"
             width={40}
             height={40}
           />

@@ -76,13 +76,13 @@ export default async function PropertyDetailPage({
               ← Back to properties
             </Link>
           </p>
-          <h1 className="text-[28px] md:text-[30px] font-semibold mb-1">
+          <h1 className="text-[1.75rem] md:text-[1.875rem] font-semibold mb-1">
             {property.propertyName}
           </h1>
           <p className="text-sm text-gray-200 mb-1">
             {property.neighborhood} • {property.street}, {property.city}
           </p>
-          <p className="text-[20px] md:text-[22px] font-bold text-emerald-200">
+          <p className="text-[1.25rem] md:text-[1.375rem] font-bold text-emerald-200">
             ₪{property.priceNIS.toLocaleString("he-IL")}
           </p>
         </div>
@@ -107,41 +107,41 @@ export default async function PropertyDetailPage({
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-slate-100 rounded-2xl px-4 py-3 mb-6">
               <div>
-                <span className="text-[11px] uppercase tracking-[0.12em] text-gray-500">
+                <span className="text-[0.6875rem] uppercase tracking-[0.12em] text-gray-500">
                   Bedrooms
                 </span>
-                <div className="text-[16px] font-semibold text-slate-900">
+                <div className="text-[1rem] font-semibold text-slate-900">
                   {property.beds}
                 </div>
               </div>
               <div>
-                <span className="text-[11px] uppercase tracking-[0.12em] text-gray-500">
+                <span className="text-[0.6875rem] uppercase tracking-[0.12em] text-gray-500">
                   Bathrooms
                 </span>
-                <div className="text-[16px] font-semibold text-slate-900">
+                <div className="text-[1rem] font-semibold text-slate-900">
                   {property.baths}
                 </div>
               </div>
               <div>
-                <span className="text-[11px] uppercase tracking-[0.12em] text-gray-500">
+                <span className="text-[0.6875rem] uppercase tracking-[0.12em] text-gray-500">
                   Interior
                 </span>
-                <div className="text-[16px] font-semibold text-slate-900">
+                <div className="text-[1rem] font-semibold text-slate-900">
                   {property.indoorSqm} m²
                 </div>
               </div>
               <div>
-                <span className="text-[11px] uppercase tracking-[0.12em] text-gray-500">
+                <span className="text-[0.6875rem] uppercase tracking-[0.12em] text-gray-500">
                   Outdoor
                 </span>
-                <div className="text-[16px] font-semibold text-slate-900">
+                <div className="text-[1rem] font-semibold text-slate-900">
                   {property.outdoorSqm} m²
                 </div>
               </div>
             </div>
 
             <section className="mb-7">
-              <h2 className="text-[20px] font-semibold mb-2">
+              <h2 className="text-[1.25rem] font-semibold mb-2">
                 Property Overview
               </h2>
               <p className="text-sm text-gray-600 leading-relaxed">
@@ -153,7 +153,7 @@ export default async function PropertyDetailPage({
             </section>
 
             <section>
-              <h2 className="text-[20px] font-semibold mb-2">Location</h2>
+              <h2 className="text-[1.25rem] font-semibold mb-2">Location</h2>
               <p className="text-sm text-gray-600">
                 {property.street}, {property.city}, Israel
               </p>
@@ -193,7 +193,7 @@ export default async function PropertyDetailPage({
 
                     <div>
                       <p className="m-0 font-semibold">{broker.name}</p>
-                      <p className="m-0 text-[13px] text-gray-500">
+                      <p className="m-0 text-[0.8125rem] text-gray-500">
                         Licensed Jerusalem Broker
                       </p>
                     </div>
@@ -212,7 +212,7 @@ export default async function PropertyDetailPage({
                     <p>{broker.email}</p>
                   </div>
 
-                  <p className="text-[13px] text-gray-600">
+                  <p className="text-[0.8125rem] text-gray-600">
                     Contact the broker to schedule a private viewing or receive
                     a full brochure of this property.
                   </p>

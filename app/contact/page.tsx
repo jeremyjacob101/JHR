@@ -37,16 +37,18 @@ export default function ContactPage() {
         id="main-content"
         className="flex-1 min-h-0 max-w-5xl mx-auto px-5 pt-10 pb-16 font-sans"
       >
-        <h1 className="text-[30px] font-semibold mb-2">Contact Us</h1>
+        <h1 className="text-[1.875rem] font-semibold mb-2">Contact Us</h1>
 
-        <p className="text-[15px] text-gray-600 mb-7">
+        <p className="text-[0.9375rem] text-gray-600 mb-7">
           Interested in one of our Jerusalem properties or looking for something
           specific? Leave your details and a broker will reach out.
         </p>
 
         <section className="flex justify-center">
           <div className="bg-slate-50 rounded-2xl p-5 shadow-md w-[110%] max-w-3xl">
-            <h2 className="text-[19px] font-semibold mb-4">Send An Inquiry</h2>
+            <h2 className="text-[1.1875rem] font-semibold mb-4">
+              Send An Inquiry
+            </h2>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
@@ -150,7 +152,7 @@ export default function ContactPage() {
                 Send message
               </button>
 
-              <p className="text-[12px] text-gray-500">
+              <p className="text-[0.75rem] text-gray-500">
                 By submitting, you agree we may contact you about your enquiry.
               </p>
             </form>
@@ -172,10 +174,10 @@ export default function ContactPage() {
                 className="shrink-0"
               />
               <div>
-                <h3 className="text-[17px] font-semibold leading-tight">
+                <h3 className="text-[1.0625rem] font-semibold leading-tight">
                   Email Us Directly
                 </h3>
-                <p className="text-[13px] text-gray-600">
+                <p className="text-[0.8125rem] text-gray-600">
                   Tap to open your email app and message office@jhrisrael.com
                 </p>
               </div>
@@ -204,10 +206,10 @@ export default function ContactPage() {
                 className="shrink-0"
               />
               <div>
-                <h3 className="text-[17px] font-semibold leading-tight">
+                <h3 className="text-[1.0625rem] font-semibold leading-tight">
                   Schedule a Call
                 </h3>
-                <p className="text-[13px] text-gray-600">
+                <p className="text-[0.8125rem] text-gray-600">
                   Tap to book a 25-minute call with a broker.
                 </p>
               </div>
@@ -236,10 +238,10 @@ export default function ContactPage() {
                 className="shrink-0"
               />
               <div>
-                <h3 className="text-[17px] font-semibold leading-tight">
+                <h3 className="text-[1.0625rem] font-semibold leading-tight">
                   Contact Us On WhatsApp!
                 </h3>
-                <p className="text-[13px] text-gray-600">
+                <p className="text-[0.8125rem] text-gray-600">
                   Tap to chat with a broker instantly.
                 </p>
               </div>

@@ -220,7 +220,7 @@ export default async function HomePage() {
   if (error) {
     return (
       <main id="main-content" className="p-8">
-        <h1 className="text-2xl font-semibold mb-4">Listings</h1>
+        <h2 className="text-2xl font-semibold mb-4">Listings</h2>
         <p className="text-red-600 mb-4">Error loading listings.</p>
       </main>
     );

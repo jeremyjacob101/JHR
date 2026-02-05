@@ -121,13 +121,13 @@ function InfoCard({
               </h2>
 
               {card.body ? (
-                <p className="mt-4 text-[18px] text-[#FAF9F6]/85 leading-normal">
+                <p className="mt-4 text-[1.125rem] text-[#FAF9F6]/85 leading-normal">
                   {card.body}
                 </p>
               ) : null}
 
               {card.bullets && card.bullets.length ? (
-                <ul className="mt-4 text-[16.5px] space-y-0.5 list-disc list-inside text-[#FAF9F6]/90">
+                <ul className="mt-4 text-[1.03125rem] space-y-0.5 list-disc list-inside text-[#FAF9F6]/90">
                   {card.bullets.map((item) => (
                     <li key={item} className="leading-relaxed">
                       {item}
@@ -137,7 +137,7 @@ function InfoCard({
               ) : null}
 
               {card.footer ? (
-                <p className="mt-4 text-[18px] text-[#FAF9F6]/85 leading-normal">
+                <p className="mt-4 text-[1.125rem] text-[#FAF9F6]/85 leading-normal">
                   {card.footer}
                 </p>
               ) : null}
