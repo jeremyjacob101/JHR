@@ -23,38 +23,32 @@ function toWhatsAppNumber(raw?: string | null) {
   return d;
 }
 
+function brokerImageUrl(path?: string | null) {
+  const safePath = path?.trim() ? path.trim() : "defaultAvatar.jpg";
+  return supabaseAdmin.storage.from("brokers").getPublicUrl(safePath).data
+    .publicUrl;
+}
+
+function firstName(full?: string | null) {
+  const s = (full ?? "").trim();
+  if (!s) return "Broker";
+  return s.split(/\s+/)[0] ?? "Broker";
+}
+
 export default async function AboutPage() {
   const teamWideImg = supabaseAdmin.storage
     .from("brokers")
     .getPublicUrl("bigpic.jpg").data.publicUrl;
 
-  const { data: featured } = await supabaseAdmin
+  const { data: brokers } = await supabaseAdmin
     .from("brokers")
     .select("*")
-    .or("name.ilike.%Natanel%,name.ilike.%Yaakov%,name.ilike.%Sarah%")
     .order("id")
     .overrideTypes<Broker[], { merge: false }>();
 
-  const brokerImageUrl = (path?: string | null) => {
-    const safePath = path?.trim() ? path.trim() : "defaultAvatar.jpg";
-    return supabaseAdmin.storage.from("brokers").getPublicUrl(safePath).data
-      .publicUrl;
-  };
-
-  const natanel =
-    featured?.find((b) => b.name?.toLowerCase().includes("natanel")) ?? null;
-  const yaakov =
-    featured?.find((b) => b.name?.toLowerCase().includes("yaakov")) ?? null;
-  const sarah =
-    featured?.find((b) => b.name?.toLowerCase().includes("sarah")) ?? null;
-
-  const sarahTel = sarah?.phone ? `tel:${sarah.phone}` : null;
-  const sarahMail = sarah?.email ? `mailto:${sarah.email}` : null;
-
-  const natanelTel = natanel?.phone ? `tel:${natanel.phone}` : null;
-  const yaakovWa = yaakov?.phone
-    ? `https://wa.me/${toWhatsAppNumber(yaakov.phone)}`
-    : null;
+  const officeMailTo = `mailto:${OFFICE_EMAIL}?subject=${encodeURIComponent(
+    "Jerusalem Heritage Realty Enquiry",
+  )}`;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -86,7 +80,7 @@ export default async function AboutPage() {
       </section>
 
       <main className="flex-1 min-h-0 max-w-5xl mx-auto px-5 py-12 font-sans w-full">
-        {/* Concrete about copy */}
+        {/* About copy */}
         <section className="mb-10">
           <h2 className="text-2xl font-semibold mb-3">
             Jerusalem Heritage Realty is built for people coming from abroad
@@ -102,214 +96,142 @@ export default async function AboutPage() {
           </p>
         </section>
 
-        {/* Two team blocks using same card style */}
+        {/* Team grid */}
         <section className="mb-8">
-          <div className="grid gap-7 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {/* Natanel card */}
-            {natanel ? (
-              <div className="bg-slate-50 px-5 py-6 rounded-2xl shadow-md text-center hover:shadow-lg transition h-full">
-                <Link
-                  href={`/team/${natanel.id}`}
-                  className="no-underline text-inherit block"
+          <div
+            className="
+              grid gap-7
+              grid-cols-1
+              sm:grid-cols-2
+              lg:grid-cols-[repeat(auto-fit,minmax(250px,1fr))]
+            "
+          >
+            {(brokers ?? []).map((b) => {
+              const nameLower = (b.name ?? "").toLowerCase();
+
+              // Per your rules:
+              // - Sarah: no phone
+              // - Elisheva Stern: no phone
+              const suppressPhones =
+                nameLower.includes("sarah") ||
+                nameLower.includes("elisheva stern");
+
+              const tel = !suppressPhones && b.phone ? `tel:${b.phone}` : null;
+              const mail = b.email ? `mailto:${b.email}` : null;
+
+              // Yaakov: WhatsApp button (keep behavior you had)
+              const wa =
+                !suppressPhones && b.phone && nameLower.includes("yaakov")
+                  ? `https://wa.me/${toWhatsAppNumber(b.phone)}`
+                  : null;
+
+              const profileHref = `/team/${b.id}`;
+              const displayFirst = firstName(b.name);
+
+              return (
+                <div
+                  key={String(b.id)}
+                  className="bg-slate-50 px-5 py-6 rounded-2xl shadow-md text-center hover:shadow-lg transition h-full"
                 >
-                  <div className="relative w-28 h-28 rounded-full mx-auto mb-4 overflow-hidden">
-                    <Image
-                      src={brokerImageUrl(natanel.photoUrl)}
-                      alt={`${natanel.name} headshot`}
-                      fill
-                      sizes="112px"
-                      className="object-cover object-center"
-                    />
-                  </div>
-
-                  <h3 className="text-xl font-semibold mb-1">{natanel.name}</h3>
-                  <p className="text-sm text-gray-500 mb-3">{natanel.area}</p>
-
-                  <p className="text-sm text-gray-700">
-                    <strong>IL</strong> {natanel.phone ?? "\u00A0"}
-                  </p>
-                  <p className="text-sm text-gray-700">
-                    <strong>US</strong> {natanel.phone_us ?? "\u00A0"}
-                  </p>
-
-                  <p className="text-sm text-gray-700 mt-3">{natanel.role}</p>
-
-                  <div className="mt-3 text-sm font-medium text-slate-700 underline underline-offset-4">
-                    View profile
-                  </div>
-                </Link>
-
-                <div className="mt-5 flex gap-3 justify-center flex-wrap">
-                  {natanelTel ? (
-                    <a
-                      href={natanelTel}
-                      className="rounded-xl bg-slate-900 text-[#FAF9F6] text-sm font-medium px-4 py-2 hover:bg-slate-800 active:bg-slate-950 transition"
-                    >
-                      Call Natanel
-                    </a>
-                  ) : (
-                    <span className="rounded-xl bg-slate-300 text-slate-600 text-sm font-medium px-4 py-2 cursor-not-allowed">
-                      Call Natanel
-                    </span>
-                  )}
-
-                  <a
-                    href={`mailto:${OFFICE_EMAIL}?subject=${encodeURIComponent(
-                      "Jerusalem Heritage Realty Enquiry",
-                    )}`}
-                    className="rounded-xl bg-white border border-slate-200 text-slate-900 text-sm font-medium px-4 py-2 hover:bg-slate-50 transition"
+                  {/* Clickable profile area (no nested anchors inside) */}
+                  <Link
+                    href={profileHref}
+                    className="no-underline text-inherit block"
                   >
-                    Email office inbox
-                  </a>
-                </div>
-              </div>
-            ) : (
-              <div className="bg-slate-50 px-5 py-6 rounded-2xl shadow-md text-center h-full">
-                <p className="text-sm text-gray-600">
-                  Natanel not found in brokers table.
-                </p>
-              </div>
-            )}
+                    <div className="relative w-28 h-28 rounded-full mx-auto mb-4 overflow-hidden">
+                      <Image
+                        src={brokerImageUrl(b.photoUrl)}
+                        alt={`${b.name ?? "Broker"} headshot`}
+                        fill
+                        sizes="112px"
+                        className="object-cover object-center"
+                      />
+                    </div>
 
-            {/* Yaakov card */}
-            {yaakov ? (
-              <div className="bg-slate-50 px-5 py-6 rounded-2xl shadow-md text-center hover:shadow-lg transition h-full">
-                <Link
-                  href={`/team/${yaakov.id}`}
-                  className="no-underline text-inherit block"
-                >
-                  <div className="relative w-28 h-28 rounded-full mx-auto mb-4 overflow-hidden">
-                    <Image
-                      src={brokerImageUrl(yaakov.photoUrl)}
-                      alt={`${yaakov.name} headshot`}
-                      fill
-                      sizes="112px"
-                      className="object-cover object-center"
-                    />
-                  </div>
+                    <h3 className="text-xl font-semibold mb-1">
+                      {b.name ?? "Broker"}
+                    </h3>
 
-                  <h3 className="text-xl font-semibold mb-1">{yaakov.name}</h3>
-                  <p className="text-sm text-gray-500 mb-3">{yaakov.area}</p>
-
-                  <p className="text-sm text-gray-700">
-                    <strong>IL</strong> {yaakov.phone ?? "\u00A0"}
-                  </p>
-                  <p className="text-sm text-gray-700">
-                    <strong>US</strong> {yaakov.phone_us ?? "\u00A0"}
-                  </p>
-
-                  <p className="text-sm text-gray-700 mt-3">{yaakov.role}</p>
-
-                  <div className="mt-3 text-sm font-medium text-slate-700 underline underline-offset-4">
-                    View profile
-                  </div>
-                </Link>
-
-                <div className="mt-5 flex gap-3 justify-center flex-wrap">
-                  {yaakovWa ? (
-                    <a
-                      href={yaakovWa}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="rounded-xl bg-slate-900 text-[#FAF9F6] text-sm font-medium px-4 py-2 hover:bg-slate-800 active:bg-slate-950 transition"
-                    >
-                      WhatsApp Yaakov
-                    </a>
-                  ) : (
-                    <span className="rounded-xl bg-slate-300 text-slate-600 text-sm font-medium px-4 py-2 cursor-not-allowed">
-                      WhatsApp Yaakov
-                    </span>
-                  )}
-
-                  <a
-                    href={`mailto:${OFFICE_EMAIL}?subject=${encodeURIComponent(
-                      "Jerusalem Heritage Realty Enquiry",
-                    )}`}
-                    className="rounded-xl bg-white border border-slate-200 text-slate-900 text-sm font-medium px-4 py-2 hover:bg-slate-50 transition"
-                  >
-                    Email office inbox
-                  </a>
-                </div>
-              </div>
-            ) : (
-              <div className="bg-slate-50 px-5 py-6 rounded-2xl shadow-md text-center h-full">
-                <p className="text-sm text-gray-600">
-                  Yaakov not found in brokers table.
-                </p>
-              </div>
-            )}
-
-            {/* Sarah card */}
-            {sarah ? (
-              <div className="bg-slate-50 px-5 py-6 rounded-2xl shadow-md text-center hover:shadow-lg transition h-full">
-                <Link
-                  href={`/team/${sarah.id}`}
-                  className="no-underline text-inherit block"
-                >
-                  <div className="relative w-28 h-28 rounded-full mx-auto mb-4 overflow-hidden">
-                    <Image
-                      src={brokerImageUrl(sarah.photoUrl)}
-                      alt={`${sarah.name} headshot`}
-                      fill
-                      sizes="112px"
-                      className="object-cover object-center"
-                    />
-                  </div>
-
-                  <h3 className="text-xl font-semibold mb-1">{sarah.name}</h3>
-                  <p className="text-sm text-gray-500 mb-3">{sarah.area}</p>
-
-                  <p className="text-sm text-gray-700">
-                    <strong>IL</strong> {sarah.phone ?? "\u00A0"}
-                  </p>
-                  <p className="text-sm text-gray-700">
-                    {sarah.phone_us ? (
-                      <>
-                        <strong>US</strong> {sarah.phone_us}
-                      </>
+                    {b.area ? (
+                      <p className="text-sm text-gray-500 mb-3">{b.area}</p>
                     ) : (
-                      "\u00A0"
+                      <div className="mb-3" />
                     )}
-                  </p>
 
-                  <p className="text-sm text-gray-700 mt-3">{sarah.role}</p>
+                    {!suppressPhones && b.phone ? (
+                      <p className="text-sm text-gray-700">
+                        <strong>IL</strong> {b.phone}
+                      </p>
+                    ) : null}
 
-                  <div className="mt-3 text-sm font-medium text-slate-700 underline underline-offset-4">
-                    View profile
-                  </div>
-                </Link>
+                    {!suppressPhones && b.phone_us ? (
+                      <p className="text-sm text-gray-700">
+                        <strong>US</strong> {b.phone_us}
+                      </p>
+                    ) : null}
 
-                <div className="mt-5 flex flex-col gap-3 items-center">
-                  {sarahTel ? (
+                    {b.email ? (
+                      <p className="text-sm text-gray-700">
+                        <strong>Email</strong> {b.email}
+                      </p>
+                    ) : null}
+
+                    {b.role ? (
+                      <p className="text-sm text-gray-700 mt-3">{b.role}</p>
+                    ) : null}
+
+                    <div className="mt-3 text-sm font-medium text-slate-700 underline underline-offset-4">
+                      View profile
+                    </div>
+                  </Link>
+
+                  {/* Action buttons (anchors live OUTSIDE the Link) */}
+                  <div className="mt-5 flex gap-3 justify-center flex-wrap">
+                    {wa ? (
+                      <a
+                        href={wa}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="rounded-xl bg-slate-900 text-[#FAF9F6] text-sm font-medium px-4 py-2 hover:bg-slate-800 active:bg-slate-950 transition"
+                      >
+                        WhatsApp {displayFirst}
+                      </a>
+                    ) : tel ? (
+                      <a
+                        href={tel}
+                        className="rounded-xl bg-slate-900 text-[#FAF9F6] text-sm font-medium px-4 py-2 hover:bg-slate-800 active:bg-slate-950 transition"
+                      >
+                        Call {displayFirst}
+                      </a>
+                    ) : (
+                      <span className="rounded-xl bg-slate-300 text-slate-600 text-sm font-medium px-4 py-2 cursor-not-allowed">
+                        Call {displayFirst}
+                      </span>
+                    )}
+
+                    {mail ? (
+                      <a
+                        href={mail}
+                        className="rounded-xl bg-white border border-slate-200 text-slate-900 text-sm font-medium px-4 py-2 hover:bg-slate-50 transition"
+                      >
+                        Email {displayFirst}
+                      </a>
+                    ) : (
+                      <span className="rounded-xl bg-slate-300 text-slate-600 text-sm font-medium px-4 py-2 cursor-not-allowed">
+                        Email {displayFirst}
+                      </span>
+                    )}
+
                     <a
-                      href={sarahTel}
-                      className="rounded-xl bg-slate-900 text-[#FAF9F6] text-sm font-medium px-4 py-2 hover:bg-slate-800 active:bg-slate-950 transition"
+                      href={officeMailTo}
+                      className="rounded-xl bg-white border border-slate-200 text-slate-900 text-sm font-medium px-4 py-2 hover:bg-slate-50 transition"
                     >
-                      Call Sarah
+                      Email office inbox
                     </a>
-                  ) : (
-                    <span className="rounded-xl bg-slate-300 text-slate-600 text-sm font-medium px-4 py-2 cursor-not-allowed">
-                      Call Sarah
-                    </span>
-                  )}
-
-                  <a
-                    href={`mailto:${OFFICE_EMAIL}?subject=${encodeURIComponent(
-                      "Jerusalem Heritage Realty Enquiry",
-                    )}`}
-                    className="rounded-xl bg-white border border-slate-200 text-slate-900 text-sm font-medium px-4 py-2 hover:bg-slate-50 transition"
-                  >
-                    Email office inbox
-                  </a>
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <div className="bg-slate-50 px-5 py-6 rounded-2xl shadow-md text-center h-full">
-                <p className="text-sm text-gray-600">
-                  Sarah not found in brokers table.
-                </p>
-              </div>
-            )}
+              );
+            })}
           </div>
         </section>
       </main>
