@@ -3,12 +3,39 @@
   --background: #ededed;
   --foreground: #0a0a0a;
   --navy: #0b1f3a;
+  --a11y-font-scale: 1;
+}
+
+html {
+  font-size: calc(16px * var(--a11y-font-scale));
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+:focus-visible {
+  outline: 3px solid #fbbf24;
+  outline-offset: 2px;
+}
+
+html[data-a11y-contrast="high"] body {
+  filter: contrast(1.15) saturate(1.1);
+}
+
+html[data-a11y-contrast="high"] :focus-visible {
+  outline-color: #f97316;
+}
+
+html[data-a11y-motion="reduce"] *,
+html[data-a11y-motion="reduce"] *::before,
+html[data-a11y-motion="reduce"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
 }
 
 .skip-link {
