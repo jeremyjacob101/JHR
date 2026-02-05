@@ -45,7 +45,7 @@ export default function WhatsAppFloatingButton() {
         position: "fixed",
         right: 20,
         bottom: 20,
-        zIndex: 2147483647,
+        zIndex: 2147483640,
         pointerEvents: "auto",
       }}
       className="flex items-center gap-3 rounded-full bg-green-500 text-white shadow-2xl px-4 py-3 hover:opacity-95 active:scale-[0.98] transition"

@@ -163,7 +163,7 @@ export default function ContactPage() {
         <section className="mt-10 flex justify-center">
           <a
             href="mailto:office@jhrisrael.com?subject=Inquiry%20from%20JHR%20website"
-            className="w-full max-w-3xl bg-slate-50 rounded-2xl shadow-md border border-slate-100 p-5 flex items-center justify-between gap-4 hover:shadow-lg transition"
+            className="w-full max-w-3xl bg-slate-50 rounded-2xl shadow-md border border-slate-100 p-5 grid grid-cols-[1fr_70px] items-center gap-4 hover:shadow-lg transition"
           >
             <div className="flex items-center gap-3">
               <Image
@@ -178,12 +178,12 @@ export default function ContactPage() {
                   Email Us Directly
                 </h3>
                 <p className="text-[0.8125rem] text-gray-600">
-                  Tap to open your email app and message office@jhrisrael.com
+                  Tap to directly email us at office@jhrisrael.com
                 </p>
               </div>
             </div>
 
-            <span className="text-sm font-medium text-slate-900 underline underline-offset-4 hover:no-underline">
+            <span className="text-sm font-medium text-slate-900 underline underline-offset-4 hover:no-underline text-right">
               Open Email
             </span>
           </a>
@@ -195,7 +195,7 @@ export default function ContactPage() {
             href="https://calendly.com/nm-jhrisrael/25min"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full max-w-3xl bg-slate-50 rounded-2xl shadow-md border border-slate-100 p-5 flex items-center justify-between gap-4 hover:shadow-lg transition"
+            className="w-full max-w-3xl bg-slate-50 rounded-2xl shadow-md border border-slate-100 p-5 grid grid-cols-[1fr_70px] items-center gap-4 hover:shadow-lg transition"
           >
             <div className="flex items-center gap-3">
               <Image
@@ -210,12 +210,12 @@ export default function ContactPage() {
                   Schedule a Call
                 </h3>
                 <p className="text-[0.8125rem] text-gray-600">
-                  Tap to book a 25-minute call with a broker.
+                  Tap to book a 15-minute call with a broker
                 </p>
               </div>
             </div>
 
-            <span className="text-sm font-medium text-slate-900 underline underline-offset-4 hover:no-underline">
+            <span className="text-sm font-medium text-slate-900 underline underline-offset-4 hover:no-underline text-right">
               Open Calendly
             </span>
           </a>
@@ -227,7 +227,7 @@ export default function ContactPage() {
             href="https://wa.me/972526166178"
             target="_blank"
             rel="noreferrer"
-            className="w-full max-w-3xl bg-slate-50 rounded-2xl shadow-md border border-slate-100 p-5 flex items-center justify-between gap-4 hover:shadow-lg transition"
+            className="w-full max-w-3xl bg-slate-50 rounded-2xl shadow-md border border-slate-100 p-5 grid grid-cols-[1fr_70px] items-center gap-4 hover:shadow-lg transition"
           >
             <div className="flex items-center gap-3">
               <Image
@@ -239,15 +239,15 @@ export default function ContactPage() {
               />
               <div>
                 <h3 className="text-[1.0625rem] font-semibold leading-tight">
-                  Contact Us On WhatsApp!
+                  WhatsApp Us
                 </h3>
                 <p className="text-[0.8125rem] text-gray-600">
-                  Tap to chat with a broker instantly.
+                  Tap to instantly chat with a broker on WhatsApp
                 </p>
               </div>
             </div>
 
-            <span className="text-sm font-medium text-slate-900 underline underline-offset-4 hover:no-underline">
+            <span className="text-sm font-medium text-slate-900 underline underline-offset-4 hover:no-underline text-right">
               Open WhatsApp
             </span>
           </a>
