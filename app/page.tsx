@@ -236,7 +236,7 @@ export default async function HomePage() {
         {/* HERO */}
         <section id="jhr-hero" className={styles.hero}>
           <Image
-            src="https://yykrealestate.com/assets/Neighborhoods/3/Baka-mob.jpg"
+            src="/pictures/gerassi-1/0.jpg"
             alt="Baka neighborhood in Jerusalem"
             fill
             sizes="100vw"
