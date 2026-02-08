@@ -1,10 +1,130 @@
 import Link from "next/link";
 import Image from "next/image";
+import Script from "next/script";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
-import { supabaseAdmin } from "@/lib/supabase.server";
-import { Property } from "@/types/property";
-import { Broker } from "@/types/broker";
+
+type ManualProperty = {
+  id: "gerassi" | "nachlaot";
+  title: string;
+  subtitle: string;
+  headerTagline: string;
+  backdropImage: string; // must be 1.jpg
+  galleryImages: string[]; // 0..N
+  mapQuery: string;
+  quickFacts: { label: string; value: string }[];
+  overview: string[];
+  highlights: string[];
+  sections?: { title: string; body: string[] }[];
+};
+
+const sqmToSqft = (sqm: number) => Math.round(sqm * 10.7639);
+
+const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
+  gerassi: {
+    id: "gerassi",
+    title: "Graetz House",
+    subtitle: "Talbiyeh × German Colony • Jerusalem",
+    headerTagline:
+      "Restored 1880s residence with modern upper floors, private courtyard parking, and landscaped garden.",
+    backdropImage: "/pictures/gerassi-1/1.jpg",
+    galleryImages: [
+      "/pictures/gerassi-1/0.jpg",
+      "/pictures/gerassi-1/1.jpg",
+      "/pictures/gerassi-1/2.jpg",
+      "/pictures/gerassi-1/3.jpg",
+      "/pictures/gerassi-1/4.jpg",
+    ],
+    mapQuery: "Zvi Graetz Street, Jerusalem, Israel",
+    quickFacts: [
+      { label: "Plot", value: `411 m² (${sqmToSqft(411)} ft²)` },
+      { label: "Built", value: `484 m² (${sqmToSqft(484)} ft²)` },
+      { label: "Attic/Roof", value: `100 m² (${sqmToSqft(100)} ft²)` },
+      { label: "Balconies", value: `42 m² (${sqmToSqft(42)} ft²)` },
+      { label: "Garden", value: `258 m² (${sqmToSqft(258)} ft²)` },
+      {
+        label: "Levels",
+        value: "Lower-ground + Ground + 2 upper floors + attic",
+      },
+      { label: "Parking", value: "Courtyard parking for up to 4 vehicles" },
+      {
+        label: "Systems",
+        value: "Separate A/C per floor + water-based underfloor heating",
+      },
+    ],
+    overview: [
+      "Built on private land registered in the Israel Land Registry (Tabu), this residence sits on a quiet dead-end street at the crossroads of Talbiyeh and the German Colony.",
+      "The home is flanked by green land on two sides and low-rise private homes on the other two sides, offering privacy, light, and airflow from all directions.",
+      "Originally a two-storey home from the 1880s, two additional floors and a red-tiled slatted roof were added. The lower levels were restored in accordance with strict Jerusalem Municipality conservation guidelines, while the upper floors reflect a complementary modern design.",
+    ],
+    highlights: [
+      "Jerusalem red slayeb stone cladding (historic, durable, and iconic to the City of Gold).",
+      "Travertine courtyard paving (rustic, durable, non-slip in winter, heat-resistant in summer).",
+      "Prepared elevator shaft for access to all floors (future-ready).",
+      "Lower-ground level includes a preserved groined/cross vault room, multiple additional rooms, a residential secure space (Mamad), and a renovated original cistern.",
+    ],
+    sections: [
+      {
+        title: "Layout Snapshot",
+        body: [
+          "Ground level: Entry from Zvi Graetz Street through a walled courtyard; spacious living areas, kitchen, bathroom, and guest toilet.",
+          "Lower-ground (south-facing): Garden access; historic vaulted room plus additional rooms, warehouse (garden access with potential for internal access), Mamad, and renovated cistern.",
+          "Upper floors: Modern additions with multiple bedrooms, bathrooms, and balconies; top levels include a lounge/family area opening to a large balcony.",
+          "Attic/roof level: ~100 m² with exposed timber beams and abundant natural light; currently via folding stairs, with potential for permanent staircase near the elevator zone.",
+        ],
+      },
+      {
+        title: "Valuation Note",
+        body: [
+          "A professional appraisal has assessed the property value at approximately ₪57,000,000 NIS.",
+        ],
+      },
+    ],
+  },
+
+  nachlaot: {
+    id: "nachlaot",
+    title: "Artist House",
+    subtitle: "Nachlaot • Jerusalem",
+    headerTagline:
+      "A fully updated, design-forward 3-story townhouse with rooftop living in the heart of the city.",
+    backdropImage: "/pictures/nachlaot-1/1.jpg",
+    galleryImages: [
+      "/pictures/nachlaot-1/0.jpg",
+      "/pictures/nachlaot-1/1.jpg",
+      "/pictures/nachlaot-1/2.jpg",
+      "/pictures/nachlaot-1/3.jpg",
+      "/pictures/nachlaot-1/4.jpg",
+      "/pictures/nachlaot-1/5.jpg",
+      "/pictures/nachlaot-1/6.jpg",
+    ],
+    mapQuery: "Nachlaot, Jerusalem, Israel",
+    quickFacts: [
+      { label: "Size", value: `~180 m² (${sqmToSqft(180)} ft²)` },
+      { label: "Type", value: "Private Nachlaot townhouse" },
+      { label: "Floors", value: "3 stories" },
+      { label: "Bedrooms", value: "3 large bedrooms (each en-suite)" },
+      { label: "Hosting", value: "Comfortably hosts 7–8 guests" },
+      { label: "Dining", value: "Table capacity ~18–20" },
+      { label: "Kitchen", value: "Designer kosher kitchen" },
+      {
+        label: "Rooftop",
+        value: "Private balcony + rooftop garden (sukka-friendly)",
+      },
+    ],
+    overview: [
+      "Located in quiet and pastoral Nachlaot, just footsteps from Jerusalem’s energy, markets, and city-center life.",
+      "This 3-story townhouse is fully updated and equipped to high standards, with design choices that match the creativity and spirit of the neighborhood.",
+      "A rooftop balcony and rooftop garden create an exceptional “open sky” experience in the center of the city.",
+    ],
+    highlights: [
+      "5 minutes walk (or less): Shuk Machane Yehuda, Ben Yehuda Promenade, Rechavia.",
+      "15 minutes walk (or less): Mamilla / Old City, Gan Sacher, Great Synagogue, major Rechavia shuls, Geula / Mea Shearim, and city-center restaurants and hotels.",
+      "Large sit-in living room with books and games.",
+      "Guest bathroom on the main floor (in addition to en-suite bathrooms).",
+    ],
+  },
+};
 
 export default async function PropertyDetailPage({
   params,
@@ -13,17 +133,10 @@ export default async function PropertyDetailPage({
 }) {
   const { id } = await params;
 
-  const { data: propertyRow, error: propertyError } = await supabaseAdmin
-    .from("properties3")
-    .select("*, broker:brokers(*)")
-    .eq("id", id)
-    .maybeSingle();
+  const key = (id ?? "").toLowerCase() as ManualProperty["id"];
+  const property = PROPERTIES[key];
 
-  if (propertyError) {
-    console.error("Error loading property", propertyError);
-  }
-
-  if (!propertyRow) {
+  if (!property) {
     return (
       <div className="min-h-screen flex flex-col">
         <NavBar />
@@ -32,36 +145,31 @@ export default async function PropertyDetailPage({
           className="flex-1 min-h-0 max-w-5xl mx-auto px-5 py-10"
         >
           <p className="mb-3">Property not found.</p>
-          <Link href="/" className="text-sm text-gray-600 hover:underline">
+          <Link
+            href="/properties"
+            className="text-sm text-gray-600 hover:underline"
+          >
             ← Back to properties
           </Link>
         </main>
+        <Footer />
       </div>
     );
   }
 
-  const property = propertyRow as Property;
-  const broker = property.broker ?? null;
-
-  const brokerImageUrl = (path?: string | null) => {
-    const safePath = path?.trim() ? path.trim() : "defaultAvatar.jpg";
-    return supabaseAdmin.storage.from("brokers").getPublicUrl(safePath).data
-      .publicUrl;
-  };
-  const brokerPhoto = brokerImageUrl(broker?.photoUrl);
-
-  const backdropUrl = property.backdropImageUrl || property.heroImageUrl;
   const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(
-    `${property.street}, ${property.city}, Israel`,
+    property.mapQuery,
   )}&output=embed`;
 
   return (
     <div className="min-h-screen flex flex-col">
       <NavBar />
+
+      {/* Backdrop "thingy" at top must be 1.jpg */}
       <section className="relative h-[260px] mb-0 overflow-hidden">
         <Image
-          src={backdropUrl}
-          alt={`${property.propertyName} backdrop`}
+          src={property.backdropImage}
+          alt={`${property.title} backdrop`}
           fill
           priority
           sizes="100vw"
@@ -72,18 +180,22 @@ export default async function PropertyDetailPage({
 
         <div className="relative z-10 max-w-5xl mx-auto h-full flex flex-col justify-end px-5 pb-6 text-white">
           <p className="mb-1">
-            <Link href="/" className="text-xs text-gray-200 hover:underline">
+            <Link
+              href="/properties"
+              className="text-xs text-gray-200 hover:underline"
+            >
               ← Back to properties
             </Link>
           </p>
+
           <h1 className="text-[1.75rem] md:text-[1.875rem] font-semibold mb-1">
-            {property.propertyName}
+            {property.title}
           </h1>
-          <p className="text-sm text-gray-200 mb-1">
-            {property.neighborhood} • {property.street}, {property.city}
-          </p>
-          <p className="text-[1.25rem] md:text-[1.375rem] font-bold text-emerald-200">
-            ₪{property.priceNIS.toLocaleString("he-IL")}
+
+          <p className="text-sm text-gray-200 mb-2">{property.subtitle}</p>
+
+          <p className="text-sm text-gray-100 max-w-3xl leading-relaxed">
+            {property.headerTagline}
           </p>
         </div>
       </section>
@@ -94,69 +206,249 @@ export default async function PropertyDetailPage({
       >
         <section className="grid grid-cols-1 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] gap-7 mt-2">
           <div>
-            {/* hero image */}
-            <div className="relative w-full h-80 rounded-2xl overflow-hidden mb-5">
-              <Image
-                src={property.heroImageUrl}
-                alt={property.propertyName}
-                fill
-                sizes="(min-width: 768px) 66vw, 100vw"
-                className="object-cover object-center"
-              />
+            {/* Gallery slider */}
+            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
+              <div className="p-5 border-b border-slate-100">
+                <h2 className="text-[1.25rem] font-semibold">Photo Gallery</h2>
+                <p className="text-sm text-slate-600 mt-1">
+                  Click arrows or dots — it also auto-advances every 3 seconds.
+                </p>
+              </div>
+
+              <div
+                id="property-carousel"
+                className="relative w-full select-none"
+                style={{ paddingBottom: "56.25%" }}
+                data-index="0"
+                aria-label={`${property.title} image carousel`}
+              >
+                <div className="absolute inset-0 overflow-hidden">
+                  <div
+                    data-track
+                    className="h-full w-full flex transition-transform duration-500 ease-out"
+                    style={{ transform: "translateX(0%)" }}
+                  >
+                    {property.galleryImages.map((src, i) => (
+                      <div
+                        key={src}
+                        data-slide
+                        className="relative h-full w-full shrink-0"
+                        aria-hidden={i === 0 ? "false" : "true"}
+                      >
+                        <Image
+                          src={src}
+                          alt={`${property.title} photo ${i + 1}`}
+                          fill
+                          sizes="(min-width: 768px) 66vw, 100vw"
+                          className="object-cover object-center"
+                          priority={i === 0}
+                        />
+                      </div>
+                    ))}
+                  </div>
+
+                  <button
+                    type="button"
+                    data-prev
+                    aria-label="Previous image"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 border border-slate-200 shadow px-3 py-2 text-slate-900 hover:bg-white transition"
+                  >
+                    ‹
+                  </button>
+
+                  <button
+                    type="button"
+                    data-next
+                    aria-label="Next image"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 border border-slate-200 shadow px-3 py-2 text-slate-900 hover:bg-white transition"
+                  >
+                    ›
+                  </button>
+
+                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2">
+                    {property.galleryImages.map((_, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        data-dot
+                        data-index={i}
+                        aria-label={`Go to image ${i + 1}`}
+                        aria-current={i === 0 ? "true" : "false"}
+                        className="h-2.5 w-2.5 rounded-full border border-slate-200 bg-white/80 hover:bg-white transition"
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <Script id="property-carousel-script" strategy="afterInteractive">
+                {`
+                  (() => {
+                    const root = document.getElementById("property-carousel");
+                    if (!root) return;
+
+                    const track = root.querySelector("[data-track]");
+                    const slides = Array.from(root.querySelectorAll("[data-slide]"));
+                    const dots = Array.from(root.querySelectorAll("[data-dot]"));
+                    const prevBtn = root.querySelector("[data-prev]");
+                    const nextBtn = root.querySelector("[data-next]");
+
+                    if (!track || slides.length === 0) return;
+
+                    const total = slides.length;
+                    let index = 0;
+                    let timer = null;
+
+                    const reduceMotion = window.matchMedia &&
+                      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+                    const setA11y = (activeIndex) => {
+                      slides.forEach((s, i) => {
+                        s.setAttribute("aria-hidden", i === activeIndex ? "false" : "true");
+                      });
+                      dots.forEach((d, i) => {
+                        d.setAttribute("aria-current", i === activeIndex ? "true" : "false");
+                      });
+                    };
+
+                    const render = () => {
+                      track.style.transform = "translateX(-" + (index * 100) + "%)";
+                      root.setAttribute("data-index", String(index));
+                      setA11y(index);
+                    };
+
+                    const goTo = (next) => {
+                      index = ((next % total) + total) % total;
+                      render();
+                    };
+
+                    const start = () => {
+                      if (reduceMotion) return;
+                      if (timer) return;
+                      timer = window.setInterval(() => goTo(index + 1), 3000);
+                    };
+
+                    const stop = () => {
+                      if (!timer) return;
+                      window.clearInterval(timer);
+                      timer = null;
+                    };
+
+                    const reset = () => {
+                      stop();
+                      start();
+                    };
+
+                    prevBtn && prevBtn.addEventListener("click", () => {
+                      goTo(index - 1);
+                      reset();
+                    });
+
+                    nextBtn && nextBtn.addEventListener("click", () => {
+                      goTo(index + 1);
+                      reset();
+                    });
+
+                    dots.forEach((dot) => {
+                      dot.addEventListener("click", () => {
+                        const i = Number(dot.getAttribute("data-index") || "0");
+                        goTo(i);
+                        reset();
+                      });
+                    });
+
+                    root.addEventListener("mouseenter", stop);
+                    root.addEventListener("mouseleave", start);
+                    root.addEventListener("focusin", stop);
+                    root.addEventListener("focusout", start);
+
+                    document.addEventListener("visibilitychange", () => {
+                      if (document.hidden) stop();
+                      else start();
+                    });
+
+                    let startX = null;
+                    root.addEventListener("pointerdown", (e) => { startX = e.clientX; });
+                    root.addEventListener("pointerup", (e) => {
+                      if (startX == null) return;
+                      const dx = e.clientX - startX;
+                      startX = null;
+                      if (Math.abs(dx) < 50) return;
+                      if (dx < 0) goTo(index + 1);
+                      else goTo(index - 1);
+                      reset();
+                    });
+
+                    render();
+                    start();
+                  })();
+                `}
+              </Script>
             </div>
 
+            {/* Quick facts */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-slate-100 rounded-2xl px-4 py-3 mb-6">
-              <div>
-                <span className="text-[0.6875rem] uppercase tracking-[0.12em] text-gray-500">
-                  Bedrooms
-                </span>
-                <div className="text-[1rem] font-semibold text-slate-900">
-                  {property.beds}
+              {property.quickFacts.slice(0, 4).map((f) => (
+                <div key={f.label}>
+                  <span className="text-[0.6875rem] uppercase tracking-[0.12em] text-gray-500">
+                    {f.label}
+                  </span>
+                  <div className="text-[1rem] font-semibold text-slate-900">
+                    {f.value}
+                  </div>
                 </div>
-              </div>
-              <div>
-                <span className="text-[0.6875rem] uppercase tracking-[0.12em] text-gray-500">
-                  Bathrooms
-                </span>
-                <div className="text-[1rem] font-semibold text-slate-900">
-                  {property.baths}
-                </div>
-              </div>
-              <div>
-                <span className="text-[0.6875rem] uppercase tracking-[0.12em] text-gray-500">
-                  Interior
-                </span>
-                <div className="text-[1rem] font-semibold text-slate-900">
-                  {property.indoorSqm} m²
-                </div>
-              </div>
-              <div>
-                <span className="text-[0.6875rem] uppercase tracking-[0.12em] text-gray-500">
-                  Outdoor
-                </span>
-                <div className="text-[1rem] font-semibold text-slate-900">
-                  {property.outdoorSqm} m²
-                </div>
-              </div>
+              ))}
             </div>
 
             <section className="mb-7">
               <h2 className="text-[1.25rem] font-semibold mb-2">
                 Property Overview
               </h2>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                Elegant residence in the heart of {property.neighborhood}, with
-                bright living spaces, generous outdoor areas, and walking
-                distance to cafes, parks, and historic Jerusalem landmarks.
-                Designed for comfortable family living and entertaining.
-              </p>
+              <div className="space-y-3">
+                {property.overview.map((p, idx) => (
+                  <p
+                    key={idx}
+                    className="text-sm text-gray-600 leading-relaxed"
+                  >
+                    {p}
+                  </p>
+                ))}
+              </div>
             </section>
+
+            <section className="mb-7">
+              <h2 className="text-[1.25rem] font-semibold mb-2">Highlights</h2>
+              <ul className="list-disc pl-5 space-y-2">
+                {property.highlights.map((h, idx) => (
+                  <li
+                    key={idx}
+                    className="text-sm text-gray-600 leading-relaxed"
+                  >
+                    {h}
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            {property.sections?.map((s) => (
+              <section key={s.title} className="mb-7">
+                <h2 className="text-[1.25rem] font-semibold mb-2">{s.title}</h2>
+                <div className="space-y-3">
+                  {s.body.map((p, idx) => (
+                    <p
+                      key={idx}
+                      className="text-sm text-gray-600 leading-relaxed"
+                    >
+                      {p}
+                    </p>
+                  ))}
+                </div>
+              </section>
+            ))}
 
             <section>
               <h2 className="text-[1.25rem] font-semibold mb-2">Location</h2>
-              <p className="text-sm text-gray-600">
-                {property.street}, {property.city}, Israel
-              </p>
+              <p className="text-sm text-gray-600">{property.mapQuery}</p>
               <div className="mt-3 rounded-2xl overflow-hidden shadow-lg">
                 <iframe
                   title="Property location"
@@ -169,59 +461,59 @@ export default async function PropertyDetailPage({
             </section>
           </div>
 
+          {/* Right rail: simple CTA box (manual, no broker) */}
           <aside className="md:pl-1">
-            {broker && (
-              <Link
-                href={`/team/${broker.id}`}
-                className="no-underline text-inherit"
-              >
-                <div className="bg-slate-50 rounded-2xl p-5 shadow-md hover:shadow-lg transition cursor-pointer">
-                  <h3 className="text-sm uppercase tracking-[0.16em] text-gray-500 mb-3">
-                    Exclusive Broker
-                  </h3>
+            <div className="bg-slate-50 rounded-2xl p-5 shadow-md">
+              <h3 className="text-sm uppercase tracking-[0.16em] text-gray-500 mb-3">
+                Next Steps
+              </h3>
 
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="relative w-11 h-11 rounded-full overflow-hidden shrink-0">
-                      <Image
-                        src={brokerPhoto}
-                        alt={`${broker.name} photo`}
-                        fill
-                        sizes="44px"
-                        className="object-cover object-center"
-                      />
+              <p className="text-sm text-gray-700 leading-relaxed mb-4">
+                Request availability, schedule a viewing, or ask for a full
+                brochure pack (plans, specs, and additional photos).
+              </p>
+
+              <div className="flex flex-col gap-3">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center rounded-xl bg-slate-900 text-[#FAF9F6] text-sm font-medium px-5 py-3 hover:bg-slate-800 active:bg-slate-950 transition"
+                >
+                  Schedule A Call
+                </Link>
+
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center rounded-xl bg-white border border-slate-200 text-slate-900 text-sm font-medium px-5 py-3 hover:bg-slate-50 transition"
+                >
+                  Send An Inquiry
+                </Link>
+              </div>
+
+              <div className="mt-5 pt-5 border-t border-slate-200">
+                <h4 className="text-sm font-semibold text-slate-900 mb-2">
+                  Key Specs (Expanded)
+                </h4>
+                <div className="space-y-2">
+                  {property.quickFacts.map((f) => (
+                    <div
+                      key={f.label}
+                      className="flex items-start justify-between gap-3"
+                    >
+                      <span className="text-xs uppercase tracking-[0.12em] text-gray-500">
+                        {f.label}
+                      </span>
+                      <span className="text-sm text-slate-900 font-medium text-right">
+                        {f.value}
+                      </span>
                     </div>
-
-                    <div>
-                      <p className="m-0 font-semibold">{broker.name}</p>
-                      <p className="m-0 text-[0.8125rem] text-gray-500">
-                        Licensed Jerusalem Broker
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="text-sm mb-3">
-                    <p>
-                      <strong>IL</strong> {broker.phone}
-                    </p>
-                    {broker.phone_us && (
-                      <p>
-                        <strong>US</strong> {broker.phone_us}
-                      </p>
-                    )}
-                    <p className="mt-3">{broker.role}</p>
-                    <p>{broker.email}</p>
-                  </div>
-
-                  <p className="text-[0.8125rem] text-gray-600">
-                    Contact the broker to schedule a private viewing or receive
-                    a full brochure of this property.
-                  </p>
+                  ))}
                 </div>
-              </Link>
-            )}
+              </div>
+            </div>
           </aside>
         </section>
       </main>
+
       <Footer />
     </div>
   );

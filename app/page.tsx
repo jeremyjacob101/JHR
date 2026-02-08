@@ -1,13 +1,10 @@
-import { supabaseAdmin } from "@/lib/supabase.server";
-import PropertyCard from "@/components/PropertyCard";
-import { Property } from "@/types/property";
-import NavBar from "@/components/NavBar";
-import Footer from "@/components/Footer";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./page.module.css";
 import type { CSSProperties } from "react";
 import { montserrat, inter } from "@/app/layout";
+import NavBar from "@/components/NavBar";
+import Footer from "@/components/Footer";
 import HomeEffects from "@/components/HomeEffects";
 
 type CSSVars = CSSProperties & Record<`--${string}`, string>;
@@ -211,21 +208,98 @@ function StorySection({ block, idx }: { block: StoryBlock; idx: number }) {
   );
 }
 
+type FeaturedProperty = {
+  id: "gerassi" | "nachlaot";
+  title: string;
+  subtitle: string;
+  image: string; // use 0.jpg
+  href: string;
+  stats: { label: string; value: string }[];
+  blurb: string;
+};
+
+const sqmToSqft = (sqm: number) => Math.round(sqm * 10.7639);
+
+const featured: FeaturedProperty[] = [
+  {
+    id: "gerassi",
+    title: "Graetz House",
+    subtitle: "Talbiyeh × German Colony",
+    image: "/pictures/gerassi-1/0.jpg",
+    href: "/properties/gerassi",
+    stats: [
+      { label: "Built", value: `484 m² (${sqmToSqft(484)} ft²)` },
+      { label: "Plot", value: `411 m² (${sqmToSqft(411)} ft²)` },
+      { label: "Garden", value: `258 m² (${sqmToSqft(258)} ft²)` },
+      { label: "Levels", value: "Lower-ground + 3 floors + attic" },
+    ],
+    blurb:
+      "Restored 1880s home with modern additions, private courtyard parking, and garden access — positioned between Talbiyeh and the German Colony.",
+  },
+  {
+    id: "nachlaot",
+    title: "Artist House",
+    subtitle: "Nachlaot",
+    image: "/pictures/nachlaot-1/0.jpg",
+    href: "/properties/nachlaot",
+    stats: [
+      { label: "Size", value: `~180 m² (${sqmToSqft(180)} ft²)` },
+      { label: "Floors", value: "3-story townhouse" },
+      { label: "Layout", value: "3 bedrooms • en-suite" },
+      { label: "Rooftop", value: "Private balcony + garden" },
+    ],
+    blurb:
+      "Fully updated, design-forward townhouse in quiet Nachlaot — steps from the shuk and city center, with spacious, standout rooftop living for everyone.",
+  },
+];
+
+function FeaturedCard({ p }: { p: FeaturedProperty }) {
+  return (
+    <Link href={p.href} className="no-underline text-inherit">
+      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition overflow-hidden h-full flex flex-col">
+        <div className="relative w-full h-48">
+          <Image
+            src={p.image}
+            alt={`${p.title} featured image`}
+            fill
+            sizes="(min-width: 1024px) 320px, (min-width: 640px) 50vw, 100vw"
+            className="object-cover object-center"
+            priority={p.id === "gerassi"}
+          />
+        </div>
+
+        <div className="p-5 flex-1 flex flex-col">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-slate-900">{p.title}</h3>
+            <p className="text-sm text-slate-600">{p.subtitle}</p>
+            <p className="text-sm text-slate-600 mt-2 leading-snug">
+              {p.blurb}
+            </p>
+          </div>
+
+          <div className="mt-auto grid grid-cols-2 gap-3 bg-slate-50 rounded-xl p-3">
+            {p.stats.map((s) => (
+              <div key={s.label}>
+                <div className="text-[0.6875rem] uppercase tracking-[0.12em] text-gray-500">
+                  {s.label}
+                </div>
+                <div className="text-sm font-semibold text-slate-900 leading-snug">
+                  {s.value}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 text-sm text-slate-700 font-medium">
+            View details →
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
 export default async function HomePage() {
-  const { data: properties, error } = await supabaseAdmin
-    .from("properties3")
-    .select("*, broker:brokers(*)")
-    .overrideTypes<Property[], { merge: false }>();
-
-  if (error) {
-    return (
-      <main id="main-content" className="p-8">
-        <h2 className="text-2xl font-semibold mb-4">Listings</h2>
-        <p className="text-red-600 mb-4">Error loading listings.</p>
-      </main>
-    );
-  }
-
   return (
     <div className="min-h-screen flex flex-col">
       <header id="jhr-sticky-nav" className={styles.stickyNav}>
@@ -323,11 +397,11 @@ export default async function HomePage() {
             </div>
 
             <div className="grid gap-7 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-              {properties.slice(0, 3).map((property) => (
-                <div key={property.id} className={styles.propertyHover}>
+              {featured.map((p) => (
+                <div key={p.id} className={styles.propertyHover}>
                   <div className={styles.propertyHalo} />
                   <div className="relative rounded-4xl">
-                    <PropertyCard property={property} />
+                    <FeaturedCard p={p} />
                   </div>
                 </div>
               ))}
