@@ -209,7 +209,7 @@ function StorySection({ block, idx }: { block: StoryBlock; idx: number }) {
 }
 
 type FeaturedProperty = {
-  id: "gerassi" | "nachlaot";
+  id: "nachlaot";
   title: string;
   subtitle: string;
   image: string; // use 0.jpg
@@ -221,21 +221,6 @@ type FeaturedProperty = {
 const sqmToSqft = (sqm: number) => Math.round(sqm * 10.7639);
 
 const featured: FeaturedProperty[] = [
-  {
-    id: "gerassi",
-    title: "Graetz House",
-    subtitle: "Talbiyeh × German Colony",
-    image: "/pictures/gerassi-1/0.jpg",
-    href: "/properties/gerassi",
-    stats: [
-      { label: "Built", value: `484 m² (${sqmToSqft(484)} ft²)` },
-      { label: "Plot", value: `411 m² (${sqmToSqft(411)} ft²)` },
-      { label: "Garden", value: `258 m² (${sqmToSqft(258)} ft²)` },
-      { label: "Levels", value: "Lower-ground + 3 floors + attic" },
-    ],
-    blurb:
-      "Restored 1880s home with modern additions, private courtyard parking, and garden access — positioned between Talbiyeh and the German Colony.",
-  },
   {
     id: "nachlaot",
     title: "Artist House",
@@ -264,7 +249,7 @@ function FeaturedCard({ p }: { p: FeaturedProperty }) {
             fill
             sizes="(min-width: 1024px) 320px, (min-width: 640px) 50vw, 100vw"
             className="object-cover object-center"
-            priority={p.id === "gerassi"}
+            priority
           />
         </div>
 
@@ -310,7 +295,7 @@ export default async function HomePage() {
         {/* HERO */}
         <section id="jhr-hero" className={styles.hero}>
           <Image
-            src="/pictures/gerassi-1/0.jpg"
+            src="/pictures/nachlaot-1/0.jpg"
             alt="Baka neighborhood in Jerusalem"
             fill
             sizes="100vw"

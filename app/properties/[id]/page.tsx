@@ -5,7 +5,7 @@ import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 
 type ManualProperty = {
-  id: "gerassi" | "nachlaot";
+  id: "nachlaot";
   title: string;
   subtitle: string;
   headerTagline: string;
@@ -21,67 +21,6 @@ type ManualProperty = {
 const sqmToSqft = (sqm: number) => Math.round(sqm * 10.7639);
 
 const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
-  gerassi: {
-    id: "gerassi",
-    title: "Graetz House",
-    subtitle: "Talbiyeh × German Colony • Jerusalem",
-    headerTagline:
-      "Restored 1880s residence with modern upper floors, private courtyard parking, and landscaped garden.",
-    backdropImage: "/pictures/gerassi-1/1.jpg",
-    galleryImages: [
-      "/pictures/gerassi-1/0.jpg",
-      "/pictures/gerassi-1/1.jpg",
-      "/pictures/gerassi-1/2.jpg",
-      "/pictures/gerassi-1/3.jpg",
-      "/pictures/gerassi-1/4.jpg",
-    ],
-    mapQuery: "Zvi Graetz Street, Jerusalem, Israel",
-    quickFacts: [
-      { label: "Plot", value: `411 m² (${sqmToSqft(411)} ft²)` },
-      { label: "Built", value: `484 m² (${sqmToSqft(484)} ft²)` },
-      { label: "Attic/Roof", value: `100 m² (${sqmToSqft(100)} ft²)` },
-      { label: "Balconies", value: `42 m² (${sqmToSqft(42)} ft²)` },
-      { label: "Garden", value: `258 m² (${sqmToSqft(258)} ft²)` },
-      {
-        label: "Levels",
-        value: "Lower-ground + Ground + 2 upper floors + attic",
-      },
-      { label: "Parking", value: "Courtyard parking for up to 4 vehicles" },
-      {
-        label: "Systems",
-        value: "Separate A/C per floor + water-based underfloor heating",
-      },
-    ],
-    overview: [
-      "Built on private land registered in the Israel Land Registry (Tabu), this residence sits on a quiet dead-end street at the crossroads of Talbiyeh and the German Colony.",
-      "The home is flanked by green land on two sides and low-rise private homes on the other two sides, offering privacy, light, and airflow from all directions.",
-      "Originally a two-storey home from the 1880s, two additional floors and a red-tiled slatted roof were added. The lower levels were restored in accordance with strict Jerusalem Municipality conservation guidelines, while the upper floors reflect a complementary modern design.",
-    ],
-    highlights: [
-      "Jerusalem red slayeb stone cladding (historic, durable, and iconic to the City of Gold).",
-      "Travertine courtyard paving (rustic, durable, non-slip in winter, heat-resistant in summer).",
-      "Prepared elevator shaft for access to all floors (future-ready).",
-      "Lower-ground level includes a preserved groined/cross vault room, multiple additional rooms, a residential secure space (Mamad), and a renovated original cistern.",
-    ],
-    sections: [
-      {
-        title: "Layout Snapshot",
-        body: [
-          "Ground level: Entry from Zvi Graetz Street through a walled courtyard; spacious living areas, kitchen, bathroom, and guest toilet.",
-          "Lower-ground (south-facing): Garden access; historic vaulted room plus additional rooms, warehouse (garden access with potential for internal access), Mamad, and renovated cistern.",
-          "Upper floors: Modern additions with multiple bedrooms, bathrooms, and balconies; top levels include a lounge/family area opening to a large balcony.",
-          "Attic/roof level: ~100 m² with exposed timber beams and abundant natural light; currently via folding stairs, with potential for permanent staircase near the elevator zone.",
-        ],
-      },
-      {
-        title: "Valuation Note",
-        body: [
-          "A professional appraisal has assessed the property value at approximately ₪57,000,000 NIS.",
-        ],
-      },
-    ],
-  },
-
   nachlaot: {
     id: "nachlaot",
     title: "Artist House",

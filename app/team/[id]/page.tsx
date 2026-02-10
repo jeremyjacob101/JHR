@@ -7,7 +7,7 @@ import { Broker } from "@/types/broker";
 import Image from "next/image";
 
 type FeaturedProperty = {
-  id: "gerassi" | "nachlaot";
+  id: "nachlaot";
   title: string;
   subtitle: string;
   image: string; // 0.jpg
@@ -18,19 +18,6 @@ type FeaturedProperty = {
 const sqmToSqft = (sqm: number) => Math.round(sqm * 10.7639);
 
 const featuredProperties: FeaturedProperty[] = [
-  {
-    id: "gerassi",
-    title: "Graetz House",
-    subtitle: "Talbiyeh × German Colony",
-    image: "/pictures/gerassi-1/0.jpg",
-    href: "/properties/gerassi",
-    stats: [
-      { label: "Built", value: `484 m² (${sqmToSqft(484)} ft²)` },
-      { label: "Plot", value: `411 m² (${sqmToSqft(411)} ft²)` },
-      { label: "Garden", value: `258 m² (${sqmToSqft(258)} ft²)` },
-      { label: "Levels", value: "Lower-ground + 3 floors + attic" },
-    ],
-  },
   {
     id: "nachlaot",
     title: "Artist House",
@@ -63,7 +50,7 @@ function FeaturedPropertyCard({ p }: { p: FeaturedProperty }) {
             fill
             sizes="(min-width: 1024px) 320px, (min-width: 640px) 50vw, 100vw"
             className="object-cover object-center"
-            priority={p.id === "gerassi"}
+            priority
           />
         </div>
 
@@ -175,7 +162,7 @@ export default async function BrokerDetailPage({
           Properties by {typedBroker.name}
         </h2>
 
-        {/* Manual: always show the same two properties */}
+        {/* Manual: always show the featured property */}
         <div className="grid gap-7 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {featuredProperties.map((p) => (
             <FeaturedPropertyCard key={p.id} p={p} />

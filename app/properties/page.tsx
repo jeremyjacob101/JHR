@@ -8,7 +8,7 @@ type SP = {
 };
 
 type ManualProperty = {
-  id: "gerassi" | "nachlaot";
+  id: "nachlaot";
   title: string;
   subtitle: string;
   locationLine: string;
@@ -27,20 +27,6 @@ export default async function PropertiesPage({
   const q = (sp.q ?? "").trim().toLowerCase();
 
   const properties: ManualProperty[] = [
-    {
-      id: "gerassi",
-      title: "Graetz House",
-      subtitle: "Talbiyeh × German Colony",
-      locationLine:
-        "Quiet dead-end street between Talbiyeh & the German Colony • Jerusalem",
-      cardImage: "/pictures/gerassi-1/0.jpg",
-      highlights: [
-        { label: "Built", value: `484 m² (${sqmToSqft(484)} ft²)` },
-        { label: "Plot", value: `411 m² (${sqmToSqft(411)} ft²)` },
-        { label: "Garden", value: `258 m² (${sqmToSqft(258)} ft²)` },
-        { label: "Levels", value: "Lower-ground + 3 floors + attic" },
-      ],
-    },
     {
       id: "nachlaot",
       title: "Artist House",
@@ -76,8 +62,8 @@ export default async function PropertiesPage({
         <section className="mb-10">
           <h1 className="text-3xl font-semibold mb-3">Listings</h1>
           <p className="text-base text-slate-700 leading-relaxed max-w-3xl">
-            Two featured properties, curated and presented with full photo
-            galleries and key specifications.
+            A featured property, curated and presented with full photo gallery
+            and key specifications.
           </p>
 
           <form
@@ -88,7 +74,7 @@ export default async function PropertiesPage({
             <input
               name="q"
               defaultValue={sp.q ?? ""}
-              placeholder="Search (e.g., Nachlaot, Talbiyeh, rooftop, garden...)"
+              placeholder="Search (e.g., Nachlaot, rooftop, garden...)"
               className="w-full sm:flex-1 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-200"
             />
             <button
@@ -125,7 +111,7 @@ export default async function PropertiesPage({
                       fill
                       sizes="(min-width: 1024px) 320px, (min-width: 640px) 50vw, 100vw"
                       className="object-cover object-center"
-                      priority={p.id === "gerassi"}
+                      priority
                     />
                   </div>
 
