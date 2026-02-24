@@ -14,10 +14,10 @@ export default async function EfratProjectPage() {
   const SCHEDULE_CALL_HREF = "/contact";
   const ENQUIRY_HREF = "/contact";
 
-  // Slider images (public/)
+  // Slider frames (public/)
   const SLIDES = Array.from({ length: 8 }, (_, i) => {
     const n = i + 1;
-    return `/pictures/efrat-1/efrat${n}.jpg`;
+    return `/pictures/efrat-1/efratPic${n}.jpg`;
   });
 
   // pull only these two brokers (edit to match your DB values)
@@ -60,14 +60,15 @@ export default async function EfratProjectPage() {
             id="efrat-carousel"
             className="relative w-full select-none"
             style={{ paddingBottom: "56.25%" }}
-            data-index="0"
+            data-index="1"
+            dir="ltr"
             aria-label="Efrat Project image carousel"
           >
             <div className="absolute inset-0 overflow-hidden">
               <div
                 data-track
-                className="h-full w-full flex transition-transform duration-500 ease-out"
-                style={{ transform: "translateX(0%)" }}
+                className="h-full w-full flex flex-row transition-transform duration-500 ease-out"
+                style={{ transform: "translateX(0%)", direction: "ltr" }}
               >
                 {SLIDES.map((src, i) => (
                   <div
@@ -78,7 +79,7 @@ export default async function EfratProjectPage() {
                   >
                     <Image
                       src={src}
-                      alt={`Efrat slide ${i + 1}`}
+                      alt={`Efrat frame ${i + 1} of ${SLIDES.length}`}
                       fill
                       sizes="(min-width: 1024px) 960px, 100vw"
                       className="object-cover object-center"
@@ -107,6 +108,15 @@ export default async function EfratProjectPage() {
                 ›
               </button>
 
+              {/* Current frame */}
+              <div
+                data-counter
+                className="absolute top-3 right-3 rounded-full bg-slate-900/80 px-3 py-1 text-xs font-semibold text-white"
+                aria-live="polite"
+              >
+                1 / {SLIDES.length}
+              </div>
+
               {/* Dots */}
               <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2">
                 {SLIDES.map((_, i) => (
@@ -115,9 +125,10 @@ export default async function EfratProjectPage() {
                     type="button"
                     data-dot
                     data-index={i}
-                    aria-label={`Go to image ${i + 1}`}
+                    data-active={i === 0 ? "true" : "false"}
+                    aria-label={`Go to frame ${i + 1}`}
                     aria-current={i === 0 ? "true" : "false"}
-                    className="h-2.5 w-2.5 rounded-full border border-slate-200 bg-white/80 hover:bg-white transition"
+                    className="h-2.5 w-2.5 rounded-full border border-slate-200 bg-white/80 hover:bg-white transition data-[active=true]:bg-slate-900 data-[active=true]:border-slate-900 data-[active=true]:scale-110"
                   />
                 ))}
               </div>
@@ -134,6 +145,7 @@ export default async function EfratProjectPage() {
                 const track = root.querySelector("[data-track]");
                 const slides = Array.from(root.querySelectorAll("[data-slide]"));
                 const dots = Array.from(root.querySelectorAll("[data-dot]"));
+                const counter = root.querySelector("[data-counter]");
                 const prevBtn = root.querySelector("[data-prev]");
                 const nextBtn = root.querySelector("[data-next]");
 
@@ -152,12 +164,16 @@ export default async function EfratProjectPage() {
                   });
                   dots.forEach((d, i) => {
                     d.setAttribute("aria-current", i === activeIndex ? "true" : "false");
+                    d.setAttribute("data-active", i === activeIndex ? "true" : "false");
                   });
+                  if (counter) {
+                    counter.textContent = (activeIndex + 1) + " / " + total;
+                  }
                 };
 
                 const render = () => {
                   track.style.transform = "translateX(-" + (index * 100) + "%)";
-                  root.setAttribute("data-index", String(index));
+                  root.setAttribute("data-index", String(index + 1));
                   setA11y(index);
                 };
 
