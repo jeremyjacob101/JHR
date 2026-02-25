@@ -209,7 +209,13 @@ function StorySection({ block, idx }: { block: StoryBlock; idx: number }) {
 }
 
 type FeaturedProperty = {
-  id: "nachlaot";
+  id:
+    | "nachlaot"
+    | "rehavia-12"
+    | "rehavia-13"
+    | "rehavia-14"
+    | "rehavia-2"
+    | "romema-1";
   title: string;
   subtitle: string;
   image: string; // use 0.jpg
@@ -235,6 +241,81 @@ const featured: FeaturedProperty[] = [
     ],
     blurb:
       "Fully updated, design-forward townhouse in quiet Nachlaot — steps from the shuk and city center, with spacious, standout rooftop living for everyone.",
+  },
+  {
+    id: "rehavia-12",
+    title: "Metudela 14 • Unit 12",
+    subtitle: "Rehavia",
+    image: "/pictures/rehavia-1/0.jpg",
+    href: "/properties/rehavia-12",
+    stats: [
+      { label: "Interior", value: `108.2 m² (${sqmToSqft(108.2)} ft²)` },
+      { label: "Balcony", value: `11 m² (${sqmToSqft(11)} ft²)` },
+      { label: "Rooms", value: "3.5" },
+      { label: "Price", value: "₪7,390,500" },
+    ],
+    blurb:
+      "Metudela St 14, Rehavia. Floor 4 apartment with 113.7 m² sale area priced at ₪65,000/m².",
+  },
+  {
+    id: "rehavia-13",
+    title: "Metudela 14 • Unit 13",
+    subtitle: "Rehavia",
+    image: "/pictures/rehavia-1/0.jpg",
+    href: "/properties/rehavia-13",
+    stats: [
+      { label: "Interior", value: `92.4 m² (${sqmToSqft(92.4)} ft²)` },
+      { label: "Balcony", value: `7.5 m² (${sqmToSqft(7.5)} ft²)` },
+      { label: "Rooms", value: "4" },
+      { label: "Price", value: "₪6,249,750" },
+    ],
+    blurb:
+      "Metudela St 14, Rehavia. Floor 4 apartment with 96.15 m² sale area priced at ₪65,000/m².",
+  },
+  {
+    id: "rehavia-14",
+    title: "Metudela 14 • Unit 14",
+    subtitle: "Rehavia",
+    image: "/pictures/rehavia-1/0.jpg",
+    href: "/properties/rehavia-14",
+    stats: [
+      { label: "Interior", value: `72.5 m² (${sqmToSqft(72.5)} ft²)` },
+      { label: "Balcony", value: `5 m² (${sqmToSqft(5)} ft²)` },
+      { label: "Rooms", value: "2" },
+      { label: "Price", value: "₪4,875,000" },
+    ],
+    blurb:
+      "Metudela St 14, Rehavia. Floor 4 apartment with 75 m² sale area priced at ₪65,000/m².",
+  },
+  {
+    id: "rehavia-2",
+    title: "Haari 4 • Rehavia Duplex",
+    subtitle: "Rehavia",
+    image: "/pictures/rehavia-2/0.jpg",
+    href: "/properties/rehavia-2",
+    stats: [
+      { label: "Size", value: `172 m² (${sqmToSqft(172)} ft²)` },
+      { label: "Bedrooms", value: "4" },
+      { label: "Baths", value: "2.5" },
+      { label: "Price", value: "₪13,000,000" },
+    ],
+    blurb:
+      "Prime Haari St duplex in Rehavia with open views, two sukkah balconies, and walking distance to Mamilla, city center, and the Kotel.",
+  },
+  {
+    id: "romema-1",
+    title: "Pninat Chemed • Romema",
+    subtitle: "Romema",
+    image: "/pictures/romema-1/0.jpg",
+    href: "/properties/romema-1",
+    stats: [
+      { label: "Size", value: `240 m² (${sqmToSqft(240)} ft²)` },
+      { label: "Bedrooms", value: "5" },
+      { label: "Baths", value: "3.5" },
+      { label: "Price", value: "₪16,000,000" },
+    ],
+    blurb:
+      "Single-level apartment in Pninat Chemed, Romema, with open views opposite Rav Shefa Mall, plus sukkah porch, parking, and storage.",
   },
 ];
 

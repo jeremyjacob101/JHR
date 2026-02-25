@@ -7,7 +7,13 @@ import { Broker } from "@/types/broker";
 import Image from "next/image";
 
 type FeaturedProperty = {
-  id: "nachlaot";
+  id:
+    | "nachlaot"
+    | "rehavia-12"
+    | "rehavia-13"
+    | "rehavia-14"
+    | "rehavia-2"
+    | "romema-1";
   title: string;
   subtitle: string;
   image: string; // 0.jpg
@@ -29,6 +35,71 @@ const featuredProperties: FeaturedProperty[] = [
       { label: "Floors", value: "3-story townhouse" },
       { label: "Layout", value: "3 bedrooms • en-suite" },
       { label: "Rooftop", value: "Private balcony + garden" },
+    ],
+  },
+  {
+    id: "rehavia-12",
+    title: "Metudela 14 • Unit 12",
+    subtitle: "Rehavia",
+    image: "/pictures/rehavia-1/0.jpg",
+    href: "/properties/rehavia-12",
+    stats: [
+      { label: "Interior", value: `108.2 m² (${sqmToSqft(108.2)} ft²)` },
+      { label: "Balcony", value: `11 m² (${sqmToSqft(11)} ft²)` },
+      { label: "Rooms", value: "3.5" },
+      { label: "Price", value: "₪7,390,500" },
+    ],
+  },
+  {
+    id: "rehavia-13",
+    title: "Metudela 14 • Unit 13",
+    subtitle: "Rehavia",
+    image: "/pictures/rehavia-1/0.jpg",
+    href: "/properties/rehavia-13",
+    stats: [
+      { label: "Interior", value: `92.4 m² (${sqmToSqft(92.4)} ft²)` },
+      { label: "Balcony", value: `7.5 m² (${sqmToSqft(7.5)} ft²)` },
+      { label: "Rooms", value: "4" },
+      { label: "Price", value: "₪6,249,750" },
+    ],
+  },
+  {
+    id: "rehavia-14",
+    title: "Metudela 14 • Unit 14",
+    subtitle: "Rehavia",
+    image: "/pictures/rehavia-1/0.jpg",
+    href: "/properties/rehavia-14",
+    stats: [
+      { label: "Interior", value: `72.5 m² (${sqmToSqft(72.5)} ft²)` },
+      { label: "Balcony", value: `5 m² (${sqmToSqft(5)} ft²)` },
+      { label: "Rooms", value: "2" },
+      { label: "Price", value: "₪4,875,000" },
+    ],
+  },
+  {
+    id: "rehavia-2",
+    title: "Haari 4 • Rehavia Duplex",
+    subtitle: "Rehavia",
+    image: "/pictures/rehavia-2/0.jpg",
+    href: "/properties/rehavia-2",
+    stats: [
+      { label: "Size", value: `172 m² (${sqmToSqft(172)} ft²)` },
+      { label: "Bedrooms", value: "4" },
+      { label: "Baths", value: "2.5" },
+      { label: "Price", value: "₪13,000,000" },
+    ],
+  },
+  {
+    id: "romema-1",
+    title: "Pninat Chemed • Romema",
+    subtitle: "Romema",
+    image: "/pictures/romema-1/0.jpg",
+    href: "/properties/romema-1",
+    stats: [
+      { label: "Size", value: `240 m² (${sqmToSqft(240)} ft²)` },
+      { label: "Bedrooms", value: "5" },
+      { label: "Baths", value: "3.5" },
+      { label: "Price", value: "₪16,000,000" },
     ],
   },
 ];

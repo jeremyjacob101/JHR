@@ -1,11 +1,19 @@
 import Link from "next/link";
 import Image from "next/image";
-import Script from "next/script";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import { supabaseAdmin } from "@/lib/supabase.server";
+import type { Broker } from "@/types/broker";
+import PropertyCarousel from "@/components/PropertyCarousel";
 
 type ManualProperty = {
-  id: "nachlaot";
+  id:
+    | "nachlaot"
+    | "rehavia-12"
+    | "rehavia-13"
+    | "rehavia-14"
+    | "rehavia-2"
+    | "romema-1";
   title: string;
   subtitle: string;
   headerTagline: string;
@@ -19,6 +27,90 @@ type ManualProperty = {
 };
 
 const sqmToSqft = (sqm: number) => Math.round(sqm * 10.7639);
+
+type RehaviaUnit = {
+  id: "rehavia-12" | "rehavia-13" | "rehavia-14";
+  unitNo: string;
+  interiorSqm: number;
+  balconySqm: number;
+  saleSqm: number;
+  rooms: string;
+  floor: string;
+  totalPrice: string;
+  pricePerSqm: string;
+};
+
+const REHAVIA_ADDRESS = "14 Metudela Street, Rehavia, Jerusalem, Israel";
+const REHAVIA_GALLERY_IMAGES = [
+  "/pictures/rehavia-1/0.jpg",
+  "/pictures/rehavia-1/1.jpg",
+  "/pictures/rehavia-1/2.jpg",
+  "/pictures/rehavia-1/3.jpg",
+];
+const REHAVIA_2_GALLERY_IMAGES = [
+  "/pictures/rehavia-2/0.jpg",
+  "/pictures/rehavia-2/1.jpg",
+  "/pictures/rehavia-2/2.jpg",
+  "/pictures/rehavia-2/3.jpg",
+  "/pictures/rehavia-2/4.jpg",
+  "/pictures/rehavia-2/5.jpg",
+  "/pictures/rehavia-2/6.jpg",
+  "/pictures/rehavia-2/7.jpg",
+  "/pictures/rehavia-2/8.jpg",
+  "/pictures/rehavia-2/9.jpg",
+  "/pictures/rehavia-2/10.jpg",
+  "/pictures/rehavia-2/11.jpg",
+];
+const ROMEMA_GALLERY_IMAGES = [
+  "/pictures/romema-1/0.jpg",
+  "/pictures/romema-1/1.jpg",
+  "/pictures/romema-1/2.jpg",
+  "/pictures/romema-1/3.jpg",
+  "/pictures/romema-1/4.jpg",
+  "/pictures/romema-1/5.jpg",
+  "/pictures/romema-1/6.jpg",
+];
+
+const buildRehaviaProperty = (unit: RehaviaUnit): ManualProperty => ({
+  id: unit.id,
+  title: `Metudela 14 • Unit ${unit.unitNo}`,
+  subtitle: "Rehavia • Jerusalem",
+  headerTagline:
+    "A Rehavia listing at Metudela 14 with a private balcony and central Jerusalem access.",
+  backdropImage: "/pictures/rehavia-1/1.jpg",
+  galleryImages: REHAVIA_GALLERY_IMAGES,
+  mapQuery: REHAVIA_ADDRESS,
+  quickFacts: [
+    {
+      label: "Interior",
+      value: `${unit.interiorSqm} m² (${sqmToSqft(unit.interiorSqm)} ft²)`,
+    },
+    {
+      label: "Balcony",
+      value: `${unit.balconySqm} m² (${sqmToSqft(unit.balconySqm)} ft²)`,
+    },
+    { label: "Rooms", value: unit.rooms },
+    { label: "Price", value: unit.totalPrice },
+    {
+      label: "Sale Area",
+      value: `${unit.saleSqm} m² (${sqmToSqft(unit.saleSqm)} ft²)`,
+    },
+    { label: "Floor", value: unit.floor },
+    { label: "Unit", value: unit.unitNo },
+    { label: "Price / m²", value: unit.pricePerSqm },
+  ],
+  overview: [
+    `Unit ${unit.unitNo} is located at ${REHAVIA_ADDRESS}.`,
+    `The apartment is on floor ${unit.floor} with ${unit.rooms} rooms, ${unit.interiorSqm} m² interior space, and a ${unit.balconySqm} m² balcony.`,
+    `Total saleable area is ${unit.saleSqm} m², listed at ${unit.totalPrice}.`,
+  ],
+  highlights: [
+    `List pricing is based on ${unit.pricePerSqm} per sqm.`,
+    `Private balcony area: ${unit.balconySqm} m².`,
+    "All three Rehavia units are part of the same listing.",
+    "Located in central Rehavia near Jerusalem city-center amenities.",
+  ],
+});
 
 const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
   nachlaot: {
@@ -63,7 +155,117 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
       "Guest bathroom on the main floor (in addition to en-suite bathrooms).",
     ],
   },
+  "rehavia-12": buildRehaviaProperty({
+    id: "rehavia-12",
+    unitNo: "12",
+    interiorSqm: 108.2,
+    balconySqm: 11,
+    saleSqm: 113.7,
+    rooms: "3.5",
+    floor: "4",
+    totalPrice: "₪7,390,500",
+    pricePerSqm: "₪65,000",
+  }),
+  "rehavia-13": buildRehaviaProperty({
+    id: "rehavia-13",
+    unitNo: "13",
+    interiorSqm: 92.4,
+    balconySqm: 7.5,
+    saleSqm: 96.15,
+    rooms: "4",
+    floor: "4",
+    totalPrice: "₪6,249,750",
+    pricePerSqm: "₪65,000",
+  }),
+  "rehavia-14": buildRehaviaProperty({
+    id: "rehavia-14",
+    unitNo: "14",
+    interiorSqm: 72.5,
+    balconySqm: 5,
+    saleSqm: 75,
+    rooms: "2",
+    floor: "4",
+    totalPrice: "₪4,875,000",
+    pricePerSqm: "₪65,000",
+  }),
+  "rehavia-2": {
+    id: "rehavia-2",
+    title: "Haari 4 • Rehavia Duplex",
+    subtitle: "Rehavia • Jerusalem",
+    headerTagline:
+      "A large 172 m² duplex in prime Rehavia with exceptional open views.",
+    backdropImage: "/pictures/rehavia-2/1.jpg",
+    galleryImages: REHAVIA_2_GALLERY_IMAGES,
+    mapQuery: "4 Haari St, Rehavia, Jerusalem, Israel",
+    quickFacts: [
+      { label: "Size", value: `172 m² (${sqmToSqft(172)} ft²)` },
+      { label: "Type", value: "Duplex apartment" },
+      { label: "Bedrooms", value: "4" },
+      { label: "Bathrooms", value: "2.5" },
+      { label: "Price", value: "₪13,000,000" },
+      { label: "Balconies", value: "2 sukkah balconies" },
+      { label: "Parking", value: "Includes parking" },
+      { label: "Storage", value: "Includes storage room" },
+    ],
+    overview: [
+      "Beautiful 172 m² duplex apartment in a prime location at 4 Haari Street, Rehavia.",
+      "Walking distance to the city center, Mamilla, the Great Synagogue, and the Kotel.",
+      "Exceptional open views plus practical family features including parking and storage.",
+    ],
+    highlights: [
+      "Asking price: ₪13,000,000.",
+      "4 bedrooms and 2.5 bathrooms across a large duplex layout.",
+      "Two sukkah balconies with strong natural light and open outlook.",
+      "Prime central Jerusalem position in one of Rehavia’s most desirable areas.",
+    ],
+  },
+  "romema-1": {
+    id: "romema-1",
+    title: "Pninat Chemed • Romema",
+    subtitle: "Romema • Jerusalem",
+    headerTagline:
+      "A spacious single-level 240 m² apartment with open views in the heart of Romema.",
+    backdropImage: "/pictures/romema-1/1.jpg",
+    galleryImages: ROMEMA_GALLERY_IMAGES,
+    mapQuery: "Pninat Chemed, Romema, Jerusalem, Israel",
+    quickFacts: [
+      { label: "Size", value: `240 m² (${sqmToSqft(240)} ft²)` },
+      { label: "Bedrooms", value: "5" },
+      { label: "Bathrooms", value: "3.5" },
+      { label: "Price", value: "₪16,000,000" },
+      { label: "Level", value: "Single-level apartment" },
+      { label: "Balcony", value: "Sukkah porch" },
+      { label: "Parking", value: "Includes parking" },
+      { label: "Storage", value: "Includes storage room" },
+    ],
+    overview: [
+      "Exceptional 240 m² apartment on one level in Pninat Chemed, located in central Romema.",
+      "The home includes 5 bedrooms and 3.5 bathrooms with generous living and hosting space.",
+      "Positioned directly opposite Rav Shefa Mall with broad open views and convenient city access.",
+    ],
+    highlights: [
+      "Asking price: ₪16,000,000.",
+      "Large single-level footprint ideal for comfortable family living.",
+      "Sukkah porch plus dedicated parking and storage room.",
+      "Prime Romema location near shopping, transport, and neighborhood services.",
+    ],
+  },
 };
+
+const BROKER_NAME_BY_PROPERTY: Record<ManualProperty["id"], string> = {
+  nachlaot: "Natanel Moshe Junger",
+  "rehavia-12": "Yaakov Mechlovitz",
+  "rehavia-13": "Yaakov Mechlovitz",
+  "rehavia-14": "Yaakov Mechlovitz",
+  "rehavia-2": "Yaakov Mechlovitz",
+  "romema-1": "Yaakov Mechlovitz",
+};
+
+function brokerImageUrl(path?: string | null) {
+  const safePath = path?.trim() ? path.trim() : "defaultAvatar.jpg";
+  return supabaseAdmin.storage.from("brokers").getPublicUrl(safePath).data
+    .publicUrl;
+}
 
 export default async function PropertyDetailPage({
   params,
@@ -99,6 +301,34 @@ export default async function PropertyDetailPage({
   const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(
     property.mapQuery,
   )}&output=embed`;
+  const brokerName = BROKER_NAME_BY_PROPERTY[key];
+
+  let associatedBroker: Broker | null = null;
+
+  const { data: brokerData, error: brokerError } = await supabaseAdmin
+    .from("brokers")
+    .select("*")
+    .eq("name", brokerName)
+    .maybeSingle();
+
+  if (brokerError) {
+    console.error("Error loading associated broker", brokerError);
+  }
+
+  if (brokerData) {
+    associatedBroker = brokerData as Broker;
+  } else {
+    const fallbackName = brokerName.split(" ")[0];
+    const { data: fallbackBroker } = await supabaseAdmin
+      .from("brokers")
+      .select("*")
+      .ilike("name", `%${fallbackName}%`)
+      .limit(1)
+      .maybeSingle();
+    associatedBroker = (fallbackBroker as Broker | null) ?? null;
+  }
+
+  const associatedBrokerPhoto = brokerImageUrl(associatedBroker?.photoUrl);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -154,175 +384,12 @@ export default async function PropertyDetailPage({
                 </p>
               </div>
 
-              <div
-                id="property-carousel"
-                className="relative w-full select-none"
-                style={{ paddingBottom: "56.25%" }}
-                data-index="0"
-                aria-label={`${property.title} image carousel`}
-              >
-                <div className="absolute inset-0 overflow-hidden">
-                  <div
-                    data-track
-                    className="h-full w-full flex transition-transform duration-500 ease-out"
-                    style={{ transform: "translateX(0%)" }}
-                  >
-                    {property.galleryImages.map((src, i) => (
-                      <div
-                        key={src}
-                        data-slide
-                        className="relative h-full w-full shrink-0"
-                        aria-hidden={i === 0 ? "false" : "true"}
-                      >
-                        <Image
-                          src={src}
-                          alt={`${property.title} photo ${i + 1}`}
-                          fill
-                          sizes="(min-width: 768px) 66vw, 100vw"
-                          className="object-cover object-center"
-                          priority={i === 0}
-                        />
-                      </div>
-                    ))}
-                  </div>
-
-                  <button
-                    type="button"
-                    data-prev
-                    aria-label="Previous image"
-                    className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 border border-slate-200 shadow px-3 py-2 text-slate-900 hover:bg-white transition"
-                  >
-                    ‹
-                  </button>
-
-                  <button
-                    type="button"
-                    data-next
-                    aria-label="Next image"
-                    className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 border border-slate-200 shadow px-3 py-2 text-slate-900 hover:bg-white transition"
-                  >
-                    ›
-                  </button>
-
-                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2">
-                    {property.galleryImages.map((_, i) => (
-                      <button
-                        key={i}
-                        type="button"
-                        data-dot
-                        data-index={i}
-                        aria-label={`Go to image ${i + 1}`}
-                        aria-current={i === 0 ? "true" : "false"}
-                        className="h-2.5 w-2.5 rounded-full border border-slate-200 bg-white/80 hover:bg-white transition"
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <Script id="property-carousel-script" strategy="afterInteractive">
-                {`
-                  (() => {
-                    const root = document.getElementById("property-carousel");
-                    if (!root) return;
-
-                    const track = root.querySelector("[data-track]");
-                    const slides = Array.from(root.querySelectorAll("[data-slide]"));
-                    const dots = Array.from(root.querySelectorAll("[data-dot]"));
-                    const prevBtn = root.querySelector("[data-prev]");
-                    const nextBtn = root.querySelector("[data-next]");
-
-                    if (!track || slides.length === 0) return;
-
-                    const total = slides.length;
-                    let index = 0;
-                    let timer = null;
-
-                    const reduceMotion = window.matchMedia &&
-                      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-                    const setA11y = (activeIndex) => {
-                      slides.forEach((s, i) => {
-                        s.setAttribute("aria-hidden", i === activeIndex ? "false" : "true");
-                      });
-                      dots.forEach((d, i) => {
-                        d.setAttribute("aria-current", i === activeIndex ? "true" : "false");
-                      });
-                    };
-
-                    const render = () => {
-                      track.style.transform = "translateX(-" + (index * 100) + "%)";
-                      root.setAttribute("data-index", String(index));
-                      setA11y(index);
-                    };
-
-                    const goTo = (next) => {
-                      index = ((next % total) + total) % total;
-                      render();
-                    };
-
-                    const start = () => {
-                      if (reduceMotion) return;
-                      if (timer) return;
-                      timer = window.setInterval(() => goTo(index + 1), 3000);
-                    };
-
-                    const stop = () => {
-                      if (!timer) return;
-                      window.clearInterval(timer);
-                      timer = null;
-                    };
-
-                    const reset = () => {
-                      stop();
-                      start();
-                    };
-
-                    prevBtn && prevBtn.addEventListener("click", () => {
-                      goTo(index - 1);
-                      reset();
-                    });
-
-                    nextBtn && nextBtn.addEventListener("click", () => {
-                      goTo(index + 1);
-                      reset();
-                    });
-
-                    dots.forEach((dot) => {
-                      dot.addEventListener("click", () => {
-                        const i = Number(dot.getAttribute("data-index") || "0");
-                        goTo(i);
-                        reset();
-                      });
-                    });
-
-                    root.addEventListener("mouseenter", stop);
-                    root.addEventListener("mouseleave", start);
-                    root.addEventListener("focusin", stop);
-                    root.addEventListener("focusout", start);
-
-                    document.addEventListener("visibilitychange", () => {
-                      if (document.hidden) stop();
-                      else start();
-                    });
-
-                    let startX = null;
-                    root.addEventListener("pointerdown", (e) => { startX = e.clientX; });
-                    root.addEventListener("pointerup", (e) => {
-                      if (startX == null) return;
-                      const dx = e.clientX - startX;
-                      startX = null;
-                      if (Math.abs(dx) < 50) return;
-                      if (dx < 0) goTo(index + 1);
-                      else goTo(index - 1);
-                      reset();
-                    });
-
-                    render();
-                    start();
-                  })();
-                `}
-              </Script>
+              <PropertyCarousel
+                key={property.id}
+                carouselId={`property-carousel-${property.id}`}
+                title={property.title}
+                images={property.galleryImages}
+              />
             </div>
 
             {/* Quick facts */}
@@ -400,8 +467,71 @@ export default async function PropertyDetailPage({
             </section>
           </div>
 
-          {/* Right rail: simple CTA box (manual, no broker) */}
+          {/* Right rail */}
           <aside className="md:pl-1">
+            {associatedBroker ? (
+              <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm mb-5">
+                <h3 className="text-xs uppercase tracking-[0.16em] text-gray-500 mb-3">
+                  Your Broker
+                </h3>
+
+                <Link
+                  href={`/team/${associatedBroker.id}`}
+                  className="no-underline text-inherit block"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="relative w-14 h-14 rounded-full overflow-hidden shrink-0">
+                      <Image
+                        src={associatedBrokerPhoto}
+                        alt={`${associatedBroker.name} headshot`}
+                        fill
+                        sizes="56px"
+                        className="object-cover object-center"
+                      />
+                    </div>
+
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold text-slate-900 truncate">
+                        {associatedBroker.name}
+                      </p>
+                      {associatedBroker.area ? (
+                        <p className="text-xs text-slate-600 truncate">
+                          {associatedBroker.area}
+                        </p>
+                      ) : null}
+                      {associatedBroker.role ? (
+                        <p className="text-xs text-slate-600 truncate">
+                          {associatedBroker.role}
+                        </p>
+                      ) : null}
+                    </div>
+                  </div>
+                </Link>
+
+                <div className="mt-3 pt-3 border-t border-slate-100 space-y-1.5">
+                  {associatedBroker.phone ? (
+                    <p className="text-xs text-slate-700">
+                      <strong>IL </strong>
+                      {associatedBroker.phone}
+                    </p>
+                  ) : null}
+
+                  {associatedBroker.phone_us ? (
+                    <p className="text-xs text-slate-700">
+                      <strong>US </strong>
+                      {associatedBroker.phone_us}
+                    </p>
+                  ) : null}
+
+                  {associatedBroker.email ? (
+                    <p className="text-xs text-slate-700 break-all">
+                      {associatedBroker.email}
+                    </p>
+                  ) : null}
+                </div>
+              </div>
+            ) : null}
+
             <div className="bg-slate-50 rounded-2xl p-5 shadow-md">
               <h3 className="text-sm uppercase tracking-[0.16em] text-gray-500 mb-3">
                 Next Steps

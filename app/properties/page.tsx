@@ -8,7 +8,13 @@ type SP = {
 };
 
 type ManualProperty = {
-  id: "nachlaot";
+  id:
+    | "nachlaot"
+    | "rehavia-12"
+    | "rehavia-13"
+    | "rehavia-14"
+    | "rehavia-2"
+    | "romema-1";
   title: string;
   subtitle: string;
   locationLine: string;
@@ -32,13 +38,78 @@ export default async function PropertiesPage({
       title: "Artist House",
       subtitle: "Nachlaot",
       locationLine:
-        "Pastoral Nachlaot • footsteps from the city center • Jerusalem",
+        "Pastoral Nachlaot • Footsteps from the city center • Jerusalem",
       cardImage: "/pictures/nachlaot-1/0.jpg",
       highlights: [
         { label: "Size", value: `~180 m² (${sqmToSqft(180)} ft²)` },
         { label: "Floors", value: "3-story townhouse" },
         { label: "Layout", value: "3 bedrooms • each with en-suite bath" },
         { label: "Rooftop", value: "Private balcony + rooftop garden" },
+      ],
+    },
+    {
+      id: "romema-1",
+      title: "Pninat Chemed • Romema",
+      subtitle: "Romema",
+      locationLine: "Pninat Chemed • Opposite Rav Shefa Mall • Jerusalem",
+      cardImage: "/pictures/romema-1/0.jpg",
+      highlights: [
+        { label: "Size", value: `240 m² (${sqmToSqft(240)} ft²)` },
+        { label: "Bedrooms", value: "5" },
+        { label: "Bathrooms", value: "3.5" },
+        { label: "Price", value: "₪16,000,000" },
+      ],
+    },
+    {
+      id: "rehavia-12",
+      title: "Metudela 14 • Unit 12",
+      subtitle: "Rehavia",
+      locationLine: "14 Metudela St • Rehavia • Jerusalem",
+      cardImage: "/pictures/rehavia-1/0.jpg",
+      highlights: [
+        { label: "Size", value: "108.2 m² + 11 m² balcony" },
+        { label: "Rooms", value: "3.5" },
+        { label: "Floor", value: "4" },
+        { label: "Price", value: "₪7,390,500" },
+      ],
+    },
+    {
+      id: "rehavia-13",
+      title: "Metudela 14 • Unit 13",
+      subtitle: "Rehavia",
+      locationLine: "14 Metudela St • Rehavia • Jerusalem",
+      cardImage: "/pictures/rehavia-1/0.jpg",
+      highlights: [
+        { label: "Size", value: "92.4 m² + 7.5 m² balcony" },
+        { label: "Rooms", value: "4" },
+        { label: "Floor", value: "4" },
+        { label: "Price", value: "₪6,249,750" },
+      ],
+    },
+    {
+      id: "rehavia-14",
+      title: "Metudela 14 • Unit 14",
+      subtitle: "Rehavia",
+      locationLine: "14 Metudela St • Rehavia • Jerusalem",
+      cardImage: "/pictures/rehavia-1/0.jpg",
+      highlights: [
+        { label: "Size", value: "72.5 m² + 5 m² balcony" },
+        { label: "Rooms", value: "2" },
+        { label: "Floor", value: "4" },
+        { label: "Price", value: "₪4,875,000" },
+      ],
+    },
+    {
+      id: "rehavia-2",
+      title: "Haari 4 • Rehavia Duplex",
+      subtitle: "Rehavia",
+      locationLine: "4 Haari St • Rehavia • Jerusalem",
+      cardImage: "/pictures/rehavia-2/0.jpg",
+      highlights: [
+        { label: "Size", value: `172 m² (${sqmToSqft(172)} ft²)` },
+        { label: "Bedrooms", value: "4" },
+        { label: "Bathrooms", value: "2.5" },
+        { label: "Price", value: "₪13,000,000" },
       ],
     },
   ];
@@ -62,7 +133,7 @@ export default async function PropertiesPage({
         <section className="mb-10">
           <h1 className="text-3xl font-semibold mb-3">Listings</h1>
           <p className="text-base text-slate-700 leading-relaxed max-w-3xl">
-            A featured property, curated and presented with full photo gallery
+            Featured properties, curated and presented with full photo galleries
             and key specifications.
           </p>
 
