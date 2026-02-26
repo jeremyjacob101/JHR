@@ -2,9 +2,19 @@ import Image from "next/image";
 import Link from "next/link";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import PropertyFilters from "@/components/PropertyFilters";
 
+type SPValue = string | string[] | undefined;
 type SP = {
-  q?: string;
+  q?: SPValue;
+  neighborhood?: SPValue;
+  minPrice?: SPValue;
+  maxPrice?: SPValue;
+  minBeds?: SPValue;
+  maxBeds?: SPValue;
+  minBaths?: SPValue;
+  maxBaths?: SPValue;
+  sort?: SPValue;
 };
 
 type ManualProperty = {
@@ -17,12 +27,28 @@ type ManualProperty = {
     | "romema-1";
   title: string;
   subtitle: string;
+  neighborhood: string;
   locationLine: string;
   cardImage: string; // must be 0.jpg
+  priceNIS?: number;
+  beds?: number;
+  baths?: number;
+  rooms?: number;
   highlights: { label: string; value: string }[];
 };
 
 const sqmToSqft = (sqm: number) => Math.round(sqm * 10.7639);
+const pickFirst = (value: SPValue) =>
+  Array.isArray(value) ? (value[0] ?? "") : (value ?? "");
+
+const parseNumberParam = (value: SPValue) => {
+  const normalized = pickFirst(value)
+    .trim()
+    .replace(/[^\d.]/g, "");
+  if (!normalized) return undefined;
+  const parsed = Number(normalized);
+  return Number.isFinite(parsed) ? parsed : undefined;
+};
 
 export default async function PropertiesPage({
   searchParams,
@@ -30,16 +56,37 @@ export default async function PropertiesPage({
   searchParams: Promise<SP>;
 }) {
   const sp = await searchParams;
-  const q = (sp.q ?? "").trim().toLowerCase();
+  const q = pickFirst(sp.q).trim().toLowerCase();
+  const neighborhoodValues = Array.isArray(sp.neighborhood)
+    ? sp.neighborhood
+    : sp.neighborhood
+      ? [sp.neighborhood]
+      : [];
+  const selectedNeighborhoods = new Set(
+    neighborhoodValues.map((value) => value.trim().toLowerCase()).filter(Boolean),
+  );
+  const minPrice = parseNumberParam(sp.minPrice);
+  const maxPrice = parseNumberParam(sp.maxPrice);
+  const minBeds = parseNumberParam(sp.minBeds);
+  const maxBeds = parseNumberParam(sp.maxBeds);
+  const minBaths = parseNumberParam(sp.minBaths);
+  const maxBaths = parseNumberParam(sp.maxBaths);
+
+  const sortRaw = pickFirst(sp.sort).trim();
+  const sort: "" | "price_asc" | "price_desc" =
+    sortRaw === "price_asc" || sortRaw === "price_desc" ? sortRaw : "";
 
   const properties: ManualProperty[] = [
     {
       id: "nachlaot",
       title: "Artist House",
       subtitle: "Nachlaot",
+      neighborhood: "Nachlaot",
       locationLine:
         "Pastoral Nachlaot • Footsteps from the city center • Jerusalem",
       cardImage: "/pictures/nachlaot-1/0.jpg",
+      beds: 3,
+      baths: 3,
       highlights: [
         { label: "Size", value: `~180 m² (${sqmToSqft(180)} ft²)` },
         { label: "Floors", value: "3-story townhouse" },
@@ -51,8 +98,12 @@ export default async function PropertiesPage({
       id: "romema-1",
       title: "Pninat Chemed • Romema",
       subtitle: "Romema",
+      neighborhood: "Romema",
       locationLine: "Pninat Chemed • Opposite Rav Shefa Mall • Jerusalem",
       cardImage: "/pictures/romema-1/0.jpg",
+      priceNIS: 16000000,
+      beds: 5,
+      baths: 3.5,
       highlights: [
         { label: "Size", value: `240 m² (${sqmToSqft(240)} ft²)` },
         { label: "Bedrooms", value: "5" },
@@ -64,8 +115,11 @@ export default async function PropertiesPage({
       id: "rehavia-12",
       title: "Metudela 14 • Unit 12",
       subtitle: "Rehavia",
+      neighborhood: "Rehavia",
       locationLine: "14 Metudela St • Rehavia • Jerusalem",
       cardImage: "/pictures/rehavia-1/0.jpg",
+      priceNIS: 7390500,
+      rooms: 3.5,
       highlights: [
         { label: "Size", value: "108.2 m² + 11 m² balcony" },
         { label: "Rooms", value: "3.5" },
@@ -77,8 +131,11 @@ export default async function PropertiesPage({
       id: "rehavia-13",
       title: "Metudela 14 • Unit 13",
       subtitle: "Rehavia",
+      neighborhood: "Rehavia",
       locationLine: "14 Metudela St • Rehavia • Jerusalem",
       cardImage: "/pictures/rehavia-1/0.jpg",
+      priceNIS: 6249750,
+      rooms: 4,
       highlights: [
         { label: "Size", value: "92.4 m² + 7.5 m² balcony" },
         { label: "Rooms", value: "4" },
@@ -90,8 +147,11 @@ export default async function PropertiesPage({
       id: "rehavia-14",
       title: "Metudela 14 • Unit 14",
       subtitle: "Rehavia",
+      neighborhood: "Rehavia",
       locationLine: "14 Metudela St • Rehavia • Jerusalem",
       cardImage: "/pictures/rehavia-1/0.jpg",
+      priceNIS: 4875000,
+      rooms: 2,
       highlights: [
         { label: "Size", value: "72.5 m² + 5 m² balcony" },
         { label: "Rooms", value: "2" },
@@ -103,8 +163,12 @@ export default async function PropertiesPage({
       id: "rehavia-2",
       title: "Haari 4 • Rehavia Duplex",
       subtitle: "Rehavia",
+      neighborhood: "Rehavia",
       locationLine: "4 Haari St • Rehavia • Jerusalem",
       cardImage: "/pictures/rehavia-2/0.jpg",
+      priceNIS: 13000000,
+      beds: 4,
+      baths: 2.5,
       highlights: [
         { label: "Size", value: `172 m² (${sqmToSqft(172)} ft²)` },
         { label: "Bedrooms", value: "4" },
@@ -114,13 +178,75 @@ export default async function PropertiesPage({
     },
   ];
 
-  const filtered = !q
-    ? properties
-    : properties.filter((p) => {
-        const haystack =
-          `${p.title} ${p.subtitle} ${p.locationLine}`.toLowerCase();
-        return haystack.includes(q);
-      });
+  const filtered = properties.filter((p) => {
+    if (q) {
+      const haystack =
+        `${p.title} ${p.subtitle} ${p.locationLine}`.toLowerCase();
+      if (!haystack.includes(q)) return false;
+    }
+    if (
+      selectedNeighborhoods.size > 0 &&
+      !selectedNeighborhoods.has(p.neighborhood.toLowerCase())
+    ) {
+      return false;
+    }
+
+    if (
+      minPrice !== undefined &&
+      p.priceNIS !== undefined &&
+      p.priceNIS < minPrice
+    ) {
+      return false;
+    }
+    if (
+      maxPrice !== undefined &&
+      p.priceNIS !== undefined &&
+      p.priceNIS > maxPrice
+    ) {
+      return false;
+    }
+
+    const bedsOrRooms = p.beds ?? p.rooms;
+    if (
+      minBeds !== undefined &&
+      (bedsOrRooms === undefined || bedsOrRooms < minBeds)
+    ) {
+      return false;
+    }
+    if (
+      maxBeds !== undefined &&
+      (bedsOrRooms === undefined || bedsOrRooms > maxBeds)
+    ) {
+      return false;
+    }
+
+    if (
+      minBaths !== undefined &&
+      (p.baths === undefined || p.baths < minBaths)
+    ) {
+      return false;
+    }
+    if (
+      maxBaths !== undefined &&
+      (p.baths === undefined || p.baths > maxBaths)
+    ) {
+      return false;
+    }
+
+    return true;
+  });
+
+  const sorted = [...filtered];
+  if (sort) {
+    sorted.sort((a, b) => {
+      if (a.priceNIS === undefined && b.priceNIS === undefined) return 0;
+      if (a.priceNIS === undefined) return 1;
+      if (b.priceNIS === undefined) return -1;
+      return sort === "price_asc"
+        ? a.priceNIS - b.priceNIS
+        : b.priceNIS - a.priceNIS;
+    });
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -136,38 +262,16 @@ export default async function PropertiesPage({
             Featured properties, curated and presented with full photo galleries
             and key specifications.
           </p>
-
-          <form
-            action="/properties"
-            method="get"
-            className="mt-6 flex flex-col sm:flex-row gap-3"
-          >
-            <input
-              name="q"
-              defaultValue={sp.q ?? ""}
-              placeholder="Search (e.g., Nachlaot, rooftop, garden...)"
-              className="w-full sm:flex-1 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-200"
-            />
-            <button
-              type="submit"
-              className="inline-flex items-center justify-center rounded-xl bg-slate-900 text-[#FAF9F6] text-sm font-medium px-5 py-3 hover:bg-slate-800 active:bg-slate-950 transition"
-            >
-              Search
-            </button>
-            <Link
-              href="/properties"
-              className="inline-flex items-center justify-center rounded-xl bg-white border border-slate-200 text-slate-900 text-sm font-medium px-5 py-3 hover:bg-slate-50 transition"
-            >
-              Reset
-            </Link>
-          </form>
+          <div className="mt-6">
+            <PropertyFilters />
+          </div>
         </section>
 
-        {filtered.length === 0 ? (
+        {sorted.length === 0 ? (
           <p className="text-gray-500">No properties found.</p>
         ) : (
           <div className="grid gap-7 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((p) => (
+            {sorted.map((p) => (
               <Link
                 key={p.id}
                 href={`/properties/${p.id}`}
