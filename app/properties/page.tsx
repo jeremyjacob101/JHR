@@ -19,7 +19,10 @@ type SP = {
 
 type ManualProperty = {
   id:
+    | "katamon-1"
     | "nachlaot"
+    | "nachlaot-2"
+    | "nachlaot-3"
     | "rehavia-12"
     | "rehavia-13"
     | "rehavia-14"
@@ -78,6 +81,23 @@ export default async function PropertiesPage({
 
   const properties: ManualProperty[] = [
     {
+      id: "katamon-1",
+      title: "Exclusive for Sale in Katamon!",
+      subtitle: "Katamon",
+      neighborhood: "Katamon",
+      locationLine: "39 Hizkiyahu HaMelech St • Jerusalem",
+      cardImage: "/pictures/katamon-1/0.jpg",
+      priceNIS: 3450000,
+      beds: 3,
+      baths: 2,
+      highlights: [
+        { label: "Size", value: `100 m² (${sqmToSqft(100)} ft²)` },
+        { label: "Bedrooms", value: "3" },
+        { label: "Bathrooms", value: "2" },
+        { label: "Price", value: "₪3,450,000" },
+      ],
+    },
+    {
       id: "nachlaot",
       title: "Artist House",
       subtitle: "Nachlaot",
@@ -92,6 +112,40 @@ export default async function PropertiesPage({
         { label: "Floors", value: "3-story townhouse" },
         { label: "Layout", value: "3 bedrooms • each with en-suite bath" },
         { label: "Rooftop", value: "Private balcony + rooftop garden" },
+      ],
+    },
+    {
+      id: "nachlaot-2",
+      title: "Exclusive for Sale in Nachlaot!",
+      subtitle: "Nachlaot",
+      neighborhood: "Nachlaot",
+      locationLine: "15 Khakham Shalom St • Jerusalem",
+      cardImage: "/pictures/nachlaot-2/0.jpg",
+      priceNIS: 2700000,
+      beds: 2,
+      baths: 2,
+      highlights: [
+        { label: "Size", value: `42 m² (${sqmToSqft(42)} ft²)` },
+        { label: "Garden", value: `70 m² (${sqmToSqft(70)} ft²)` },
+        { label: "Layout", value: "Split into 2 units" },
+        { label: "Price", value: "₪2,700,000" },
+      ],
+    },
+    {
+      id: "nachlaot-3",
+      title: "Perfect for Airbnb • Nachlaot Border",
+      subtitle: "Nachlaot / City Centre",
+      neighborhood: "Nachlaot",
+      locationLine: "15 Mesilat Yesharim St • Jerusalem",
+      cardImage: "/pictures/nachlaot-3/0.jpg",
+      priceNIS: 3900000,
+      beds: 2,
+      baths: 1.5,
+      highlights: [
+        { label: "Size", value: `87.95 m² (${sqmToSqft(87.95)} ft²)` },
+        { label: "Bedrooms", value: "2" },
+        { label: "Bathrooms", value: "1.5" },
+        { label: "Price", value: "₪3,900,000" },
       ],
     },
     {

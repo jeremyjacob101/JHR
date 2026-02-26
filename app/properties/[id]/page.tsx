@@ -8,7 +8,10 @@ import PropertyCarousel from "@/components/PropertyCarousel";
 
 type ManualProperty = {
   id:
+    | "katamon-1"
     | "nachlaot"
+    | "nachlaot-2"
+    | "nachlaot-3"
     | "rehavia-12"
     | "rehavia-13"
     | "rehavia-14"
@@ -70,6 +73,31 @@ const ROMEMA_GALLERY_IMAGES = [
   "/pictures/romema-1/5.jpg",
   "/pictures/romema-1/6.jpg",
 ];
+const KATAMON_GALLERY_IMAGES = [
+  "/pictures/katamon-1/0.jpg",
+  "/pictures/katamon-1/1.jpg",
+  "/pictures/katamon-1/2.jpg",
+  "/pictures/katamon-1/3.jpg",
+  "/pictures/katamon-1/4.jpg",
+  "/pictures/katamon-1/5.jpg",
+  "/pictures/katamon-1/6.jpg",
+  "/pictures/katamon-1/7.jpg",
+];
+const NACHLAOT_2_GALLERY_IMAGES = [
+  "/pictures/nachlaot-2/0.jpg",
+  "/pictures/nachlaot-2/1.jpg",
+  "/pictures/nachlaot-2/2.jpg",
+  "/pictures/nachlaot-2/3.jpg",
+];
+const NACHLAOT_3_GALLERY_IMAGES = [
+  "/pictures/nachlaot-3/0.jpg",
+  "/pictures/nachlaot-3/1.jpg",
+  "/pictures/nachlaot-3/2.jpg",
+  "/pictures/nachlaot-3/3.jpg",
+  "/pictures/nachlaot-3/4.jpg",
+  "/pictures/nachlaot-3/5.jpg",
+  "/pictures/nachlaot-3/6.jpg",
+];
 
 const buildRehaviaProperty = (unit: RehaviaUnit): ManualProperty => ({
   id: unit.id,
@@ -113,6 +141,104 @@ const buildRehaviaProperty = (unit: RehaviaUnit): ManualProperty => ({
 });
 
 const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
+  "katamon-1": {
+    id: "katamon-1",
+    title: "Exclusive for Sale in Katamon!",
+    subtitle: "Hizkiyahu HaMelech Street 39 • Jerusalem",
+    headerTagline:
+      "Exclusive Katamon offering near the Shtibelach, with signed urban renewal upside and rental coverage during construction.",
+    backdropImage: "/pictures/katamon-1/1.jpg",
+    galleryImages: KATAMON_GALLERY_IMAGES,
+    mapQuery: "Hizkiyahu HaMelech Street 39, Jerusalem, Israel",
+    quickFacts: [
+      { label: "Property Type", value: "Apartment" },
+      { label: "Bedrooms", value: "3" },
+      { label: "Bathrooms", value: "2" },
+      { label: "Floor", value: "2" },
+      { label: "Size", value: `100 m² (${sqmToSqft(100)} ft²)` },
+      { label: "Price", value: "₪3,450,000" },
+      { label: "Balcony (Planned)", value: "12 m²" },
+      { label: "Extras (Planned)", value: "Parking + storage unit" },
+    ],
+    overview: [
+      "Exclusive for sale in Katamon at Hizkiyahu HaMelech Street 39, right near the Shtibelach.",
+      "Prime opportunity tied to a future urban renewal project with a signed developer contract.",
+      "Current state: 2nd floor, 3-room apartment, approximately 71 m².",
+      "Post-renewal plan: approximately 100 m² apartment with a 12 m² balcony, parking, and a storage unit.",
+      "Estimated completion is approximately 7 years, and the developer is expected to pay rent throughout the construction period.",
+    ],
+    highlights: [
+      "Asking price: ₪3,450,000.",
+      "Strong long-term value profile due to signed urban renewal framework.",
+      "Location is near key Katamon neighborhood shuls and services.",
+      "Improved post-renewal specification includes balcony, parking, and storage.",
+    ],
+  },
+  "nachlaot-2": {
+    id: "nachlaot-2",
+    title: "Exclusive for Sale in Nachlaot!",
+    subtitle: "Khakham Shalom St 15 • Jerusalem",
+    headerTagline:
+      "Garden apartment investment opportunity in Nachlaot, split into two units and positioned for strong Airbnb potential.",
+    backdropImage: "/pictures/nachlaot-2/1.jpg",
+    galleryImages: NACHLAOT_2_GALLERY_IMAGES,
+    mapQuery: "Khakham Shalom St 15, Jerusalem, Israel",
+    quickFacts: [
+      { label: "Property Type", value: "Garden apartment" },
+      { label: "Bedrooms", value: "2" },
+      { label: "Bathrooms", value: "2" },
+      { label: "Floor", value: "0" },
+      { label: "Interior", value: `42 m² (${sqmToSqft(42)} ft²)` },
+      { label: "Garden", value: `70 m² (${sqmToSqft(70)} ft²)` },
+      { label: "Current Rent", value: "₪8,000" },
+      { label: "Price", value: "₪2,700,000" },
+    ],
+    overview: [
+      "Exclusive for sale in Nachlaot on Khakham Shalom St 15.",
+      "The property is a 42 m² apartment with a 70 m² private garden, currently split into two units.",
+      "The apartment is currently rented for ₪8,000.",
+      "Asking price is ₪2,700,000.",
+      "Positioning and layout make it a strong short-term rental / Airbnb opportunity.",
+    ],
+    highlights: [
+      "Garden apartment format in a high-demand Nachlaot location.",
+      "Split-into-two-units setup can support flexible usage strategy.",
+      "Private 70 m² outdoor space is uncommon for this price bracket in central Jerusalem.",
+      "Pricing set at ₪2,700,000.",
+    ],
+  },
+  "nachlaot-3": {
+    id: "nachlaot-3",
+    title: "Perfect for Airbnb border of Nachlaot and the City Centre!",
+    subtitle: "Mesilat Yesharim St 15 • Jerusalem",
+    headerTagline:
+      "Ground-floor apartment on the Nachlaot / City Centre border with strong short-term rental potential.",
+    backdropImage: "/pictures/nachlaot-3/1.jpg",
+    galleryImages: NACHLAOT_3_GALLERY_IMAGES,
+    mapQuery: "Mesilat Yesharim St 15, Jerusalem, Israel",
+    quickFacts: [
+      { label: "Property Type", value: "Apartment" },
+      { label: "Bedrooms", value: "2" },
+      { label: "Bathrooms", value: "1.5" },
+      { label: "Floor", value: "0" },
+      { label: "Size", value: `87.95 m² (${sqmToSqft(87.95)} ft²)` },
+      { label: "Balcony", value: `4.55 m² (${sqmToSqft(4.55)} ft²)` },
+      { label: "Storage", value: `10.45 m² (${sqmToSqft(10.45)} ft²)` },
+      { label: "Price", value: "₪3,900,000" },
+    ],
+    overview: [
+      "Located on the border of Nachlaot and Jerusalem city centre at Mesilat Yesharim St 15.",
+      "Ground-floor apartment offering 87.95 m² of living space.",
+      "The home includes 2 bedrooms, 1.5 bathrooms, and high ceilings throughout.",
+      "Additional features include a 4.55 m² sukkah balcony, private 10.45 m² storage unit, and private parking.",
+    ],
+    highlights: [
+      "Asking price: ₪3,900,000.",
+      "Prime border location between Nachlaot and the city centre.",
+      "Private parking plus dedicated storage add strong daily usability.",
+      "Configured for excellent Airbnb potential.",
+    ],
+  },
   nachlaot: {
     id: "nachlaot",
     title: "Artist House",
@@ -253,6 +379,9 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
 };
 
 const BROKER_NAME_BY_PROPERTY: Record<ManualProperty["id"], string> = {
+  "katamon-1": "Sarah Bencherit",
+  "nachlaot-2": "Sarah Bencherit",
+  "nachlaot-3": "Sarah Bencherit",
   nachlaot: "Natanel Moshe Junger",
   "rehavia-12": "Yaakov Mechlovitz",
   "rehavia-13": "Yaakov Mechlovitz",

@@ -21,6 +21,7 @@ const NEIGHBORHOOD_OPTIONS = [
   "German Colony",
   "Greek Colony",
   "Ramot",
+  "Katamon",
   "Nachlaot",
   "Romema",
   "Baka",
