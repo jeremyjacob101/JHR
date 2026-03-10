@@ -87,14 +87,14 @@ export default async function PropertiesPage({
       neighborhood: "Katamon",
       locationLine: "39 Hizkiyahu HaMelech St • Jerusalem",
       cardImage: "/pictures/katamon-1/0.jpg",
-      priceNIS: 3450000,
+      priceNIS: 3380000,
       beds: 3,
       baths: 2,
       highlights: [
         { label: "Size", value: `100 m² (${sqmToSqft(100)} ft²)` },
         { label: "Bedrooms", value: "3" },
         { label: "Bathrooms", value: "2" },
-        { label: "Price", value: "₪3,450,000" },
+        { label: "Price", value: "₪3,380,000" },
       ],
     },
     {

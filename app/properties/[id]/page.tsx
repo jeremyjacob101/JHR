@@ -156,7 +156,7 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
       { label: "Bathrooms", value: "2" },
       { label: "Floor", value: "2" },
       { label: "Size", value: `100 m² (${sqmToSqft(100)} ft²)` },
-      { label: "Price", value: "₪3,450,000" },
+      { label: "Price", value: "₪3,380,000" },
       { label: "Balcony (Planned)", value: "12 m²" },
       { label: "Extras (Planned)", value: "Parking + storage unit" },
     ],
@@ -168,7 +168,7 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
       "Estimated completion is approximately 7 years, and the developer is expected to pay rent throughout the construction period.",
     ],
     highlights: [
-      "Asking price: ₪3,450,000.",
+      "Asking price: ₪3,380,000.",
       "Strong long-term value profile due to signed urban renewal framework.",
       "Location is near key Katamon neighborhood shuls and services.",
       "Improved post-renewal specification includes balcony, parking, and storage.",
