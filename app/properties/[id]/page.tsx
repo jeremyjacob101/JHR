@@ -2,9 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
-import { supabaseAdmin } from "@/lib/supabase.server";
-import type { Broker } from "@/types/broker";
 import PropertyCarousel from "@/components/PropertyCarousel";
+import { getBrokerById, getBrokerImageUrl } from "@/lib/brokers";
 
 type ManualProperty = {
   id:
@@ -378,23 +377,17 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
   },
 };
 
-const BROKER_NAME_BY_PROPERTY: Record<ManualProperty["id"], string> = {
-  "katamon-1": "Sarah Bencherit",
-  "nachlaot-2": "Sarah Bencherit",
-  "nachlaot-3": "Sarah Bencherit",
-  nachlaot: "Natanel Moshe Junger",
-  "rehavia-12": "Yaakov Mechlovitz",
-  "rehavia-13": "Yaakov Mechlovitz",
-  "rehavia-14": "Yaakov Mechlovitz",
-  "rehavia-2": "Yaakov Mechlovitz",
-  "romema-1": "Yaakov Mechlovitz",
+const BROKER_ID_BY_PROPERTY: Record<ManualProperty["id"], string> = {
+  "katamon-1": "b3",
+  "nachlaot-2": "b3",
+  "nachlaot-3": "b3",
+  nachlaot: "b1",
+  "rehavia-12": "b2",
+  "rehavia-13": "b2",
+  "rehavia-14": "b2",
+  "rehavia-2": "b2",
+  "romema-1": "b2",
 };
-
-function brokerImageUrl(path?: string | null) {
-  const safePath = path?.trim() ? path.trim() : "defaultAvatar.jpg";
-  return supabaseAdmin.storage.from("brokers").getPublicUrl(safePath).data
-    .publicUrl;
-}
 
 export default async function PropertyDetailPage({
   params,
@@ -430,34 +423,8 @@ export default async function PropertyDetailPage({
   const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(
     property.mapQuery,
   )}&output=embed`;
-  const brokerName = BROKER_NAME_BY_PROPERTY[key];
-
-  let associatedBroker: Broker | null = null;
-
-  const { data: brokerData, error: brokerError } = await supabaseAdmin
-    .from("brokers")
-    .select("*")
-    .eq("name", brokerName)
-    .maybeSingle();
-
-  if (brokerError) {
-    console.error("Error loading associated broker", brokerError);
-  }
-
-  if (brokerData) {
-    associatedBroker = brokerData as Broker;
-  } else {
-    const fallbackName = brokerName.split(" ")[0];
-    const { data: fallbackBroker } = await supabaseAdmin
-      .from("brokers")
-      .select("*")
-      .ilike("name", `%${fallbackName}%`)
-      .limit(1)
-      .maybeSingle();
-    associatedBroker = (fallbackBroker as Broker | null) ?? null;
-  }
-
-  const associatedBrokerPhoto = brokerImageUrl(associatedBroker?.photoUrl);
+  const associatedBroker = getBrokerById(BROKER_ID_BY_PROPERTY[key]);
+  const associatedBrokerPhoto = getBrokerImageUrl(associatedBroker?.photoUrl);
 
   return (
     <div className="min-h-screen flex flex-col">

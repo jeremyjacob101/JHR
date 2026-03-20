@@ -2,9 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
-import { supabaseAdmin } from "@/lib/supabase.server";
-import { Broker } from "@/types/broker";
 import Image from "next/image";
+import { getBrokerById, getBrokerImageUrl } from "@/lib/brokers";
 
 type FeaturedProperty = {
   id:
@@ -104,12 +103,6 @@ const featuredProperties: FeaturedProperty[] = [
   },
 ];
 
-function brokerImageUrl(path?: string | null) {
-  const safePath = path?.trim() ? path.trim() : "defaultAvatar.jpg";
-  return supabaseAdmin.storage.from("brokers").getPublicUrl(safePath).data
-    .publicUrl;
-}
-
 function FeaturedPropertyCard({ p }: { p: FeaturedProperty }) {
   return (
     <Link href={p.href} className="no-underline text-inherit">
@@ -159,23 +152,13 @@ export default async function BrokerDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-
-  const { data: broker, error: brokerError } = await supabaseAdmin
-    .from("brokers")
-    .select("*")
-    .eq("id", id)
-    .maybeSingle();
-
-  if (brokerError) {
-    console.error("Error loading broker", brokerError);
-  }
+  const broker = getBrokerById(id);
 
   if (!broker) {
     notFound();
   }
 
-  const typedBroker = broker as Broker;
-  const brokerPhoto = brokerImageUrl(typedBroker.photoUrl);
+  const brokerPhoto = getBrokerImageUrl(broker.photoUrl);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -200,37 +183,37 @@ export default async function BrokerDetailPage({
           </div>
 
           <div className="text-center md:text-left">
-            <h1 className="text-3xl font-semibold mb-1">{typedBroker.name}</h1>
-            {typedBroker.area ? (
-              <p className="text-sm text-gray-500 mb-2">{typedBroker.area}</p>
+            <h1 className="text-3xl font-semibold mb-1">{broker.name}</h1>
+            {broker.area ? (
+              <p className="text-sm text-gray-500 mb-2">{broker.area}</p>
             ) : null}
 
-            {typedBroker.phone ? (
+            {broker.phone ? (
               <p className="text-sm text-gray-700">
                 <strong>IL </strong>
-                {typedBroker.phone}
+                {broker.phone}
               </p>
             ) : null}
 
-            {typedBroker.phone_us ? (
+            {broker.phone_us ? (
               <p className="text-sm text-gray-700">
                 <strong>US </strong>
-                {typedBroker.phone_us}
+                {broker.phone_us}
               </p>
             ) : null}
 
-            {typedBroker.role ? (
-              <p className="text-sm text-gray-700 mt-3">{typedBroker.role}</p>
+            {broker.role ? (
+              <p className="text-sm text-gray-700 mt-3">{broker.role}</p>
             ) : null}
 
-            {typedBroker.email ? (
-              <p className="text-sm text-gray-700">{typedBroker.email}</p>
+            {broker.email ? (
+              <p className="text-sm text-gray-700">{broker.email}</p>
             ) : null}
           </div>
         </div>
 
         <h2 className="text-2xl font-semibold mb-5">
-          Properties by {typedBroker.name}
+          Properties by {broker.name}
         </h2>
 
         {/* Manual: always show the featured property */}

@@ -66,7 +66,7 @@ export default async function ProjectsPage() {
               />
 
               {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/20 to-black/70" />
+              <div className="absolute inset-0 bg-linear-to-b from-black/15 via-black/20 to-black/70" />
 
               {/* Content */}
               <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7 text-white">
@@ -104,7 +104,7 @@ export default async function ProjectsPage() {
             className="relative overflow-hidden rounded-3xl border border-slate-200 bg-slate-100 h-[520px] sm:h-[620px] cursor-not-allowed"
           >
             {/* Gray background with subtle pattern */}
-            <div className="absolute inset-0 bg-gradient-to-b from-slate-200/30 via-slate-200/20 to-slate-300/40" />
+            <div className="absolute inset-0 bg-linear-to-b from-slate-200/30 via-slate-200/20 to-slate-300/40" />
             <div
               className="absolute inset-0 opacity-40"
               style={{

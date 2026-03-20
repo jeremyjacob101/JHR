@@ -121,7 +121,7 @@ export default function AccessibilityControls() {
     >
       <button
         type="button"
-        className="flex h-11 w-11 items-center justify-center rounded-full bg-slate-200 shadow-lg shadow-black/20 transition hover:bg-slate-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+        className="flex h-11 w-11 items-center justify-center rounded-full bg-slate-200 shadow-lg shadow-black/20 transition hover:bg-slate-300 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-amber-300"
         onClick={() => setIsOpen((prev) => !prev)}
         aria-expanded={isOpen}
         aria-controls="accessibility-panel"

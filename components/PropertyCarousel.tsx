@@ -243,7 +243,7 @@ export default function PropertyCarousel({
 
       {isFullscreen ? (
         <div
-          className="fixed inset-0 z-[100] bg-black/75 flex items-center justify-center p-[5vh] sm:p-[5vw]"
+          className="fixed inset-0 z-100 bg-black/75 flex items-center justify-center p-[5vh] sm:p-[5vw]"
           role="dialog"
           aria-modal="true"
           aria-label={`${title} fullscreen gallery`}

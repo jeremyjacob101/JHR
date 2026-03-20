@@ -2,9 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
-import { supabaseAdmin } from "@/lib/supabase.server";
-import { Broker } from "@/types/broker";
 import PropertyCarousel from "@/components/PropertyCarousel";
+import { getBrokersByIds, getBrokerImageUrl } from "@/lib/brokers";
 
 export const metadata = {
   title: "Efrat Project | Jerusalem Heritage Realty",
@@ -44,21 +43,7 @@ export default async function EfratProjectPage() {
     return `/pictures/efrat-1/efratPic${n}.jpg`;
   });
 
-  // pull only these two brokers (edit to match your DB values)
-  const TARGET_BROKER_NAMES = ["Natanel Moshe Junger", "Yaakov Mechlovitz"];
-
-  const { data: brokers, error } = await supabaseAdmin
-    .from("brokers")
-    .select("*")
-    .in("name", TARGET_BROKER_NAMES)
-    .order("id")
-    .overrideTypes<Broker[], { merge: false }>();
-
-  const brokerImageUrl = (path?: string | null) => {
-    const safePath = path?.trim() ? path.trim() : "defaultAvatar.jpg";
-    return supabaseAdmin.storage.from("brokers").getPublicUrl(safePath).data
-      .publicUrl;
-  };
+  const brokers = getBrokersByIds(["b1", "b2"]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -142,9 +127,7 @@ export default async function EfratProjectPage() {
         <section className="mb-12">
           <h2 className="text-3xl font-semibold mb-8">Your team</h2>
 
-          {error ? (
-            <p className="text-red-600">Error loading brokers.</p>
-          ) : !brokers || brokers.length === 0 ? (
+          {brokers.length === 0 ? (
             <p className="text-gray-500">
               No matching brokers found (Natanel / Yaakov).
             </p>
@@ -159,7 +142,7 @@ export default async function EfratProjectPage() {
                   <div className="bg-slate-50 px-5 py-6 rounded-2xl shadow-md text-center hover:shadow-lg transition">
                     <div className="relative w-28 h-28 rounded-full mx-auto mb-4 overflow-hidden">
                       <Image
-                        src={brokerImageUrl(b.photoUrl)}
+                        src={getBrokerImageUrl(b.photoUrl)}
                         alt={`${b.name} headshot`}
                         fill
                         sizes="112px"

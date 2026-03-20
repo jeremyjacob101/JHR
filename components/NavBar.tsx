@@ -61,7 +61,7 @@ export default function NavBar() {
   return (
     <nav
       aria-label="Primary"
-      className="sticky top-0 z-50 bg-[var(--navy)]/90 backdrop-blur-md border-b border-white/10 shadow-[0_18px_60px_-40px_rgba(0,0,0,0.85)] px-6 md:px-8 py-3"
+      className="sticky top-0 z-50 bg-(--navy)/90 backdrop-blur-md border-b border-white/10 shadow-[0_18px_60px_-40px_rgba(0,0,0,0.85)] px-6 md:px-8 py-3"
     >
       <div className="flex items-center justify-between">
         <Link
@@ -139,7 +139,7 @@ export default function NavBar() {
             : "max-h-0 opacity-0 -translate-y-1"
         }`}
       >
-        <div className="mt-3 rounded-2xl border border-white/10 bg-[var(--navy)]/80 backdrop-blur-md shadow-[0_22px_80px_-55px_rgba(0,0,0,0.95)] p-3">
+        <div className="mt-3 rounded-2xl border border-white/10 bg-(--navy)/80 backdrop-blur-md shadow-[0_22px_80px_-55px_rgba(0,0,0,0.95)] p-3">
           <div className="flex flex-col">
             {navLinks.map((l, i) => (
               <div key={l.href} className="flex flex-col items-center">

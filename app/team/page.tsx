@@ -2,8 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
-import { supabaseAdmin } from "@/lib/supabase.server";
-import { Broker } from "@/types/broker";
+import {
+  getAllBrokers,
+  getBrokerImageUrl,
+  TEAM_WIDE_IMAGE,
+} from "@/lib/brokers";
 
 export const metadata = {
   title: "About | Jerusalem Heritage Realty",
@@ -23,12 +26,6 @@ function toWhatsAppNumber(raw?: string | null) {
   return d;
 }
 
-function brokerImageUrl(path?: string | null) {
-  const safePath = path?.trim() ? path.trim() : "defaultAvatar.jpg";
-  return supabaseAdmin.storage.from("brokers").getPublicUrl(safePath).data
-    .publicUrl;
-}
-
 function firstName(full?: string | null) {
   const s = (full ?? "").trim();
   if (!s) return "Broker";
@@ -36,15 +33,8 @@ function firstName(full?: string | null) {
 }
 
 export default async function AboutPage() {
-  const teamWideImg = supabaseAdmin.storage
-    .from("brokers")
-    .getPublicUrl("bigpic.jpg").data.publicUrl;
-
-  const { data: brokers } = await supabaseAdmin
-    .from("brokers")
-    .select("*")
-    .order("id")
-    .overrideTypes<Broker[], { merge: false }>();
+  const teamWideImg = TEAM_WIDE_IMAGE;
+  const brokers = getAllBrokers();
 
   const officeMailTo = `mailto:${OFFICE_EMAIL}?subject=${encodeURIComponent(
     "Jerusalem Heritage Realty Enquiry",
@@ -65,7 +55,7 @@ export default async function AboutPage() {
             className="object-cover object-center"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/35 to-black/60" />
+          <div className="absolute inset-0 bg-linear-to-b from-black/45 via-black/35 to-black/60" />
         </div>
 
         <div className="absolute inset-0 flex items-end">
@@ -143,7 +133,7 @@ export default async function AboutPage() {
                   >
                     <div className="relative w-28 h-28 rounded-full mx-auto mb-4 overflow-hidden">
                       <Image
-                        src={brokerImageUrl(b.photoUrl)}
+                        src={getBrokerImageUrl(b.photoUrl)}
                         alt={`${b.name ?? "Broker"} headshot`}
                         fill
                         sizes="112px"
