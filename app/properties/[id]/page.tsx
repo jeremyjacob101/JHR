@@ -47,75 +47,75 @@ type RehaviaUnit = {
 
 const REHAVIA_ADDRESS = "Metudela Street, Rehavia, Jerusalem, Israel";
 const REHAVIA_GALLERY_IMAGES = [
-  "/pictures/rehavia-1/0.jpg",
-  "/pictures/rehavia-1/1.jpg",
-  "/pictures/rehavia-1/2.jpg",
-  "/pictures/rehavia-1/3.jpg",
+  "/pictures/properties/rehavia-1/0.jpg",
+  "/pictures/properties/rehavia-1/1.jpg",
+  "/pictures/properties/rehavia-1/2.jpg",
+  "/pictures/properties/rehavia-1/3.jpg",
 ];
 const REHAVIA_2_GALLERY_IMAGES = [
-  "/pictures/rehavia-2/0.jpg",
-  "/pictures/rehavia-2/1.jpg",
-  "/pictures/rehavia-2/2.jpg",
-  "/pictures/rehavia-2/3.jpg",
-  "/pictures/rehavia-2/4.jpg",
-  "/pictures/rehavia-2/5.jpg",
-  "/pictures/rehavia-2/6.jpg",
-  "/pictures/rehavia-2/7.jpg",
-  "/pictures/rehavia-2/8.jpg",
-  "/pictures/rehavia-2/9.jpg",
-  "/pictures/rehavia-2/10.jpg",
-  "/pictures/rehavia-2/11.jpg",
+  "/pictures/properties/rehavia-2/0.jpg",
+  "/pictures/properties/rehavia-2/1.jpg",
+  "/pictures/properties/rehavia-2/2.jpg",
+  "/pictures/properties/rehavia-2/3.jpg",
+  "/pictures/properties/rehavia-2/4.jpg",
+  "/pictures/properties/rehavia-2/5.jpg",
+  "/pictures/properties/rehavia-2/6.jpg",
+  "/pictures/properties/rehavia-2/7.jpg",
+  "/pictures/properties/rehavia-2/8.jpg",
+  "/pictures/properties/rehavia-2/9.jpg",
+  "/pictures/properties/rehavia-2/10.jpg",
+  "/pictures/properties/rehavia-2/11.jpg",
 ];
 const REHAVIA_3_GALLERY_IMAGES = [
-  "/pictures/rehavia-3/0.jpg",
-  "/pictures/rehavia-3/1.jpg",
-  "/pictures/rehavia-3/2.jpg",
-  "/pictures/rehavia-3/3.jpg",
-  "/pictures/rehavia-3/4.jpg",
-  "/pictures/rehavia-3/5.jpg",
+  "/pictures/properties/rehavia-3/0.jpg",
+  "/pictures/properties/rehavia-3/1.jpg",
+  "/pictures/properties/rehavia-3/2.jpg",
+  "/pictures/properties/rehavia-3/3.jpg",
+  "/pictures/properties/rehavia-3/4.jpg",
+  "/pictures/properties/rehavia-3/5.jpg",
 ];
 const REHAVIA_4_GALLERY_IMAGES = [
-  "/pictures/rehavia-4/0.jpg",
-  "/pictures/rehavia-4/1.jpg",
+  "/pictures/properties/rehavia-4/0.jpg",
+  "/pictures/properties/rehavia-4/1.jpg",
 ];
 const BEIT_HAKEREM_1_GALLERY_IMAGES = [
-  "/pictures/beitHakerem-1/0.jpg",
-  "/pictures/beitHakerem-1/1.jpg",
-  "/pictures/beitHakerem-1/2.jpg",
+  "/pictures/properties/beitHakerem-1/0.jpg",
+  "/pictures/properties/beitHakerem-1/1.jpg",
+  "/pictures/properties/beitHakerem-1/2.jpg",
 ];
 const ROMEMA_GALLERY_IMAGES = [
-  "/pictures/romema-1/0.jpg",
-  "/pictures/romema-1/1.jpg",
-  "/pictures/romema-1/2.jpg",
-  "/pictures/romema-1/3.jpg",
-  "/pictures/romema-1/4.jpg",
-  "/pictures/romema-1/5.jpg",
-  "/pictures/romema-1/6.jpg",
+  "/pictures/properties/romema-1/0.jpg",
+  "/pictures/properties/romema-1/1.jpg",
+  "/pictures/properties/romema-1/2.jpg",
+  "/pictures/properties/romema-1/3.jpg",
+  "/pictures/properties/romema-1/4.jpg",
+  "/pictures/properties/romema-1/5.jpg",
+  "/pictures/properties/romema-1/6.jpg",
 ];
 const KATAMON_GALLERY_IMAGES = [
-  "/pictures/katamon-1/0.jpg",
-  "/pictures/katamon-1/1.jpg",
-  "/pictures/katamon-1/2.jpg",
-  "/pictures/katamon-1/3.jpg",
-  "/pictures/katamon-1/4.jpg",
-  "/pictures/katamon-1/5.jpg",
-  "/pictures/katamon-1/6.jpg",
-  "/pictures/katamon-1/7.jpg",
+  "/pictures/properties/katamon-1/0.jpg",
+  "/pictures/properties/katamon-1/1.jpg",
+  "/pictures/properties/katamon-1/2.jpg",
+  "/pictures/properties/katamon-1/3.jpg",
+  "/pictures/properties/katamon-1/4.jpg",
+  "/pictures/properties/katamon-1/5.jpg",
+  "/pictures/properties/katamon-1/6.jpg",
+  "/pictures/properties/katamon-1/7.jpg",
 ];
 const NACHLAOT_2_GALLERY_IMAGES = [
-  "/pictures/nachlaot-2/0.jpg",
-  "/pictures/nachlaot-2/1.jpg",
-  "/pictures/nachlaot-2/2.jpg",
-  "/pictures/nachlaot-2/3.jpg",
+  "/pictures/properties/nachlaot-2/0.jpg",
+  "/pictures/properties/nachlaot-2/1.jpg",
+  "/pictures/properties/nachlaot-2/2.jpg",
+  "/pictures/properties/nachlaot-2/3.jpg",
 ];
 const NACHLAOT_3_GALLERY_IMAGES = [
-  "/pictures/nachlaot-3/0.jpg",
-  "/pictures/nachlaot-3/1.jpg",
-  "/pictures/nachlaot-3/2.jpg",
-  "/pictures/nachlaot-3/3.jpg",
-  "/pictures/nachlaot-3/4.jpg",
-  "/pictures/nachlaot-3/5.jpg",
-  "/pictures/nachlaot-3/6.jpg",
+  "/pictures/properties/nachlaot-3/0.jpg",
+  "/pictures/properties/nachlaot-3/1.jpg",
+  "/pictures/properties/nachlaot-3/2.jpg",
+  "/pictures/properties/nachlaot-3/3.jpg",
+  "/pictures/properties/nachlaot-3/4.jpg",
+  "/pictures/properties/nachlaot-3/5.jpg",
+  "/pictures/properties/nachlaot-3/6.jpg",
 ];
 
 const buildRehaviaProperty = (unit: RehaviaUnit): ManualProperty => ({
@@ -124,7 +124,7 @@ const buildRehaviaProperty = (unit: RehaviaUnit): ManualProperty => ({
   subtitle: "Rehavia • Jerusalem",
   headerTagline:
     "A Rehavia listing on Metudela Street with a private balcony and central Jerusalem access.",
-  backdropImage: "/pictures/rehavia-1/1.jpg",
+  backdropImage: "/pictures/properties/rehavia-1/1.jpg",
   galleryImages: REHAVIA_GALLERY_IMAGES,
   mapQuery: REHAVIA_ADDRESS,
   quickFacts: [
@@ -166,7 +166,7 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
     subtitle: "Beit HaKerem • Jerusalem",
     headerTagline:
       "A practical Beit HaKerem apartment near the light rail with a generous sukkah balcony and strong everyday building features.",
-    backdropImage: "/pictures/beitHakerem-1/1.jpg",
+    backdropImage: "/pictures/properties/beitHakerem-1/1.jpg",
     galleryImages: BEIT_HAKEREM_1_GALLERY_IMAGES,
     mapQuery: "Sderot Herzl, Beit HaKerem, Jerusalem, Israel",
     quickFacts: [
@@ -198,7 +198,7 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
     subtitle: "Hizkiyahu HaMelech Street • Jerusalem",
     headerTagline:
       "Exclusive Katamon offering near the Shtibelach, with signed urban renewal upside and rental coverage during construction.",
-    backdropImage: "/pictures/katamon-1/1.jpg",
+    backdropImage: "/pictures/properties/katamon-1/1.jpg",
     galleryImages: KATAMON_GALLERY_IMAGES,
     mapQuery: "Hizkiyahu HaMelech Street, Jerusalem, Israel",
     quickFacts: [
@@ -231,7 +231,7 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
     subtitle: "Khakham Shalom St • Jerusalem",
     headerTagline:
       "Garden apartment investment opportunity in Nachlaot, split into two units and positioned for strong Airbnb potential.",
-    backdropImage: "/pictures/nachlaot-2/1.jpg",
+    backdropImage: "/pictures/properties/nachlaot-2/1.jpg",
     galleryImages: NACHLAOT_2_GALLERY_IMAGES,
     mapQuery: "Khakham Shalom St, Jerusalem, Israel",
     quickFacts: [
@@ -264,7 +264,7 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
     subtitle: "Mesilat Yesharim St • Jerusalem",
     headerTagline:
       "Ground-floor apartment on the Nachlaot / City Centre border with strong short-term rental potential.",
-    backdropImage: "/pictures/nachlaot-3/1.jpg",
+    backdropImage: "/pictures/properties/nachlaot-3/1.jpg",
     galleryImages: NACHLAOT_3_GALLERY_IMAGES,
     mapQuery: "Mesilat Yesharim St, Jerusalem, Israel",
     quickFacts: [
@@ -296,15 +296,15 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
     subtitle: "Nachlaot • Jerusalem",
     headerTagline:
       "A fully updated, design-forward 3-story townhouse with rooftop living in the heart of the city.",
-    backdropImage: "/pictures/nachlaot-1/1.jpg",
+    backdropImage: "/pictures/properties/nachlaot-1/1.jpg",
     galleryImages: [
-      "/pictures/nachlaot-1/0.jpg",
-      "/pictures/nachlaot-1/1.jpg",
-      "/pictures/nachlaot-1/2.jpg",
-      "/pictures/nachlaot-1/3.jpg",
-      "/pictures/nachlaot-1/4.jpg",
-      "/pictures/nachlaot-1/5.jpg",
-      "/pictures/nachlaot-1/6.jpg",
+      "/pictures/properties/nachlaot-1/0.jpg",
+      "/pictures/properties/nachlaot-1/1.jpg",
+      "/pictures/properties/nachlaot-1/2.jpg",
+      "/pictures/properties/nachlaot-1/3.jpg",
+      "/pictures/properties/nachlaot-1/4.jpg",
+      "/pictures/properties/nachlaot-1/5.jpg",
+      "/pictures/properties/nachlaot-1/6.jpg",
     ],
     mapQuery: "Nachlaot, Jerusalem, Israel",
     quickFacts: [
@@ -371,7 +371,7 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
     subtitle: "Rehavia • Jerusalem",
     headerTagline:
       "A large 172 m² duplex in prime Rehavia with exceptional open views.",
-    backdropImage: "/pictures/rehavia-2/1.jpg",
+    backdropImage: "/pictures/properties/rehavia-2/1.jpg",
     galleryImages: REHAVIA_2_GALLERY_IMAGES,
     mapQuery: "Haari St, Rehavia, Jerusalem, Israel",
     quickFacts: [
@@ -402,7 +402,7 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
     subtitle: "Rehavia • Jerusalem",
     headerTagline:
       "A well-kept second-floor Rehavia apartment with open living flow, a spacious sukkah porch, and strong practical features.",
-    backdropImage: "/pictures/rehavia-3/1.jpg",
+    backdropImage: "/pictures/properties/rehavia-3/1.jpg",
     galleryImages: REHAVIA_3_GALLERY_IMAGES,
     mapQuery: "Rehavia, Jerusalem, Israel",
     quickFacts: [
@@ -434,7 +434,7 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
     subtitle: "Rehavia • Jerusalem",
     headerTagline:
       "A quiet top-floor Rehavia apartment with 3 bedrooms and a sukkah balcony in a highly desirable neighborhood setting.",
-    backdropImage: "/pictures/rehavia-4/1.jpg",
+    backdropImage: "/pictures/properties/rehavia-4/1.jpg",
     galleryImages: REHAVIA_4_GALLERY_IMAGES,
     mapQuery: "Bartenura Street, Rehavia, Jerusalem, Israel",
     quickFacts: [
@@ -465,7 +465,7 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
     subtitle: "Romema • Jerusalem",
     headerTagline:
       "A spacious single-level 240 m² apartment with open views in the heart of Romema.",
-    backdropImage: "/pictures/romema-1/1.jpg",
+    backdropImage: "/pictures/properties/romema-1/1.jpg",
     galleryImages: ROMEMA_GALLERY_IMAGES,
     mapQuery: "Pninat Chemed, Romema, Jerusalem, Israel",
     quickFacts: [

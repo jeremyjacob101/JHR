@@ -39,8 +39,9 @@ export default async function EfratProjectPage() {
 
   // Slider frames (public/)
   const SLIDES = Array.from({ length: 8 }, (_, i) => {
+    if (i === 0) return "/pictures/projects/efrat-1/0.jpg";
     const n = i + 1;
-    return `/pictures/efrat-1/efratPic${n}.jpg`;
+    return `/pictures/projects/efrat-1/${n}.jpg`;
   });
 
   const brokers = getBrokersByIds(["b1", "b2"]);

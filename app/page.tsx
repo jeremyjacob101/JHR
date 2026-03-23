@@ -234,7 +234,7 @@ const featured: FeaturedProperty[] = [
     id: "beithakerem-1",
     title: "Sderot Herzl • Beit HaKerem",
     subtitle: "Beit HaKerem",
-    image: "/pictures/beitHakerem-1/0.jpg",
+    image: "/pictures/properties/beitHakerem-1/0.jpg",
     href: "/properties/beithakerem-1",
     stats: [
       { label: "Floor", value: "2 / 4" },
@@ -249,7 +249,7 @@ const featured: FeaturedProperty[] = [
     id: "nachlaot",
     title: "Artist House",
     subtitle: "Nachlaot",
-    image: "/pictures/nachlaot-1/0.jpg",
+    image: "/pictures/properties/nachlaot-1/0.jpg",
     href: "/properties/nachlaot",
     stats: [
       { label: "Size", value: `~180 m² (${sqmToSqft(180)} ft²)` },
@@ -264,7 +264,7 @@ const featured: FeaturedProperty[] = [
     id: "rehavia-12",
     title: "Metudela • Unit 12",
     subtitle: "Rehavia",
-    image: "/pictures/rehavia-1/0.jpg",
+    image: "/pictures/properties/rehavia-1/0.jpg",
     href: "/properties/rehavia-12",
     stats: [
       { label: "Interior", value: `108.2 m² (${sqmToSqft(108.2)} ft²)` },
@@ -279,7 +279,7 @@ const featured: FeaturedProperty[] = [
     id: "rehavia-13",
     title: "Metudela • Unit 13",
     subtitle: "Rehavia",
-    image: "/pictures/rehavia-1/0.jpg",
+    image: "/pictures/properties/rehavia-1/0.jpg",
     href: "/properties/rehavia-13",
     stats: [
       { label: "Interior", value: `92.4 m² (${sqmToSqft(92.4)} ft²)` },
@@ -294,7 +294,7 @@ const featured: FeaturedProperty[] = [
     id: "rehavia-14",
     title: "Metudela • Unit 14",
     subtitle: "Rehavia",
-    image: "/pictures/rehavia-1/0.jpg",
+    image: "/pictures/properties/rehavia-1/0.jpg",
     href: "/properties/rehavia-14",
     stats: [
       { label: "Interior", value: `72.5 m² (${sqmToSqft(72.5)} ft²)` },
@@ -309,7 +309,7 @@ const featured: FeaturedProperty[] = [
     id: "rehavia-2",
     title: "Haari • Rehavia Duplex",
     subtitle: "Rehavia",
-    image: "/pictures/rehavia-2/0.jpg",
+    image: "/pictures/properties/rehavia-2/0.jpg",
     href: "/properties/rehavia-2",
     stats: [
       { label: "Size", value: `172 m² (${sqmToSqft(172)} ft²)` },
@@ -324,7 +324,7 @@ const featured: FeaturedProperty[] = [
     id: "rehavia-3",
     title: "Rehavia • 3 Bedroom Apartment",
     subtitle: "Rehavia",
-    image: "/pictures/rehavia-3/0.jpg",
+    image: "/pictures/properties/rehavia-3/0.jpg",
     href: "/properties/rehavia-3",
     stats: [
       { label: "Floor", value: "2" },
@@ -339,7 +339,7 @@ const featured: FeaturedProperty[] = [
     id: "rehavia-4",
     title: "Bartenura • Rehavia Apartment",
     subtitle: "Rehavia",
-    image: "/pictures/rehavia-4/0.jpg",
+    image: "/pictures/properties/rehavia-4/0.jpg",
     href: "/properties/rehavia-4",
     stats: [
       { label: "Floor", value: "4 / 4" },
@@ -354,7 +354,7 @@ const featured: FeaturedProperty[] = [
     id: "romema-1",
     title: "Pninat Chemed • Romema",
     subtitle: "Romema",
-    image: "/pictures/romema-1/0.jpg",
+    image: "/pictures/properties/romema-1/0.jpg",
     href: "/properties/romema-1",
     stats: [
       { label: "Size", value: `240 m² (${sqmToSqft(240)} ft²)` },
@@ -424,7 +424,7 @@ export default async function HomePage() {
         {/* HERO */}
         <section id="jhr-hero" className={styles.hero}>
           <Image
-            src="/pictures/nachlaot-1/0.jpg"
+            src="/pictures/properties/nachlaot-1/0.jpg"
             alt="Baka neighborhood in Jerusalem"
             fill
             sizes="100vw"

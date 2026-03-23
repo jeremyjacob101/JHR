@@ -16,12 +16,6 @@ type ActiveProjectTile = {
   imageAlt: string;
 };
 
-type ComingSoonTile = {
-  title: string;
-  eyebrow: string;
-  description: string;
-};
-
 function ActiveTile({
   title,
   eyebrow,
@@ -74,48 +68,11 @@ function ActiveTile({
   );
 }
 
-function ComingSoonTile({ title, eyebrow, description }: ComingSoonTile) {
-  return (
-    <div
-      aria-disabled="true"
-      className="relative overflow-hidden rounded-3xl border border-slate-200 bg-slate-100 h-[520px] sm:h-[620px] cursor-not-allowed"
-    >
-      <div className="absolute inset-0 bg-linear-to-b from-slate-200/25 via-slate-200/10 to-slate-300/45" />
-      <div
-        className="absolute inset-0 opacity-50"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 18% 20%, rgba(15,23,42,0.08), transparent 42%), radial-gradient(circle at 80% 28%, rgba(15,23,42,0.07), transparent 46%), linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.14) 35%, transparent 70%)",
-        }}
-      />
-
-      <div className="absolute inset-0 p-6 sm:p-7 flex flex-col justify-end">
-        <p className="text-xs uppercase tracking-[0.18em] text-slate-600 mb-2">
-          {eyebrow}
-        </p>
-
-        <h2 className="text-3xl sm:text-4xl font-semibold leading-tight text-slate-900">
-          {title}
-        </h2>
-
-        <p className="mt-3 text-sm sm:text-[0.9375rem] text-slate-700 leading-relaxed max-w-md">
-          {description}
-        </p>
-
-        <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-slate-600">
-          <span className="underline underline-offset-4 decoration-slate-400">
-            Not available yet
-          </span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default async function ProjectsPage() {
   const SCHEDULE_CALL_HREF = "/contact";
-  const EFRAT_IMAGE_SRC = "/efrat.jpg";
-  const GARDA_IMAGE_SRC = "/pictures/garda-1/0.jpg";
+  const EFRAT_IMAGE_SRC = "/pictures/projects/efrat-1/0.jpg";
+  const GARDA_IMAGE_SRC = "/pictures/projects/garda-1/0.jpg";
+  const MIDTOWN_IMAGE_SRC = "/pictures/projects/midtown-1/0.jpeg";
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -172,10 +129,13 @@ export default async function ProjectsPage() {
             imageAlt="Garda Project"
           />
 
-          <ComingSoonTile
+          <ActiveTile
             title="MIDTOWN PROJECT"
-            eyebrow="Coming soon"
-            description="This project pane is live on the overview page now, but the detail page is not available yet."
+            eyebrow="Jerusalem flagship"
+            description="An iconic mixed-use complex on Jaffa Street with residences, hotels, retail, offices, and a true city-center address."
+            href="/projects/midtown"
+            imageSrc={MIDTOWN_IMAGE_SRC}
+            imageAlt="Midtown Jerusalem Project"
           />
         </section>
       </main>

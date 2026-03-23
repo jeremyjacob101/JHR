@@ -4,79 +4,72 @@ import type { ReactNode } from "react";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import PropertyCarousel from "@/components/PropertyCarousel";
-import ProjectVideoPlayer from "@/components/ProjectVideoPlayer";
 import { getBrokersByIds, getBrokerImageUrl } from "@/lib/brokers";
 
 export const metadata = {
-  title: "Garda Project | Jerusalem Heritage Realty",
+  title: "Midtown Project | Jerusalem Heritage Realty",
 };
 
-const GARDA_IMAGES = [
-  "/pictures/projects/garda-1/0.jpg",
-  "/pictures/projects/garda-1/1.jpg",
-  "/pictures/projects/garda-1/2.jpg",
-  "/pictures/projects/garda-1/3.jpg",
-  "/pictures/projects/garda-1/4.jpg",
-  "/pictures/projects/garda-1/5.jpg",
-  "/pictures/projects/garda-1/6.jpg",
-  "/pictures/projects/garda-1/7.jpg",
-  "/pictures/projects/garda-1/8.jpg",
-  "/pictures/projects/garda-1/9.jpg",
+const MIDTOWN_IMAGES = [
+  "/pictures/projects/midtown-1/0.jpeg",
+  "/pictures/projects/midtown-1/1.jpeg",
+  "/pictures/projects/midtown-1/2.jpeg",
+  "/pictures/projects/midtown-1/3.jpeg",
+  "/pictures/projects/midtown-1/4.jpeg",
+  "/pictures/projects/midtown-1/5.jpeg",
+  "/pictures/projects/midtown-1/6.jpeg",
 ] as const;
 
-const GARDA_HIGHLIGHTS = [
+const MIDTOWN_HIGHLIGHTS = [
   {
-    label: "Setting",
-    value: "Renewed Ir Ganim with direct access to key Jerusalem routes",
+    label: "Location",
+    value: "Jaffa Street, Jerusalem",
   },
   {
-    label: "Scale",
-    value: "5 luxury towers: 3 towers at 30 floors and 2 towers at 32 floors",
+    label: "Architecture",
+    value: "D-blk Architects",
   },
   {
-    label: "Lifestyle",
-    value: "A vast park, half-acre lake, retail boulevard, and shared amenities",
+    label: "Interior Design",
+    value: "Dana Oberson",
   },
   {
-    label: "Residences",
-    value: "2-6 room apartments, park apartments, and view penthouses",
+    label: "Project Scale",
+    value: "4 buildings • 900 residential units",
   },
 ] as const;
 
-const GARDA_BULLETS = [
-  "A rare Jerusalem residential concept inspired by Lake Garda in northern Italy.",
-  "Combines first-class urban living with unusual outdoor scale, greenery, and family amenities.",
-  "Designed for buyers who want both strong access and a more complete live-work-host environment.",
+const MIDTOWN_BULLETS = [
+  "A flagship mixed-use complex at the heart of Jerusalem’s most connected urban corridor.",
+  "Brings together luxury residential towers, elegant hotels, retail frontage, and an iconic office component.",
+  "Designed as a true metropolitan center where transport, business, government, culture, and dining meet.",
 ] as const;
 
 const LOCATION_POINTS = [
-  "At the meeting point of Kolitz Road, the light rail route, and the new Geoni Road.",
-  "Fast access to Park Promenade, Malha Mall, the Biblical Zoo, and the Technology Park.",
-  "Convenient daily connectivity for commuting, family routines, and leisure.",
+  "Positioned directly on Jaffa Street in the center of Jerusalem.",
+  "At the meeting point of major transportation arteries, civic institutions, employment centers, and city life.",
+  "A location defined by walkability, access, and strong long-term urban relevance.",
 ] as const;
 
-const COMPLEX_FEATURES = [
-  "Luxurious resident lobbies",
-  "Gym",
-  "Spa in select buildings",
-  "Synagogue",
-  "Shopping boulevard",
-  "Community center allocation",
-  "Kindergartens and elementary schools",
+const CONCEPT_POINTS = [
+  "Luxury residential towers",
+  "Elegant hotel components",
+  "Bustling retail avenue",
+  "Iconic office tower",
 ] as const;
 
-const APARTMENT_POINTS = [
-  "Stylish 2-6 room apartments",
-  "Large 20-40 m² sun balconies",
-  "Spacious park apartments",
-  "Magnificent penthouses with broad Jerusalem views",
+const DESIGN_POINTS = [
+  "Architecture by D-blk Architects",
+  "Interior design by Dana Oberson",
+  "An urban identity intended to feel modern, elevated, and globally fluent",
+  "A skyline presence meant to crown central Jerusalem with a more metropolitan expression",
 ] as const;
 
-const UNIT_MODELS = [
-  "Model A | 4 Rooms",
-  "Model B | 5 Rooms",
-  "Model D | 4 Rooms",
-  "Model J | 6 Rooms",
+const PROFILE_POINTS = [
+  "4 buildings",
+  "900 residential units",
+  "Mixed-use urban program",
+  "Prime Jerusalem city-center address",
 ] as const;
 
 type ProjectSplitSectionProps = {
@@ -120,7 +113,7 @@ function ProjectSplitSection({
             alt={imageAlt}
             fill
             sizes="(min-width: 1024px) 40vw, 100vw"
-            className="object-cover object-center brightness-[1.04] saturate-[1.06]"
+            className="object-cover object-center brightness-[1.04] saturate-[1.05]"
           />
         </div>
       </div>
@@ -128,7 +121,7 @@ function ProjectSplitSection({
   );
 }
 
-export default async function GardaProjectPage() {
+export default async function MidtownProjectPage() {
   const SCHEDULE_CALL_HREF = "/contact";
   const ENQUIRY_HREF = "/contact";
   const brokers = getBrokersByIds(["b1", "b2"]);
@@ -142,31 +135,30 @@ export default async function GardaProjectPage() {
         className="flex-1 min-h-0 max-w-6xl mx-auto px-5 py-16 font-sans w-full"
       >
         <section className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-[linear-gradient(135deg,#f8fafc_0%,#eef2f7_55%,#f8f6f1_100%)] shadow-sm">
-          <div className="absolute inset-0 opacity-50">
-            <div className="absolute -left-12 top-12 h-44 w-44 rounded-full bg-amber-100/80 blur-3xl" />
+          <div className="absolute inset-0 opacity-45">
+            <div className="absolute -left-10 top-10 h-44 w-44 rounded-full bg-amber-100/80 blur-3xl" />
             <div className="absolute right-0 top-0 h-56 w-56 rounded-full bg-sky-100/70 blur-3xl" />
-            <div className="absolute bottom-0 left-1/3 h-40 w-40 rounded-full bg-emerald-100/50 blur-3xl" />
+            <div className="absolute bottom-0 left-1/3 h-40 w-40 rounded-full bg-slate-200/80 blur-3xl" />
           </div>
 
           <div className="relative grid grid-cols-1 xl:grid-cols-[minmax(0,1.15fr)_340px] gap-6 p-5 sm:p-6">
             <div className="space-y-6">
-              <div className="rounded-[1.75rem] border border-slate-200 bg-white/80 p-6 sm:p-7 shadow-sm backdrop-blur-sm">
+              <div className="rounded-[1.75rem] border border-slate-200 bg-white/85 p-6 sm:p-7 shadow-sm backdrop-blur-sm">
                 <p className="text-xs uppercase tracking-[0.18em] text-slate-500 mb-3">
-                  Jerusalem Development
+                  Jerusalem Flagship
                 </p>
                 <h1 className="text-3xl sm:text-4xl font-semibold text-slate-900 mb-3">
-                  Garda Project
+                  Midtown Jerusalem
                 </h1>
 
                 <p className="max-w-3xl text-base text-slate-700 leading-relaxed">
-                  Garda is a distinctive new residential complex in Jerusalem,
-                  inspired by the atmosphere of Lake Garda in northern Italy and
-                  translated into a highly ambitious urban setting in renewed Ir
-                  Ganim.
+                  On Jaffa Street, at the very heart of the capital, Midtown
+                  Jerusalem is envisioned as an iconic mixed-use complex that
+                  crowns Jerusalem with a stronger metropolitan center.
                 </p>
 
                 <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                  {GARDA_HIGHLIGHTS.map((item) => (
+                  {MIDTOWN_HIGHLIGHTS.map((item) => (
                     <div
                       key={item.label}
                       className="rounded-2xl border border-slate-200 bg-slate-50/90 p-3"
@@ -182,7 +174,7 @@ export default async function GardaProjectPage() {
                 </div>
 
                 <ul className="list-disc pl-5 mt-5 space-y-2">
-                  {GARDA_BULLETS.map((bullet) => (
+                  {MIDTOWN_BULLETS.map((bullet) => (
                     <li
                       key={bullet}
                       className="text-sm text-slate-700 leading-relaxed"
@@ -209,24 +201,28 @@ export default async function GardaProjectPage() {
                 </div>
               </div>
 
-              <section className="rounded-[1.75rem] border border-slate-200 bg-white shadow-sm overflow-hidden">
+              <section className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
                 <div className="p-6 sm:p-7 border-b border-slate-100">
                   <p className="text-xs uppercase tracking-[0.18em] text-slate-500 mb-2">
-                    Overview Video
+                    Signature View
                   </p>
                   <h2 className="text-2xl font-semibold text-slate-900">
-                    Garda in motion
+                    A central Jerusalem skyline statement
                   </h2>
                   <p className="text-sm text-slate-600 mt-1">
-                    A larger project overview video placed front and center.
+                    Midtown is positioned as a defining city-center address with
+                    a more global urban expression.
                   </p>
                 </div>
 
-                <div className="relative overflow-hidden bg-slate-100 aspect-video">
-                  <ProjectVideoPlayer
-                    src="/pictures/projects/garda-1/video-1.mp4"
-                    poster="/pictures/projects/garda-1/0.jpg"
-                    title="Garda Overview"
+                <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
+                  <Image
+                    src="/pictures/projects/midtown-1/1.jpeg"
+                    alt="Midtown Jerusalem signature rendering"
+                    fill
+                    sizes="(min-width: 1024px) 1120px, 100vw"
+                    className="object-cover object-center"
+                    priority
                   />
                 </div>
               </section>
@@ -234,11 +230,11 @@ export default async function GardaProjectPage() {
 
             <aside className="grid grid-cols-2 xl:grid-cols-1 gap-4 auto-rows-[180px] sm:auto-rows-[220px] xl:h-full xl:grid-rows-5 xl:auto-rows-auto">
               {[
-                "/pictures/projects/garda-1/0.jpg",
-                "/pictures/projects/garda-1/2.jpg",
-                "/pictures/projects/garda-1/3.jpg",
-                "/pictures/projects/garda-1/6.jpg",
-                "/pictures/projects/garda-1/9.jpg",
+                "/pictures/projects/midtown-1/0.jpeg",
+                "/pictures/projects/midtown-1/2.jpeg",
+                "/pictures/projects/midtown-1/3.jpeg",
+                "/pictures/projects/midtown-1/5.jpeg",
+                "/pictures/projects/midtown-1/6.jpeg",
               ].map((src, idx) => (
                 <div
                   key={src}
@@ -248,12 +244,12 @@ export default async function GardaProjectPage() {
                 >
                   <Image
                     src={src}
-                    alt={`Garda project highlight ${idx + 1}`}
+                    alt={`Midtown project highlight ${idx + 1}`}
                     fill
                     sizes="(min-width: 1280px) 340px, (min-width: 768px) 50vw, 100vw"
                     className="object-cover object-center"
                   />
-                  <div className="absolute inset-0 bg-linear-to-b from-black/5 via-black/5 to-black/35" />
+                  <div className="absolute inset-0 bg-linear-to-b from-black/5 via-black/5 to-black/30" />
                 </div>
               ))}
             </aside>
@@ -266,44 +262,44 @@ export default async function GardaProjectPage() {
               Project Gallery
             </h2>
             <p className="text-sm text-slate-600 mt-1">
-              Browse the Garda renderings and project imagery below.
+              Browse the Midtown Jerusalem renderings and project imagery below.
             </p>
           </div>
 
           <PropertyCarousel
-            key="garda-project-carousel"
-            carouselId="garda-carousel"
-            title="Garda Project"
-            images={[...GARDA_IMAGES]}
+            key="midtown-project-carousel"
+            carouselId="midtown-carousel"
+            title="Midtown Jerusalem"
+            images={[...MIDTOWN_IMAGES]}
             imageSizes="(min-width: 1024px) 1120px, 100vw"
           />
         </section>
 
         <div className="mt-8 space-y-6">
           <ProjectSplitSection
-            eyebrow="Our Story"
-            title="A project concept with unusual scale for Jerusalem"
-            imageSrc="/pictures/projects/garda-1/4.jpg"
-            imageAlt="Garda architectural rendering"
+            eyebrow="Urban Concept"
+            title="An iconic complex at the heart of the capital"
+            imageSrc="/pictures/projects/midtown-1/4.jpeg"
+            imageAlt="Midtown Jerusalem architectural rendering"
           >
             <p className="text-sm text-slate-700 leading-relaxed">
-              Garda introduces a more expansive residential language than most
-              Jerusalem projects, bringing together a major park setting, a
-              half-acre lake, hospitality-style shared spaces, and a varied
-              residential mix within one master-planned complex.
+              Midtown Jerusalem is designed as more than a single development.
+              It is intended as a concentrated urban center where movement,
+              work, hospitality, retail, and residential life all intersect in
+              one powerful city address.
             </p>
             <p className="text-sm text-slate-700 leading-relaxed">
-              The intention is not only to deliver apartments, but to shape a
-              complete daily environment with movement, amenities, retail,
-              community infrastructure, and strong family usability.
+              Like the Midtown districts of other major global cities, it aims
+              to create a modern, energetic, and inspiring environment at the
+              meeting point of Jerusalem&apos;s key civic and commercial flows.
             </p>
           </ProjectSplitSection>
 
           <ProjectSplitSection
             eyebrow="Location"
-            title="Connected access, day to day"
-            imageSrc="/pictures/projects/garda-1/1.jpg"
-            imageAlt="Garda location rendering"
+            title="Jaffa Street, directly in the center of Jerusalem"
+            imageSrc="/pictures/projects/midtown-1/2.jpeg"
+            imageAlt="Midtown Jerusalem location rendering"
             imageSide="left"
           >
             {LOCATION_POINTS.map((point) => (
@@ -311,85 +307,53 @@ export default async function GardaProjectPage() {
                 {point}
               </p>
             ))}
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-              {[
-                "Park Promenade",
-                "Malha Mall",
-                "Biblical Zoo",
-                "Technology Park",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-2xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm font-medium text-slate-900"
-                >
-                  {item}
-                </div>
-              ))}
-            </div>
           </ProjectSplitSection>
 
           <ProjectSplitSection
-            eyebrow="Architecture"
-            title="A five-tower ensemble"
-            imageSrc="/pictures/projects/garda-1/5.jpg"
-            imageAlt="Garda tower rendering"
-          >
-            <p className="text-sm text-slate-700 leading-relaxed">
-              Garda is planned as a unified architectural composition of five
-              luxury towers, with three 30-story buildings and two 32-story
-              buildings designed to work together as one coherent urban address.
-            </p>
-            <p className="text-sm text-slate-700 leading-relaxed">
-              The result is a wide range of residential options while
-              maintaining a consistent visual identity and an elevated,
-              high-spec feel across the project.
-            </p>
-          </ProjectSplitSection>
-
-          <ProjectSplitSection
-            eyebrow="The Complex"
-            title="Shared amenities with real daily value"
-            imageSrc="/pictures/projects/garda-1/2.jpg"
-            imageAlt="Garda complex rendering"
-            imageSide="left"
+            eyebrow="Project Program"
+            title="A mixed-use city-center composition"
+            imageSrc="/pictures/projects/midtown-1/3.jpeg"
+            imageAlt="Midtown Jerusalem mixed-use rendering"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {COMPLEX_FEATURES.map((feature) => (
+              {CONCEPT_POINTS.map((point) => (
                 <div
-                  key={feature}
+                  key={point}
                   className="rounded-2xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-800"
                 >
-                  {feature}
+                  {point}
                 </div>
               ))}
             </div>
           </ProjectSplitSection>
 
           <ProjectSplitSection
-            eyebrow="The Apartments"
-            title="A broad residential mix"
-            imageSrc="/pictures/projects/garda-1/7.jpg"
-            imageAlt="Garda apartment rendering"
+            eyebrow="Design Team"
+            title="Architecture and interiors with a more global urban feel"
+            imageSrc="/pictures/projects/midtown-1/5.jpeg"
+            imageAlt="Midtown Jerusalem design rendering"
+            imageSide="left"
           >
-            {APARTMENT_POINTS.map((point) => (
+            {DESIGN_POINTS.map((point) => (
               <p key={point} className="text-sm text-slate-700 leading-relaxed">
                 {point}
               </p>
             ))}
+          </ProjectSplitSection>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-              {UNIT_MODELS.map((model) => (
+          <ProjectSplitSection
+            eyebrow="Project Profile"
+            title="Built at meaningful scale"
+            imageSrc="/pictures/projects/midtown-1/6.jpeg"
+            imageAlt="Midtown Jerusalem profile rendering"
+          >
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {PROFILE_POINTS.map((point) => (
                 <div
-                  key={model}
-                  className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3"
+                  key={point}
+                  className="rounded-2xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm font-medium text-slate-900"
                 >
-                  <div className="text-sm font-semibold text-slate-900">
-                    {model}
-                  </div>
-                  <div className="text-xs uppercase tracking-[0.12em] text-slate-500 mt-1">
-                    Apartment plan available on request
-                  </div>
+                  {point}
                 </div>
               ))}
             </div>
@@ -398,22 +362,21 @@ export default async function GardaProjectPage() {
 
         <section className="mt-6 rounded-3xl border border-slate-200 bg-white p-6 sm:p-7 shadow-sm mb-12">
           <p className="text-xs uppercase tracking-[0.18em] text-slate-500 mb-3">
-            The Developers
+            Contact
           </p>
           <h2 className="text-2xl font-semibold text-slate-900 mb-3">
-            Built by experienced Jerusalem urban-renewal partners
+            Interested in Midtown Jerusalem?
           </h2>
           <p className="text-sm text-slate-700 leading-relaxed">
-            Avisror Moshe & Sons and Keshet Real Estate joined forces to advance
-            urban renewal and elevate construction standards in Jerusalem. Garda
-            reflects that ambition through scale, amenities, and a clearly
-            differentiated residential concept.
+            Leave your details and we&apos;ll help you understand the project,
+            the positioning, and the fit for your goals in central Jerusalem.
           </p>
 
           <div className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-4 text-sm text-amber-950 leading-relaxed">
-            All renderings and promotional imagery are illustrative only and
-            remain subject to legal approvals, final plans, and signed contract
-            specifications.
+            Source materials reference project information including location,
+            architecture, scale, and contact details. Final terms,
+            specifications, and formal project materials remain subject to the
+            developer&apos;s official documents and approvals.
           </div>
         </section>
 
