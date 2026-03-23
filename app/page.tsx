@@ -210,6 +210,7 @@ function StorySection({ block, idx }: { block: StoryBlock; idx: number }) {
 
 type FeaturedProperty = {
   id:
+    | "citycenter-1"
     | "beithakerem-1"
     | "nachlaot"
     | "rehavia-12"
@@ -230,6 +231,21 @@ type FeaturedProperty = {
 const sqmToSqft = (sqm: number) => Math.round(sqm * 10.7639);
 
 const featured: FeaturedProperty[] = [
+  {
+    id: "citycenter-1",
+    title: "City Center • View Apartment",
+    subtitle: "City Center",
+    image: "/pictures/properties/cityCenter-1/0.jpg",
+    href: "/properties/citycenter-1",
+    stats: [
+      { label: "Floor", value: "14" },
+      { label: "Size", value: `50 m² (${sqmToSqft(50)} ft²)` },
+      { label: "Layout", value: "1 bedroom • 1 bathroom" },
+      { label: "Price", value: "₪2,750,000" },
+    ],
+    blurb:
+      "High-floor city-center apartment with parking, floor-to-ceiling windows, and sweeping views toward Har Habayit and the Judean mountains.",
+  },
   {
     id: "beithakerem-1",
     title: "Sderot Herzl • Beit HaKerem",

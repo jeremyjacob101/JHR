@@ -7,6 +7,7 @@ import { getBrokerById, getBrokerImageUrl } from "@/lib/brokers";
 
 type ManualProperty = {
   id:
+    | "citycenter-1"
     | "beithakerem-1"
     | "katamon-1"
     | "nachlaot"
@@ -82,6 +83,17 @@ const BEIT_HAKEREM_1_GALLERY_IMAGES = [
   "/pictures/properties/beitHakerem-1/0.jpg",
   "/pictures/properties/beitHakerem-1/1.jpg",
   "/pictures/properties/beitHakerem-1/2.jpg",
+];
+const CITY_CENTER_1_GALLERY_IMAGES = [
+  "/pictures/properties/cityCenter-1/0.jpg",
+  "/pictures/properties/cityCenter-1/1.jpg",
+  "/pictures/properties/cityCenter-1/2.jpg",
+  "/pictures/properties/cityCenter-1/3.jpg",
+  "/pictures/properties/cityCenter-1/4.jpg",
+  "/pictures/properties/cityCenter-1/5.jpg",
+  "/pictures/properties/cityCenter-1/6.jpg",
+  "/pictures/properties/cityCenter-1/7.jpg",
+  "/pictures/properties/cityCenter-1/8.jpg",
 ];
 const ROMEMA_GALLERY_IMAGES = [
   "/pictures/properties/romema-1/0.jpg",
@@ -160,6 +172,38 @@ const buildRehaviaProperty = (unit: RehaviaUnit): ManualProperty => ({
 });
 
 const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
+  "citycenter-1": {
+    id: "citycenter-1",
+    title: "City Center • View Apartment",
+    subtitle: "City Center • Jerusalem",
+    headerTagline:
+      "A high-floor Jerusalem city-center apartment with dramatic open views, full-height glazing, and practical everyday parking.",
+    backdropImage: "/pictures/properties/cityCenter-1/1.jpg",
+    galleryImages: CITY_CENTER_1_GALLERY_IMAGES,
+    mapQuery: "City Center, Jerusalem, Israel",
+    quickFacts: [
+      { label: "Property Type", value: "Apartment" },
+      { label: "Floor", value: "14" },
+      { label: "Bedrooms", value: "1" },
+      { label: "Bathrooms", value: "1" },
+      { label: "Interior", value: `50 m² (${sqmToSqft(50)} ft²)` },
+      { label: "Windows", value: "Floor-to-ceiling" },
+      { label: "Views", value: "Har Habayit + Judean mountains" },
+      { label: "Price", value: "₪2,750,000" },
+    ],
+    overview: [
+      "City Center apartment positioned on the 14th floor in central Jerusalem.",
+      "The home offers 50 m² with a clean 1-bedroom, 1-bathroom layout that suits both full-time living and a well-located city base.",
+      "Floor-to-ceiling windows open the apartment to striking views toward Har Habayit and the Judean mountains.",
+      "Parking is included, adding meaningful daily convenience in a central urban setting.",
+    ],
+    highlights: [
+      "Asking price: ₪2,750,000.",
+      "14th-floor elevation creates a strong open-view experience.",
+      "Floor-to-ceiling glazing brings in light and emphasizes the Jerusalem outlook.",
+      "Parking is a major practical advantage for a city-center property.",
+    ],
+  },
   "beithakerem-1": {
     id: "beithakerem-1",
     title: "Sderot Herzl • Beit HaKerem",
@@ -493,6 +537,7 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
 };
 
 const BROKER_ID_BY_PROPERTY: Record<ManualProperty["id"], string> = {
+  "citycenter-1": "b2",
   "beithakerem-1": "b2",
   "katamon-1": "b3",
   "nachlaot-2": "b3",

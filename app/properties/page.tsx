@@ -19,6 +19,7 @@ type SP = {
 
 type ManualProperty = {
   id:
+    | "citycenter-1"
     | "beithakerem-1"
     | "katamon-1"
     | "nachlaot"
@@ -83,6 +84,23 @@ export default async function PropertiesPage({
     sortRaw === "price_asc" || sortRaw === "price_desc" ? sortRaw : "";
 
   const properties: ManualProperty[] = [
+    {
+      id: "citycenter-1",
+      title: "City Center • View Apartment",
+      subtitle: "City Center",
+      neighborhood: "City Center",
+      locationLine: "City Center • Jerusalem",
+      cardImage: "/pictures/properties/cityCenter-1/0.jpg",
+      priceNIS: 2750000,
+      beds: 1,
+      baths: 1,
+      highlights: [
+        { label: "Floor", value: "14" },
+        { label: "Size", value: `50 m² (${sqmToSqft(50)} ft²)` },
+        { label: "Views", value: "Har Habayit + Judean mountains" },
+        { label: "Price", value: "₪2,750,000" },
+      ],
+    },
     {
       id: "beithakerem-1",
       title: "Sderot Herzl • Beit HaKerem",

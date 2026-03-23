@@ -16,6 +16,7 @@ type FiltersState = {
 };
 
 const NEIGHBORHOOD_OPTIONS = [
+  "City Center",
   "Rehavia",
   "Talbiya",
   "German Colony",
