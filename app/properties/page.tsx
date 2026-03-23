@@ -19,7 +19,7 @@ type SP = {
 
 type ManualProperty = {
   id:
-    | "beitHakerem-1"
+    | "beithakerem-1"
     | "katamon-1"
     | "nachlaot"
     | "nachlaot-2"
@@ -84,7 +84,7 @@ export default async function PropertiesPage({
 
   const properties: ManualProperty[] = [
     {
-      id: "beitHakerem-1",
+      id: "beithakerem-1",
       title: "Sderot Herzl • Beit HaKerem",
       subtitle: "Beit HaKerem",
       neighborhood: "Beit HaKerem",

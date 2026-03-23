@@ -210,7 +210,7 @@ function StorySection({ block, idx }: { block: StoryBlock; idx: number }) {
 
 type FeaturedProperty = {
   id:
-    | "beitHakerem-1"
+    | "beithakerem-1"
     | "nachlaot"
     | "rehavia-12"
     | "rehavia-13"
@@ -231,11 +231,11 @@ const sqmToSqft = (sqm: number) => Math.round(sqm * 10.7639);
 
 const featured: FeaturedProperty[] = [
   {
-    id: "beitHakerem-1",
+    id: "beithakerem-1",
     title: "Sderot Herzl • Beit HaKerem",
     subtitle: "Beit HaKerem",
     image: "/pictures/beitHakerem-1/0.jpg",
-    href: "/properties/beitHakerem-1",
+    href: "/properties/beithakerem-1",
     stats: [
       { label: "Floor", value: "2 / 4" },
       { label: "Layout", value: "2.5 rooms" },

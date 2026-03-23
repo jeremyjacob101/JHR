@@ -7,7 +7,7 @@ import { getBrokerById, getBrokerImageUrl } from "@/lib/brokers";
 
 type ManualProperty = {
   id:
-    | "beitHakerem-1"
+    | "beithakerem-1"
     | "katamon-1"
     | "nachlaot"
     | "nachlaot-2"
@@ -160,8 +160,8 @@ const buildRehaviaProperty = (unit: RehaviaUnit): ManualProperty => ({
 });
 
 const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
-  "beitHakerem-1": {
-    id: "beitHakerem-1",
+  "beithakerem-1": {
+    id: "beithakerem-1",
     title: "Sderot Herzl • Beit HaKerem",
     subtitle: "Beit HaKerem • Jerusalem",
     headerTagline:
@@ -493,7 +493,7 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
 };
 
 const BROKER_ID_BY_PROPERTY: Record<ManualProperty["id"], string> = {
-  "beitHakerem-1": "b2",
+  "beithakerem-1": "b2",
   "katamon-1": "b3",
   "nachlaot-2": "b3",
   "nachlaot-3": "b3",
