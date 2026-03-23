@@ -7,11 +7,14 @@ import { getBrokerById, getBrokerImageUrl } from "@/lib/brokers";
 
 type FeaturedProperty = {
   id:
+    | "beitHakerem-1"
     | "nachlaot"
     | "rehavia-12"
     | "rehavia-13"
     | "rehavia-14"
     | "rehavia-2"
+    | "rehavia-3"
+    | "rehavia-4"
     | "romema-1";
   title: string;
   subtitle: string;
@@ -23,6 +26,19 @@ type FeaturedProperty = {
 const sqmToSqft = (sqm: number) => Math.round(sqm * 10.7639);
 
 const featuredProperties: FeaturedProperty[] = [
+  {
+    id: "beitHakerem-1",
+    title: "Sderot Herzl • Beit HaKerem",
+    subtitle: "Beit HaKerem",
+    image: "/pictures/beitHakerem-1/0.jpg",
+    href: "/properties/beitHakerem-1",
+    stats: [
+      { label: "Floor", value: "2 / 4" },
+      { label: "Layout", value: "2.5 rooms" },
+      { label: "Size", value: "58 m² + 20 m² balcony" },
+      { label: "Price", value: "₪2,600,000" },
+    ],
+  },
   {
     id: "nachlaot",
     title: "Artist House",
@@ -86,6 +102,32 @@ const featuredProperties: FeaturedProperty[] = [
       { label: "Bedrooms", value: "4" },
       { label: "Baths", value: "2.5" },
       { label: "Price", value: "₪13,000,000" },
+    ],
+  },
+  {
+    id: "rehavia-3",
+    title: "Rehavia • 3 Bedroom Apartment",
+    subtitle: "Rehavia",
+    image: "/pictures/rehavia-3/0.jpg",
+    href: "/properties/rehavia-3",
+    stats: [
+      { label: "Floor", value: "2" },
+      { label: "Bedrooms", value: "3" },
+      { label: "Porch", value: "Spacious sukkah porch" },
+      { label: "Price", value: "₪5,350,000" },
+    ],
+  },
+  {
+    id: "rehavia-4",
+    title: "Bartenura • Rehavia Apartment",
+    subtitle: "Rehavia",
+    image: "/pictures/rehavia-4/0.jpg",
+    href: "/properties/rehavia-4",
+    stats: [
+      { label: "Floor", value: "4 / 4" },
+      { label: "Bedrooms", value: "3" },
+      { label: "Size", value: `85 m² (${sqmToSqft(85)} ft²)` },
+      { label: "Price", value: "₪4,100,000" },
     ],
   },
   {

@@ -7,6 +7,7 @@ import { getBrokerById, getBrokerImageUrl } from "@/lib/brokers";
 
 type ManualProperty = {
   id:
+    | "beitHakerem-1"
     | "katamon-1"
     | "nachlaot"
     | "nachlaot-2"
@@ -15,6 +16,8 @@ type ManualProperty = {
     | "rehavia-13"
     | "rehavia-14"
     | "rehavia-2"
+    | "rehavia-3"
+    | "rehavia-4"
     | "romema-1";
   title: string;
   subtitle: string;
@@ -62,6 +65,23 @@ const REHAVIA_2_GALLERY_IMAGES = [
   "/pictures/rehavia-2/9.jpg",
   "/pictures/rehavia-2/10.jpg",
   "/pictures/rehavia-2/11.jpg",
+];
+const REHAVIA_3_GALLERY_IMAGES = [
+  "/pictures/rehavia-3/0.jpg",
+  "/pictures/rehavia-3/1.jpg",
+  "/pictures/rehavia-3/2.jpg",
+  "/pictures/rehavia-3/3.jpg",
+  "/pictures/rehavia-3/4.jpg",
+  "/pictures/rehavia-3/5.jpg",
+];
+const REHAVIA_4_GALLERY_IMAGES = [
+  "/pictures/rehavia-4/0.jpg",
+  "/pictures/rehavia-4/1.jpg",
+];
+const BEIT_HAKEREM_1_GALLERY_IMAGES = [
+  "/pictures/beitHakerem-1/0.jpg",
+  "/pictures/beitHakerem-1/1.jpg",
+  "/pictures/beitHakerem-1/2.jpg",
 ];
 const ROMEMA_GALLERY_IMAGES = [
   "/pictures/romema-1/0.jpg",
@@ -140,6 +160,38 @@ const buildRehaviaProperty = (unit: RehaviaUnit): ManualProperty => ({
 });
 
 const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
+  "beitHakerem-1": {
+    id: "beitHakerem-1",
+    title: "Sderot Herzl • Beit HaKerem",
+    subtitle: "Beit HaKerem • Jerusalem",
+    headerTagline:
+      "A practical Beit HaKerem apartment near the light rail with a generous sukkah balcony and strong everyday building features.",
+    backdropImage: "/pictures/beitHakerem-1/1.jpg",
+    galleryImages: BEIT_HAKEREM_1_GALLERY_IMAGES,
+    mapQuery: "Sderot Herzl, Beit HaKerem, Jerusalem, Israel",
+    quickFacts: [
+      { label: "Property Type", value: "Apartment" },
+      { label: "Floor", value: "2 / 4" },
+      { label: "Layout", value: "2.5 rooms" },
+      { label: "Price", value: "₪2,600,000" },
+      { label: "Interior", value: `58 m² (${sqmToSqft(58)} ft²)` },
+      { label: "Balcony", value: `20 m² (${sqmToSqft(20)} ft²)` },
+      { label: "Shelter", value: "Mamad" },
+      { label: "Building", value: "Elevator" },
+    ],
+    overview: [
+      "Beit HaKerem apartment on Sderot Herzl, positioned close to the light rail for convenient city access.",
+      "Located on the 2nd floor of a 4-story building, the apartment offers a practical 2.5-room layout.",
+      "Interior space is 58 m², plus a spacious 20 m² sukkah balcony that adds flexible outdoor living.",
+      "The building includes an elevator, and the apartment also benefits from a mamad.",
+    ],
+    highlights: [
+      "Asking price: ₪2,600,000.",
+      "Excellent transit convenience near the light rail.",
+      "20 m² sukkah balcony adds substantial usable outdoor space.",
+      "Mamad plus elevator make the property especially practical for daily living.",
+    ],
+  },
   "katamon-1": {
     id: "katamon-1",
     title: "Exclusive for Sale in Katamon!",
@@ -344,6 +396,69 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
       "Prime central Jerusalem position in one of Rehavia’s most desirable areas.",
     ],
   },
+  "rehavia-3": {
+    id: "rehavia-3",
+    title: "Rehavia • 3 Bedroom Apartment",
+    subtitle: "Rehavia • Jerusalem",
+    headerTagline:
+      "A well-kept second-floor Rehavia apartment with open living flow, a spacious sukkah porch, and strong practical features.",
+    backdropImage: "/pictures/rehavia-3/1.jpg",
+    galleryImages: REHAVIA_3_GALLERY_IMAGES,
+    mapQuery: "Rehavia, Jerusalem, Israel",
+    quickFacts: [
+      { label: "Property Type", value: "Apartment" },
+      { label: "Bedrooms", value: "3" },
+      { label: "Floor", value: "2" },
+      { label: "Price", value: "₪5,350,000" },
+      { label: "Dining / Kitchen", value: "Open layout" },
+      { label: "Porch", value: "Spacious sukkah porch" },
+      { label: "Shelter", value: "Miklat" },
+      { label: "Air Directions", value: "3" },
+    ],
+    overview: [
+      "Well-maintained Rehavia apartment on the 2nd floor with a practical, comfortable layout.",
+      "The home includes 3 bedrooms and an open dining room / kitchen area that creates easy everyday flow.",
+      "A spacious sukkah porch extends the living space and adds strong hosting flexibility.",
+      "Additional features include a miklat and three air directions for natural light and ventilation.",
+    ],
+    highlights: [
+      "Asking price: ₪5,350,000.",
+      "Second-floor apartment in one of Jerusalem’s most established neighborhoods.",
+      "Open dining room and kitchen layout supports both family living and entertaining.",
+      "Well-maintained building with strong practical value-add features.",
+    ],
+  },
+  "rehavia-4": {
+    id: "rehavia-4",
+    title: "Bartenura • Rehavia Apartment",
+    subtitle: "Rehavia • Jerusalem",
+    headerTagline:
+      "A quiet top-floor Rehavia apartment with 3 bedrooms and a sukkah balcony in a highly desirable neighborhood setting.",
+    backdropImage: "/pictures/rehavia-4/1.jpg",
+    galleryImages: REHAVIA_4_GALLERY_IMAGES,
+    mapQuery: "Bartenura Street, Rehavia, Jerusalem, Israel",
+    quickFacts: [
+      { label: "Property Type", value: "Apartment" },
+      { label: "Bedrooms", value: "3" },
+      { label: "Floor", value: "4 / 4" },
+      { label: "Price", value: "₪4,100,000" },
+      { label: "Interior", value: `85 m² (${sqmToSqft(85)} ft²)` },
+      { label: "Balcony", value: "Sukkah balcony" },
+      { label: "Setting", value: "Quiet" },
+      { label: "Neighborhood", value: "Central Rehavia" },
+    ],
+    overview: [
+      "Quiet Rehavia apartment on Bartenura Street, located on the 4th floor of a 4-story building.",
+      "The home offers 3 bedrooms across 85 m², with a layout well suited for comfortable daily living.",
+      "A sukkah balcony adds valuable outdoor space in one of Jerusalem’s most established neighborhoods.",
+    ],
+    highlights: [
+      "Asking price: ₪4,100,000.",
+      "Top-floor position supports a quieter residential feel.",
+      "3-bedroom configuration in a prime Rehavia setting.",
+      "Sukkah balcony adds strong practical and hosting value.",
+    ],
+  },
   "romema-1": {
     id: "romema-1",
     title: "Pninat Chemed • Romema",
@@ -378,6 +493,7 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
 };
 
 const BROKER_ID_BY_PROPERTY: Record<ManualProperty["id"], string> = {
+  "beitHakerem-1": "b2",
   "katamon-1": "b3",
   "nachlaot-2": "b3",
   "nachlaot-3": "b3",
@@ -386,6 +502,8 @@ const BROKER_ID_BY_PROPERTY: Record<ManualProperty["id"], string> = {
   "rehavia-13": "b2",
   "rehavia-14": "b2",
   "rehavia-2": "b2",
+  "rehavia-3": "b2",
+  "rehavia-4": "b2",
   "romema-1": "b2",
 };
 

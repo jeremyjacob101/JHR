@@ -19,6 +19,7 @@ type SP = {
 
 type ManualProperty = {
   id:
+    | "beitHakerem-1"
     | "katamon-1"
     | "nachlaot"
     | "nachlaot-2"
@@ -27,6 +28,8 @@ type ManualProperty = {
     | "rehavia-13"
     | "rehavia-14"
     | "rehavia-2"
+    | "rehavia-3"
+    | "rehavia-4"
     | "romema-1";
   title: string;
   subtitle: string;
@@ -80,6 +83,22 @@ export default async function PropertiesPage({
     sortRaw === "price_asc" || sortRaw === "price_desc" ? sortRaw : "";
 
   const properties: ManualProperty[] = [
+    {
+      id: "beitHakerem-1",
+      title: "Sderot Herzl • Beit HaKerem",
+      subtitle: "Beit HaKerem",
+      neighborhood: "Beit HaKerem",
+      locationLine: "Sderot Herzl • Beit HaKerem • Jerusalem",
+      cardImage: "/pictures/beitHakerem-1/0.jpg",
+      priceNIS: 2600000,
+      rooms: 2.5,
+      highlights: [
+        { label: "Floor", value: "2 / 4" },
+        { label: "Layout", value: "2.5 rooms" },
+        { label: "Size", value: "58 m² + 20 m² sukkah balcony" },
+        { label: "Price", value: "₪2,600,000" },
+      ],
+    },
     {
       id: "katamon-1",
       title: "Exclusive for Sale in Katamon!",
@@ -228,6 +247,38 @@ export default async function PropertiesPage({
         { label: "Bedrooms", value: "4" },
         { label: "Bathrooms", value: "2.5" },
         { label: "Price", value: "₪13,000,000" },
+      ],
+    },
+    {
+      id: "rehavia-3",
+      title: "Rehavia • 3 Bedroom Apartment",
+      subtitle: "Rehavia",
+      neighborhood: "Rehavia",
+      locationLine: "Rehavia • Jerusalem",
+      cardImage: "/pictures/rehavia-3/0.jpg",
+      priceNIS: 5350000,
+      beds: 3,
+      highlights: [
+        { label: "Floor", value: "2" },
+        { label: "Bedrooms", value: "3" },
+        { label: "Feature", value: "Spacious sukkah porch" },
+        { label: "Price", value: "₪5,350,000" },
+      ],
+    },
+    {
+      id: "rehavia-4",
+      title: "Bartenura • Rehavia Apartment",
+      subtitle: "Rehavia",
+      neighborhood: "Rehavia",
+      locationLine: "Bartenura St • Rehavia • Jerusalem",
+      cardImage: "/pictures/rehavia-4/0.jpg",
+      priceNIS: 4100000,
+      beds: 3,
+      highlights: [
+        { label: "Floor", value: "4 / 4" },
+        { label: "Bedrooms", value: "3" },
+        { label: "Size", value: `85 m² (${sqmToSqft(85)} ft²)` },
+        { label: "Price", value: "₪4,100,000" },
       ],
     },
   ];
