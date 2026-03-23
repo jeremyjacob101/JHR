@@ -244,7 +244,7 @@ const featured: FeaturedProperty[] = [
   },
   {
     id: "rehavia-12",
-    title: "Metudela 14 • Unit 12",
+    title: "Metudela • Unit 12",
     subtitle: "Rehavia",
     image: "/pictures/rehavia-1/0.jpg",
     href: "/properties/rehavia-12",
@@ -255,11 +255,11 @@ const featured: FeaturedProperty[] = [
       { label: "Price", value: "₪7,390,500" },
     ],
     blurb:
-      "Metudela St 14, Rehavia. Floor 4 apartment with 113.7 m² sale area priced at ₪65,000/m².",
+      "Metudela St, Rehavia. Floor 4 apartment with 113.7 m² sale area priced at ₪65,000/m².",
   },
   {
     id: "rehavia-13",
-    title: "Metudela 14 • Unit 13",
+    title: "Metudela • Unit 13",
     subtitle: "Rehavia",
     image: "/pictures/rehavia-1/0.jpg",
     href: "/properties/rehavia-13",
@@ -270,11 +270,11 @@ const featured: FeaturedProperty[] = [
       { label: "Price", value: "₪6,249,750" },
     ],
     blurb:
-      "Metudela St 14, Rehavia. Floor 4 apartment with 96.15 m² sale area priced at ₪65,000/m².",
+      "Metudela St, Rehavia. Floor 4 apartment with 96.15 m² sale area priced at ₪65,000/m².",
   },
   {
     id: "rehavia-14",
-    title: "Metudela 14 • Unit 14",
+    title: "Metudela • Unit 14",
     subtitle: "Rehavia",
     image: "/pictures/rehavia-1/0.jpg",
     href: "/properties/rehavia-14",
@@ -285,11 +285,11 @@ const featured: FeaturedProperty[] = [
       { label: "Price", value: "₪4,875,000" },
     ],
     blurb:
-      "Metudela St 14, Rehavia. Floor 4 apartment with 75 m² sale area priced at ₪65,000/m².",
+      "Metudela St, Rehavia. Floor 4 apartment with 75 m² sale area priced at ₪65,000/m².",
   },
   {
     id: "rehavia-2",
-    title: "Haari 4 • Rehavia Duplex",
+    title: "Haari • Rehavia Duplex",
     subtitle: "Rehavia",
     image: "/pictures/rehavia-2/0.jpg",
     href: "/properties/rehavia-2",

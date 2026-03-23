@@ -38,7 +38,7 @@ const featuredProperties: FeaturedProperty[] = [
   },
   {
     id: "rehavia-12",
-    title: "Metudela 14 • Unit 12",
+    title: "Metudela • Unit 12",
     subtitle: "Rehavia",
     image: "/pictures/rehavia-1/0.jpg",
     href: "/properties/rehavia-12",
@@ -51,7 +51,7 @@ const featuredProperties: FeaturedProperty[] = [
   },
   {
     id: "rehavia-13",
-    title: "Metudela 14 • Unit 13",
+    title: "Metudela • Unit 13",
     subtitle: "Rehavia",
     image: "/pictures/rehavia-1/0.jpg",
     href: "/properties/rehavia-13",
@@ -64,7 +64,7 @@ const featuredProperties: FeaturedProperty[] = [
   },
   {
     id: "rehavia-14",
-    title: "Metudela 14 • Unit 14",
+    title: "Metudela • Unit 14",
     subtitle: "Rehavia",
     image: "/pictures/rehavia-1/0.jpg",
     href: "/properties/rehavia-14",
@@ -77,7 +77,7 @@ const featuredProperties: FeaturedProperty[] = [
   },
   {
     id: "rehavia-2",
-    title: "Haari 4 • Rehavia Duplex",
+    title: "Haari • Rehavia Duplex",
     subtitle: "Rehavia",
     image: "/pictures/rehavia-2/0.jpg",
     href: "/properties/rehavia-2",

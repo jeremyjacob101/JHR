@@ -42,7 +42,7 @@ type RehaviaUnit = {
   pricePerSqm: string;
 };
 
-const REHAVIA_ADDRESS = "14 Metudela Street, Rehavia, Jerusalem, Israel";
+const REHAVIA_ADDRESS = "Metudela Street, Rehavia, Jerusalem, Israel";
 const REHAVIA_GALLERY_IMAGES = [
   "/pictures/rehavia-1/0.jpg",
   "/pictures/rehavia-1/1.jpg",
@@ -100,10 +100,10 @@ const NACHLAOT_3_GALLERY_IMAGES = [
 
 const buildRehaviaProperty = (unit: RehaviaUnit): ManualProperty => ({
   id: unit.id,
-  title: `Metudela 14 • Unit ${unit.unitNo}`,
+  title: `Metudela • Unit ${unit.unitNo}`,
   subtitle: "Rehavia • Jerusalem",
   headerTagline:
-    "A Rehavia listing at Metudela 14 with a private balcony and central Jerusalem access.",
+    "A Rehavia listing on Metudela Street with a private balcony and central Jerusalem access.",
   backdropImage: "/pictures/rehavia-1/1.jpg",
   galleryImages: REHAVIA_GALLERY_IMAGES,
   mapQuery: REHAVIA_ADDRESS,
@@ -143,12 +143,12 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
   "katamon-1": {
     id: "katamon-1",
     title: "Exclusive for Sale in Katamon!",
-    subtitle: "Hizkiyahu HaMelech Street 39 • Jerusalem",
+    subtitle: "Hizkiyahu HaMelech Street • Jerusalem",
     headerTagline:
       "Exclusive Katamon offering near the Shtibelach, with signed urban renewal upside and rental coverage during construction.",
     backdropImage: "/pictures/katamon-1/1.jpg",
     galleryImages: KATAMON_GALLERY_IMAGES,
-    mapQuery: "Hizkiyahu HaMelech Street 39, Jerusalem, Israel",
+    mapQuery: "Hizkiyahu HaMelech Street, Jerusalem, Israel",
     quickFacts: [
       { label: "Property Type", value: "Apartment" },
       { label: "Bedrooms", value: "3" },
@@ -160,7 +160,7 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
       { label: "Extras (Planned)", value: "Parking + storage unit" },
     ],
     overview: [
-      "Exclusive for sale in Katamon at Hizkiyahu HaMelech Street 39, right near the Shtibelach.",
+      "Exclusive for sale in Katamon on Hizkiyahu HaMelech Street, right near the Shtibelach.",
       "Prime opportunity tied to a future urban renewal project with a signed developer contract.",
       "Current state: 2nd floor, 3-room apartment, approximately 71 m².",
       "Post-renewal plan: approximately 100 m² apartment with a 12 m² balcony, parking, and a storage unit.",
@@ -176,12 +176,12 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
   "nachlaot-2": {
     id: "nachlaot-2",
     title: "Exclusive for Sale in Nachlaot!",
-    subtitle: "Khakham Shalom St 15 • Jerusalem",
+    subtitle: "Khakham Shalom St • Jerusalem",
     headerTagline:
       "Garden apartment investment opportunity in Nachlaot, split into two units and positioned for strong Airbnb potential.",
     backdropImage: "/pictures/nachlaot-2/1.jpg",
     galleryImages: NACHLAOT_2_GALLERY_IMAGES,
-    mapQuery: "Khakham Shalom St 15, Jerusalem, Israel",
+    mapQuery: "Khakham Shalom St, Jerusalem, Israel",
     quickFacts: [
       { label: "Property Type", value: "Garden apartment" },
       { label: "Bedrooms", value: "2" },
@@ -193,7 +193,7 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
       { label: "Price", value: "₪2,700,000" },
     ],
     overview: [
-      "Exclusive for sale in Nachlaot on Khakham Shalom St 15.",
+      "Exclusive for sale in Nachlaot on Khakham Shalom St.",
       "The property is a 42 m² apartment with a 70 m² private garden, currently split into two units.",
       "The apartment is currently rented for ₪8,000.",
       "Asking price is ₪2,700,000.",
@@ -209,12 +209,12 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
   "nachlaot-3": {
     id: "nachlaot-3",
     title: "Perfect for Airbnb border of Nachlaot and the City Centre!",
-    subtitle: "Mesilat Yesharim St 15 • Jerusalem",
+    subtitle: "Mesilat Yesharim St • Jerusalem",
     headerTagline:
       "Ground-floor apartment on the Nachlaot / City Centre border with strong short-term rental potential.",
     backdropImage: "/pictures/nachlaot-3/1.jpg",
     galleryImages: NACHLAOT_3_GALLERY_IMAGES,
-    mapQuery: "Mesilat Yesharim St 15, Jerusalem, Israel",
+    mapQuery: "Mesilat Yesharim St, Jerusalem, Israel",
     quickFacts: [
       { label: "Property Type", value: "Apartment" },
       { label: "Bedrooms", value: "2" },
@@ -226,7 +226,7 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
       { label: "Price", value: "₪3,900,000" },
     ],
     overview: [
-      "Located on the border of Nachlaot and Jerusalem city centre at Mesilat Yesharim St 15.",
+      "Located on the border of Nachlaot and Jerusalem city centre on Mesilat Yesharim St.",
       "Ground-floor apartment offering 87.95 m² of living space.",
       "The home includes 2 bedrooms, 1.5 bathrooms, and high ceilings throughout.",
       "Additional features include a 4.55 m² sukkah balcony, private 10.45 m² storage unit, and private parking.",
@@ -315,13 +315,13 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
   }),
   "rehavia-2": {
     id: "rehavia-2",
-    title: "Haari 4 • Rehavia Duplex",
+    title: "Haari • Rehavia Duplex",
     subtitle: "Rehavia • Jerusalem",
     headerTagline:
       "A large 172 m² duplex in prime Rehavia with exceptional open views.",
     backdropImage: "/pictures/rehavia-2/1.jpg",
     galleryImages: REHAVIA_2_GALLERY_IMAGES,
-    mapQuery: "4 Haari St, Rehavia, Jerusalem, Israel",
+    mapQuery: "Haari St, Rehavia, Jerusalem, Israel",
     quickFacts: [
       { label: "Size", value: `172 m² (${sqmToSqft(172)} ft²)` },
       { label: "Type", value: "Duplex apartment" },
@@ -333,7 +333,7 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
       { label: "Storage", value: "Includes storage room" },
     ],
     overview: [
-      "Beautiful 172 m² duplex apartment in a prime location at 4 Haari Street, Rehavia.",
+      "Beautiful 172 m² duplex apartment in a prime location on Haari Street, Rehavia.",
       "Walking distance to the city center, Mamilla, the Great Synagogue, and the Kotel.",
       "Exceptional open views plus practical family features including parking and storage.",
     ],
