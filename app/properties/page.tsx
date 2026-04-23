@@ -31,6 +31,7 @@ type ManualProperty = {
     | "rehavia-2"
     | "rehavia-3"
     | "rehavia-4"
+    | "rehavia-5"
     | "romema-1";
   title: string;
   subtitle: string;
@@ -200,6 +201,23 @@ export default async function PropertiesPage({
         { label: "Bedrooms", value: "5" },
         { label: "Bathrooms", value: "3.5" },
         { label: "Price", value: "₪16,000,000" },
+      ],
+    },
+    {
+      id: "rehavia-5",
+      title: "Rehavia • Trophy Penthouse",
+      subtitle: "Rehavia",
+      neighborhood: "Rehavia",
+      locationLine: "Rehavia • Jerusalem",
+      cardImage: "/pictures/properties/rehavia-5/0.jpg",
+      priceNIS: 100000000,
+      beds: 5,
+      baths: 4,
+      highlights: [
+        { label: "Size", value: `400 m² (${sqmToSqft(400)} ft²)` },
+        { label: "Bedrooms", value: "5" },
+        { label: "Bathrooms", value: "4" },
+        { label: "Price", value: "₪100,000,000" },
       ],
     },
     {

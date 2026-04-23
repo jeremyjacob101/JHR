@@ -3,6 +3,7 @@ import Image from "next/image";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import PropertyCarousel from "@/components/PropertyCarousel";
+import PropertyVideoGallery from "@/components/PropertyVideoGallery";
 import { getBrokerById, getBrokerImageUrl } from "@/lib/brokers";
 
 type ManualProperty = {
@@ -19,12 +20,14 @@ type ManualProperty = {
     | "rehavia-2"
     | "rehavia-3"
     | "rehavia-4"
+    | "rehavia-5"
     | "romema-1";
   title: string;
   subtitle: string;
   headerTagline: string;
   backdropImage: string; // must be 1.jpg
   galleryImages: string[]; // 0..N
+  videoSources?: { src: string; poster: string; label: string }[];
   mapQuery: string;
   quickFacts: { label: string; value: string }[];
   overview: string[];
@@ -79,6 +82,19 @@ const REHAVIA_4_GALLERY_IMAGES = [
   "/pictures/properties/rehavia-4/0.jpg",
   "/pictures/properties/rehavia-4/1.jpg",
 ];
+const REHAVIA_5_GALLERY_IMAGES = Array.from(
+  { length: 21 },
+  (_, index) => `/pictures/properties/rehavia-5/${index}.jpg`,
+);
+const REHAVIA_5_VIDEO_SOURCES = Array.from({ length: 4 }, (_, index) => {
+  const clipNumber = index + 1;
+
+  return {
+    src: `/pictures/properties/rehavia-5/${clipNumber}.mp4`,
+    poster: `/pictures/properties/rehavia-5/${clipNumber}.jpg`,
+    label: `Clip ${clipNumber}`,
+  };
+});
 const BEIT_HAKEREM_1_GALLERY_IMAGES = [
   "/pictures/properties/beitHakerem-1/0.jpg",
   "/pictures/properties/beitHakerem-1/1.jpg",
@@ -503,6 +519,44 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
       "Sukkah balcony adds strong practical and hosting value.",
     ],
   },
+  "rehavia-5": {
+    id: "rehavia-5",
+    title: "Rehavia • Trophy Penthouse",
+    subtitle: "Rehavia • Jerusalem",
+    headerTagline:
+      "A once-in-a-generation 400 m² penthouse in the heart of Rehavia, with one of the area’s highest private rooftops and panoramic views over Jerusalem.",
+    backdropImage: "/pictures/properties/rehavia-5/1.jpg",
+    galleryImages: REHAVIA_5_GALLERY_IMAGES,
+    videoSources: REHAVIA_5_VIDEO_SOURCES,
+    mapQuery: "Rehavia, Jerusalem, Israel",
+    quickFacts: [
+      { label: "Interior", value: `400 m² (${sqmToSqft(400)} ft²)` },
+      { label: "Bedrooms", value: "5" },
+      { label: "Bathrooms", value: "4" },
+      { label: "Price", value: "₪100,000,000" },
+      { label: "Rooftop", value: "Private panoramic rooftop" },
+      {
+        label: "Wellness",
+        value: "Jacuzzi + dry sauna + wet sauna + gym",
+      },
+      { label: "Kitchen", value: "State-of-the-art" },
+      { label: "Type", value: "Trophy penthouse" },
+    ],
+    overview: [
+      "A once in a generation penthouse in the heart of Rehavia, this extraordinary 400 m² residence stands among Jerusalem’s true trophy properties.",
+      "Its private rooftop ranks among the highest in the area and commands breathtaking panoramic views over the entire city.",
+      "With 5 bedrooms, 4 bathrooms, a jacuzzi, dry sauna, wet sauna, private gym, and a state-of-the-art kitchen, every part of the home was created for exceptional living on a rare scale.",
+      "Ideal for grand Sukkos hosting, elegant entertaining, and buyers seeking something genuinely unmatched, it is offered at ₪100,000,000 in one of Jerusalem’s most coveted addresses.",
+    ],
+    highlights: [
+      "Asking price: ₪100,000,000.",
+      "Private rooftop with panoramic views over Jerusalem from one of the area’s highest vantage points.",
+      "5 bedrooms and 4 bathrooms across an extraordinary 400 m² layout.",
+      "Wellness amenities include a jacuzzi, dry sauna, wet sauna, and private gym.",
+      "State-of-the-art kitchen designed for elevated daily living and elegant entertaining.",
+      "An exceptional fit for grand Sukkos hosting in coveted central Rehavia.",
+    ],
+  },
   "romema-1": {
     id: "romema-1",
     title: "Pninat Chemed • Romema",
@@ -549,6 +603,7 @@ const BROKER_ID_BY_PROPERTY: Record<ManualProperty["id"], string> = {
   "rehavia-2": "b2",
   "rehavia-3": "b2",
   "rehavia-4": "b2",
+  "rehavia-5": "b2",
   "romema-1": "b2",
 };
 
@@ -586,6 +641,8 @@ export default async function PropertyDetailPage({
   const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(
     property.mapQuery,
   )}&output=embed`;
+  const hasVideoGallery = Boolean(property.videoSources?.length);
+  const usesPortraitHero = property.id === "rehavia-5";
   const associatedBroker = getBrokerById(BROKER_ID_BY_PROPERTY[key]);
   const associatedBrokerPhoto = getBrokerImageUrl(associatedBroker?.photoUrl);
 
@@ -594,17 +651,53 @@ export default async function PropertyDetailPage({
       <NavBar />
 
       {/* Backdrop "thingy" at top must be 1.jpg */}
-      <section className="relative h-[260px] mb-0 overflow-hidden">
-        <Image
-          src={property.backdropImage}
-          alt={`${property.title} backdrop`}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-        />
+      <section
+        className={`relative mb-0 overflow-hidden ${
+          usesPortraitHero ? "h-[340px] md:h-[380px]" : "h-[260px]"
+        }`}
+      >
+        {usesPortraitHero ? (
+          <>
+            <Image
+              src={property.backdropImage}
+              alt={`${property.title} backdrop`}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center blur-md scale-110"
+            />
 
-        <div className="absolute inset-0 bg-linear-to-b from-[#0b1f3a]/40 to-[#0b1f3a]/75" />
+            <div className="absolute inset-0 bg-slate-950/45" />
+
+            <div className="absolute inset-0 flex items-center justify-center px-5 pt-4">
+              <div className="relative h-full w-full max-w-[18rem] md:max-w-88">
+                <Image
+                  src={property.backdropImage}
+                  alt={`${property.title} hero image`}
+                  fill
+                  priority
+                  sizes="(min-width: 768px) 352px, 288px"
+                  className="object-contain object-center drop-shadow-2xl"
+                />
+              </div>
+            </div>
+
+            <div className="absolute inset-0 bg-linear-to-b from-[#0b1f3a]/10 via-[#0b1f3a]/5 to-[#0b1f3a]/80" />
+          </>
+        ) : (
+          <>
+            <Image
+              src={property.backdropImage}
+              alt={`${property.title} backdrop`}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+
+            <div className="absolute inset-0 bg-linear-to-b from-[#0b1f3a]/40 to-[#0b1f3a]/75" />
+          </>
+        )}
 
         <div className="relative z-10 max-w-5xl mx-auto h-full flex flex-col justify-end px-5 pb-6 text-white">
           <p className="mb-1">
@@ -635,21 +728,63 @@ export default async function PropertyDetailPage({
         <section className="grid grid-cols-1 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] gap-7 mt-2">
           <div>
             {/* Gallery slider */}
-            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
-              <div className="p-5 border-b border-slate-100">
-                <h2 className="text-[1.25rem] font-semibold">Photo Gallery</h2>
-                <p className="text-sm text-slate-600 mt-1">
-                  Click arrows or dots — it also auto-advances every 3 seconds.
-                </p>
-              </div>
+            {hasVideoGallery ? (
+              <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.45fr)] gap-6 mb-6">
+                <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden order-2 lg:order-1">
+                  <div className="p-5 border-b border-slate-100">
+                    <h2 className="text-[1.25rem] font-semibold">
+                      Video Gallery
+                    </h2>
+                    <p className="text-sm text-slate-600 mt-1">
+                      Beautiful short clips. Play in full screen for best viewing!
+                    </p>
+                  </div>
 
-              <PropertyCarousel
-                key={property.id}
-                carouselId={`property-carousel-${property.id}`}
-                title={property.title}
-                images={property.galleryImages}
-              />
-            </div>
+                  <PropertyVideoGallery
+                    title={property.title}
+                    videos={property.videoSources ?? []}
+                  />
+                </div>
+
+                <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden order-1 lg:order-2">
+                  <div className="p-5 border-b border-slate-100">
+                    <h2 className="text-[1.25rem] font-semibold">
+                      Photo Gallery
+                    </h2>
+                    <p className="text-sm text-slate-600 mt-1">
+                      Click arrows or dots — it also auto-advances every 3
+                      seconds.
+                    </p>
+                  </div>
+
+                  <PropertyCarousel
+                    key={property.id}
+                    carouselId={`property-carousel-${property.id}`}
+                    title={property.title}
+                    images={property.galleryImages}
+                    imageSizes="(min-width: 1280px) 34vw, (min-width: 1024px) 40vw, 100vw"
+                    viewportAspectRatio={0.82}
+                    imageFit="contain"
+                  />
+                </div>
+              </div>
+            ) : (
+              <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
+                <div className="p-5 border-b border-slate-100">
+                  <h2 className="text-[1.25rem] font-semibold">Photo Gallery</h2>
+                  <p className="text-sm text-slate-600 mt-1">
+                    Click arrows or dots — it also auto-advances every 3 seconds.
+                  </p>
+                </div>
+
+                <PropertyCarousel
+                  key={property.id}
+                  carouselId={`property-carousel-${property.id}`}
+                  title={property.title}
+                  images={property.galleryImages}
+                />
+              </div>
+            )}
 
             {/* Quick facts */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-slate-100 rounded-2xl px-4 py-3 mb-6">

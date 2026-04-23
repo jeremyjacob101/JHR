@@ -6,6 +6,7 @@ type ProjectVideoPlayerProps = {
   src: string;
   poster?: string;
   title: string;
+  videoFit?: "cover" | "contain";
 };
 
 const formatTime = (seconds: number) => {
@@ -19,6 +20,7 @@ export default function ProjectVideoPlayer({
   src,
   poster,
   title,
+  videoFit = "cover",
 }: ProjectVideoPlayerProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -98,6 +100,9 @@ export default function ProjectVideoPlayer({
     if (!duration) return 0;
     return Math.min(100, (currentTime / duration) * 100);
   }, [currentTime, duration]);
+  const videoFitClass =
+    videoFit === "contain" ? "object-contain" : "object-cover";
+  const showSeekControls = isFullscreen;
 
   const togglePlay = useCallback(async () => {
     const video = videoRef.current;
@@ -193,7 +198,7 @@ export default function ProjectVideoPlayer({
     >
       <video
         ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover"
+        className={`absolute inset-0 h-full w-full ${videoFitClass}`}
         playsInline
         preload="metadata"
         poster={poster}
@@ -248,20 +253,26 @@ export default function ProjectVideoPlayer({
               )}
             </button>
 
-            <input
-              type="range"
-              min="0"
-              max="100"
-              step="0.1"
-              value={progress}
-              aria-label="Video progress"
-              onChange={(e) => onSeek(e.target.value)}
-              className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-white/35 accent-white"
-            />
+            {showSeekControls ? (
+              <>
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="0.1"
+                  value={progress}
+                  aria-label="Video progress"
+                  onChange={(e) => onSeek(e.target.value)}
+                  className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-white/35 accent-white"
+                />
 
-            <div className="shrink-0 text-xs font-medium tabular-nums text-white/90">
-              {formatTime(currentTime)} / {formatTime(duration)}
-            </div>
+                <div className="shrink-0 text-xs font-medium tabular-nums text-white/90">
+                  {formatTime(currentTime)} / {formatTime(duration)}
+                </div>
+              </>
+            ) : (
+              <div className="flex-1" />
+            )}
 
             <button
               type="button"

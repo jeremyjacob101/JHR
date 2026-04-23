@@ -8,6 +8,8 @@ type PropertyCarouselProps = {
   title: string;
   images: string[];
   imageSizes?: string;
+  viewportAspectRatio?: number;
+  imageFit?: "cover" | "contain";
 };
 
 const SWIPE_THRESHOLD_PX = 50;
@@ -18,6 +20,8 @@ export default function PropertyCarousel({
   title,
   images,
   imageSizes = "(min-width: 768px) 66vw, 100vw",
+  viewportAspectRatio = 16 / 9,
+  imageFit = "cover",
 }: PropertyCarouselProps) {
   const slideCount = images.length;
   const [index, setIndex] = useState(0);
@@ -30,6 +34,10 @@ export default function PropertyCarousel({
 
   const canSlide = slideCount > 1;
   const counterText = `${index + 1} / ${slideCount}`;
+  const safeAspectRatio = viewportAspectRatio > 0 ? viewportAspectRatio : 16 / 9;
+  const viewportPaddingBottom = `${100 / safeAspectRatio}%`;
+  const imageFitClass =
+    imageFit === "contain" ? "object-contain" : "object-cover";
   const autoplayEnabled =
     canSlide && !reduceMotion && !isPaused && !isTabHidden && !isFullscreen;
 
@@ -144,7 +152,7 @@ export default function PropertyCarousel({
       <div
         id={carouselId}
         className="relative w-full select-none"
-        style={{ paddingBottom: "56.25%" }}
+        style={{ paddingBottom: viewportPaddingBottom }}
         data-index={index + 1}
         dir="ltr"
         aria-label={`${title} image carousel`}
@@ -163,7 +171,7 @@ export default function PropertyCarousel({
           startXRef.current = null;
         }}
       >
-        <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden bg-slate-100">
           <div
             data-track
             className="h-full w-full flex flex-row transition-transform duration-500 ease-out"
@@ -181,7 +189,7 @@ export default function PropertyCarousel({
                   alt={`${title} photo ${i + 1}`}
                   fill
                   sizes={imageSizes}
-                  className="object-cover object-center"
+                  className={`${imageFitClass} object-center bg-slate-100`}
                   priority={i === 0}
                 />
               </div>
