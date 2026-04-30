@@ -52,7 +52,7 @@ export default function WhatsAppFloatingButton() {
       style={{
         position: "fixed",
         right: 20,
-        bottom: 20,
+        bottom: "calc(20px + var(--jhr-floating-footer-offset, 0px))",
         zIndex: 2147483640,
         pointerEvents: "auto",
       }}

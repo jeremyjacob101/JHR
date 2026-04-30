@@ -332,6 +332,37 @@ export default async function HomePage() {
         <NavBar />
       </header>
 
+      <Link href="/efrat" className={styles.efratPromo}>
+        <span className={styles.efratPromoMedia} aria-hidden="true">
+          <Image
+            src="/pictures/projects/efrat-1/usePic3.jpg"
+            alt=""
+            fill
+            sizes="96px"
+            className={styles.efratPromoImg}
+          />
+        </span>
+        <span className={styles.efratPromoCopy}>
+          <span className={styles.efratPromoTitle}>
+            Own in Efrat
+          </span>
+          <span className={styles.efratPromoText}>
+            Starting at 1.8M NIS · Get brochure, pricing, and availability
+          </span>
+        </span>
+        <span className={styles.efratPromoArrow} aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+            <path
+              d="M5 12h13m0 0-5-5m5 5-5 5"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
+      </Link>
+
       <main id="main-content" className="flex-1">
         {/* HERO */}
         <section id="jhr-hero" className={styles.hero}>

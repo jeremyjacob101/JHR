@@ -2,7 +2,10 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-(--navy) text-[#FAF9F6]">
+    <footer
+      className="bg-(--navy) text-[#FAF9F6]"
+      data-floating-cta-boundary
+    >
       <div className="max-w-5xl mx-auto px-5 py-8 text-sm">
         {/* Mobile: flex col (ordered). Desktop: grid puts copyright under title */}
         <div className="flex flex-col gap-6 text-center md:text-left md:grid md:grid-cols-2 md:grid-rows-2 md:gap-x-10 md:gap-y-2 md:items-start">

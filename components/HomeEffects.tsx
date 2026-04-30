@@ -5,6 +5,11 @@ import { usePathname } from "next/navigation";
 import EmailUsTab from "@/components/EmailUsTab";
 import ScheduleCallTab from "@/components/ScheduleCallTab";
 
+const FLOATING_CTA_MOBILE_QUERY = "(max-width: 640px)";
+const FLOATING_CTA_BASE_BOTTOM = 20;
+const FLOATING_CTA_FOOTER_GAP = 12;
+const FLOATING_CTA_OFFSET_VAR = "--jhr-floating-footer-offset";
+
 export default function HomeEffects() {
   const pathname = usePathname();
   const [showCtas, setShowCtas] = useState(false);
@@ -49,7 +54,10 @@ export default function HomeEffects() {
         nav.setAttribute("data-visible", v ? "true" : "false");
 
       const update = () => {
-        const reachedStory = trigger.getBoundingClientRect().top <= 1;
+        const revealOffset = window.matchMedia("(max-width: 900px)").matches
+          ? 205
+          : 230;
+        const reachedStory = trigger.getBoundingClientRect().top <= revealOffset;
         setNavVisible(reachedStory);
         if (reachedStory) setShowCtas(true);
       };
@@ -81,6 +89,51 @@ export default function HomeEffects() {
         io2?.disconnect();
       });
     }
+
+    // ---------- MOBILE CTA FOOTER AVOIDANCE ----------
+    const footer = document.querySelector<HTMLElement>(
+      "[data-floating-cta-boundary]",
+    );
+    const mobileQuery = window.matchMedia(FLOATING_CTA_MOBILE_QUERY);
+
+    const setFloatingCtaOffset = () => {
+      if (!footer || !mobileQuery.matches) {
+        document.documentElement.style.setProperty(
+          FLOATING_CTA_OFFSET_VAR,
+          "0px",
+        );
+        return;
+      }
+
+      const footerTop = footer.getBoundingClientRect().top;
+      const viewportHeight = window.innerHeight;
+      const offset = Math.max(
+        0,
+        Math.ceil(
+          viewportHeight -
+            footerTop +
+            FLOATING_CTA_FOOTER_GAP -
+            FLOATING_CTA_BASE_BOTTOM,
+        ),
+      );
+
+      document.documentElement.style.setProperty(
+        FLOATING_CTA_OFFSET_VAR,
+        `${offset}px`,
+      );
+    };
+
+    setFloatingCtaOffset();
+    window.addEventListener("scroll", setFloatingCtaOffset, { passive: true });
+    window.addEventListener("resize", setFloatingCtaOffset);
+    mobileQuery.addEventListener("change", setFloatingCtaOffset);
+
+    cleanups.push(() => {
+      window.removeEventListener("scroll", setFloatingCtaOffset);
+      window.removeEventListener("resize", setFloatingCtaOffset);
+      mobileQuery.removeEventListener("change", setFloatingCtaOffset);
+      document.documentElement.style.removeProperty(FLOATING_CTA_OFFSET_VAR);
+    });
 
     return () => {
       for (const fn of cleanups) fn();
