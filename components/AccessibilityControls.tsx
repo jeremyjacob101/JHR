@@ -36,31 +36,49 @@ export default function AccessibilityControls() {
   useEffect(() => {
     if (!el) return;
 
+    let active = true;
+    const markMounted = () => {
+      if (active) setMounted(true);
+    };
+
     const existing = document.getElementById("a11y-floating-root");
     if (existing) {
-      setMounted(true);
-      return;
+      queueMicrotask(markMounted);
+      return () => {
+        active = false;
+      };
     }
 
     document.body.appendChild(el);
-    setMounted(true);
+    queueMicrotask(markMounted);
 
     return () => {
+      active = false;
       el.remove();
     };
   }, [el]);
 
   useEffect(() => {
-    const storedFontScale = window.localStorage.getItem("a11y-font-scale");
-    const storedContrast = window.localStorage.getItem("a11y-contrast");
-    const storedMotion = window.localStorage.getItem("a11y-motion");
+    let active = true;
 
-    if (storedFontScale) {
-      const parsed = Number(storedFontScale);
-      if (!Number.isNaN(parsed)) setFontScale(clampFontScale(parsed));
-    }
-    if (storedContrast) setContrast(storedContrast);
-    if (storedMotion) setMotion(storedMotion);
+    queueMicrotask(() => {
+      if (!active) return;
+
+      const storedFontScale = window.localStorage.getItem("a11y-font-scale");
+      const storedContrast = window.localStorage.getItem("a11y-contrast");
+      const storedMotion = window.localStorage.getItem("a11y-motion");
+
+      if (storedFontScale) {
+        const parsed = Number(storedFontScale);
+        if (!Number.isNaN(parsed)) setFontScale(clampFontScale(parsed));
+      }
+      if (storedContrast) setContrast(storedContrast);
+      if (storedMotion) setMotion(storedMotion);
+    });
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   useEffect(() => {

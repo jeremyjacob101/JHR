@@ -12,7 +12,7 @@ export default function HomeEffects() {
   useEffect(() => {
     const cleanups: Array<() => void> = [];
 
-    setShowCtas(false);
+    queueMicrotask(() => setShowCtas(false));
 
     // ---------- REVEAL ----------
     const revealEls = Array.from(

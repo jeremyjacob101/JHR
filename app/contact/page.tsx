@@ -3,7 +3,6 @@
 import Image from "next/image";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
-import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
 import EmailUsTab from "@/components/EmailUsTab";
 import ScheduleCallTab from "@/components/ScheduleCallTab";
 

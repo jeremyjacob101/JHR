@@ -18,17 +18,25 @@ export default function WhatsAppFloatingButton() {
   useEffect(() => {
     if (!el) return;
 
+    let active = true;
+    const markMounted = () => {
+      if (active) setMounted(true);
+    };
+
     // Avoid duplicates during fast refresh
     const existing = document.getElementById("whatsapp-floating-root");
     if (existing) {
-      setMounted(true);
-      return;
+      queueMicrotask(markMounted);
+      return () => {
+        active = false;
+      };
     }
 
     document.body.appendChild(el);
-    setMounted(true);
+    queueMicrotask(markMounted);
 
     return () => {
+      active = false;
       el.remove();
     };
   }, [el]);

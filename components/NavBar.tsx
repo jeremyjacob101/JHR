@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 const navLinks = [
   { href: "/properties", label: "Properties" },
   { href: "/projects", label: "Projects" },
+  { href: "/efrat", label: "Efrat" },
   { href: "/team", label: "Team" },
   { href: "/contact", label: "Contact" },
 ];
@@ -20,7 +21,7 @@ export default function NavBar() {
 
   // Close menu on route change
   useEffect(() => {
-    setOpen(false);
+    queueMicrotask(() => setOpen(false));
   }, [pathname]);
 
   // Close on click outside
