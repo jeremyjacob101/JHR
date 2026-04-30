@@ -218,18 +218,24 @@ export default function EfratLandingPage() {
                 neighborhoods.
               </p>
 
-              <div className="mt-8 grid max-w-xl grid-cols-3 border-y border-white/15 py-5">
-                {["90 sqm", "130 sqm", "170 sqm"].map((item) => (
+              <div className="mt-8 grid max-w-2xl grid-cols-3 border-y border-white/15 py-5">
+                {[
+                  ["Sizes", "90-120 sqm, 130-160 sqm, 170-200+ sqm"],
+                  ["Garden", "Beautiful open outdoor areas"],
+                  ["Penthouse", "Elevated homes with open views"],
+                ].map(([label, value]) => (
                   <div
-                    key={item}
+                    key={label}
                     className="border-r border-white/15 px-3 first:pl-0 last:border-r-0"
                   >
                     <p className="text-xs uppercase tracking-[0.16em] text-[#d8b46d]">
-                      Category
+                      {label}
                     </p>
-                    <p className="mt-1 text-lg font-semibold text-white">
-                      {item}
-                    </p>
+                    {value ? (
+                      <p className="mt-1 text-lg font-semibold text-white">
+                        {value}
+                      </p>
+                    ) : null}
                   </div>
                 ))}
               </div>
