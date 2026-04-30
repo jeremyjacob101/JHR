@@ -70,7 +70,7 @@ function ActiveTile({
 
 export default async function ProjectsPage() {
   const SCHEDULE_CALL_HREF = "/contact";
-  const EFRAT_IMAGE_SRC = "/pictures/projects/efrat-1/usePic2.jpg";
+  const EFRAT_IMAGE_SRC = "/pictures/projects/efrat-1/0.jpg";
   const GARDA_IMAGE_SRC = "/pictures/projects/garda-1/0.jpg";
   const MIDTOWN_IMAGE_SRC = "/pictures/projects/midtown-1/0.jpeg";
 
