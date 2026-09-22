@@ -15,8 +15,7 @@ type FeaturedProperty = {
     | "rehavia-14"
     | "rehavia-2"
     | "rehavia-3"
-    | "rehavia-4"
-    | "romema-1";
+    | "rehavia-4";
   title: string;
   subtitle: string;
   image: string; // 0.jpg
@@ -142,19 +141,6 @@ const featuredProperties: FeaturedProperty[] = [
       { label: "Bedrooms", value: "3" },
       { label: "Size", value: `85 m² (${sqmToSqft(85)} ft²)` },
       { label: "Price", value: "₪4,100,000" },
-    ],
-  },
-  {
-    id: "romema-1",
-    title: "Pninat Chemed • Romema",
-    subtitle: "Romema",
-    image: "/pictures/properties/romema-1/0.jpg",
-    href: "/properties/romema-1",
-    stats: [
-      { label: "Size", value: `240 m² (${sqmToSqft(240)} ft²)` },
-      { label: "Bedrooms", value: "5" },
-      { label: "Baths", value: "3.5" },
-      { label: "Price", value: "₪16,000,000" },
     ],
   },
 ];

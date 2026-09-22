@@ -24,7 +24,6 @@ const NEIGHBORHOOD_OPTIONS = [
   "Ramot",
   "Katamon",
   "Nachlaot",
-  "Romema",
   "Baka",
   "Old Katamon",
   "Arnona",

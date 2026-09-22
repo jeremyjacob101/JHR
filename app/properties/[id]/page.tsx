@@ -20,8 +20,7 @@ type ManualProperty = {
     | "rehavia-2"
     | "rehavia-3"
     | "rehavia-4"
-    | "rehavia-5"
-    | "romema-1";
+    | "rehavia-5";
   title: string;
   subtitle: string;
   headerTagline: string;
@@ -110,15 +109,6 @@ const CITY_CENTER_1_GALLERY_IMAGES = [
   "/pictures/properties/cityCenter-1/6.jpg",
   "/pictures/properties/cityCenter-1/7.jpg",
   "/pictures/properties/cityCenter-1/8.jpg",
-];
-const ROMEMA_GALLERY_IMAGES = [
-  "/pictures/properties/romema-1/0.jpg",
-  "/pictures/properties/romema-1/1.jpg",
-  "/pictures/properties/romema-1/2.jpg",
-  "/pictures/properties/romema-1/3.jpg",
-  "/pictures/properties/romema-1/4.jpg",
-  "/pictures/properties/romema-1/5.jpg",
-  "/pictures/properties/romema-1/6.jpg",
 ];
 const KATAMON_GALLERY_IMAGES = [
   "/pictures/properties/katamon-1/0.jpg",
@@ -557,37 +547,6 @@ const PROPERTIES: Record<ManualProperty["id"], ManualProperty> = {
       "An exceptional fit for grand Sukkos hosting in coveted central Rehavia.",
     ],
   },
-  "romema-1": {
-    id: "romema-1",
-    title: "Pninat Chemed • Romema",
-    subtitle: "Romema • Jerusalem",
-    headerTagline:
-      "A spacious single-level 240 m² apartment with open views in the heart of Romema.",
-    backdropImage: "/pictures/properties/romema-1/1.jpg",
-    galleryImages: ROMEMA_GALLERY_IMAGES,
-    mapQuery: "Pninat Chemed, Romema, Jerusalem, Israel",
-    quickFacts: [
-      { label: "Size", value: `240 m² (${sqmToSqft(240)} ft²)` },
-      { label: "Bedrooms", value: "5" },
-      { label: "Bathrooms", value: "3.5" },
-      { label: "Price", value: "₪16,000,000" },
-      { label: "Level", value: "Single-level apartment" },
-      { label: "Balcony", value: "Sukkah porch" },
-      { label: "Parking", value: "Includes parking" },
-      { label: "Storage", value: "Includes storage room" },
-    ],
-    overview: [
-      "Exceptional 240 m² apartment on one level in Pninat Chemed, located in central Romema.",
-      "The home includes 5 bedrooms and 3.5 bathrooms with generous living and hosting space.",
-      "Positioned directly opposite Rav Shefa Mall with broad open views and convenient city access.",
-    ],
-    highlights: [
-      "Asking price: ₪16,000,000.",
-      "Large single-level footprint ideal for comfortable family living.",
-      "Sukkah porch plus dedicated parking and storage room.",
-      "Prime Romema location near shopping, transport, and neighborhood services.",
-    ],
-  },
 };
 
 const BROKER_ID_BY_PROPERTY: Record<ManualProperty["id"], string> = {
@@ -604,7 +563,6 @@ const BROKER_ID_BY_PROPERTY: Record<ManualProperty["id"], string> = {
   "rehavia-3": "b2",
   "rehavia-4": "b2",
   "rehavia-5": "b2",
-  "romema-1": "b2",
 };
 
 export default async function PropertyDetailPage({

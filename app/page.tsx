@@ -219,8 +219,7 @@ type FeaturedProperty = {
     | "rehavia-2"
     | "rehavia-3"
     | "rehavia-4"
-    | "rehavia-5"
-    | "romema-1";
+    | "rehavia-5";
   title: string;
   subtitle: string;
   image: string; // use 0.jpg

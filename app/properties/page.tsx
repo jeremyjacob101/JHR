@@ -31,8 +31,7 @@ type ManualProperty = {
     | "rehavia-2"
     | "rehavia-3"
     | "rehavia-4"
-    | "rehavia-5"
-    | "romema-1";
+    | "rehavia-5";
   title: string;
   subtitle: string;
   neighborhood: string;
@@ -184,23 +183,6 @@ export default async function PropertiesPage({
         { label: "Bedrooms", value: "2" },
         { label: "Bathrooms", value: "1.5" },
         { label: "Price", value: "₪3,900,000" },
-      ],
-    },
-    {
-      id: "romema-1",
-      title: "Pninat Chemed • Romema",
-      subtitle: "Romema",
-      neighborhood: "Romema",
-      locationLine: "Pninat Chemed • Opposite Rav Shefa Mall • Jerusalem",
-      cardImage: "/pictures/properties/romema-1/0.jpg",
-      priceNIS: 16000000,
-      beds: 5,
-      baths: 3.5,
-      highlights: [
-        { label: "Size", value: `240 m² (${sqmToSqft(240)} ft²)` },
-        { label: "Bedrooms", value: "5" },
-        { label: "Bathrooms", value: "3.5" },
-        { label: "Price", value: "₪16,000,000" },
       ],
     },
     {
